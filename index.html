@@ -133,13 +133,13 @@
 
     /* ══ URGENT BANNER ══ */
     .urgent-banner {
-      background: var(--iaf-blue);
+      background: linear-gradient(135deg, #0d2b6b 0%, #1a3e7a 60%, #1e4d8c 100%);
       padding: 22px 56px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 24px;
-      border-bottom: 3px solid var(--iaf-blue-lt);
+      border-bottom: 3px solid #4a90d9;
     }
     .urgent-text-wrap { display: flex; align-items: center; gap: 16px; }
     .urgent-dot {
@@ -184,6 +184,103 @@
     }
     .urgent-cta:hover { background: var(--gray-light); transform: translateX(-2px); }
 
+    /* ══ EVENT CARD ══ */
+    .event-card-outer {
+      background: linear-gradient(135deg, #0a1e52 0%, #112d7a 50%, #0d2460 100%);
+      padding: 56px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .event-card-outer::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+    .event-card {
+      position: relative;
+      z-index: 1;
+      max-width: 860px;
+      margin: 0 auto;
+      border: 1.5px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.04);
+      padding: 48px 56px;
+      backdrop-filter: blur(4px);
+    }
+    .event-eyebrow {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.22em;
+      color: #7eb3ff;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .event-title {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: clamp(28px, 4vw, 52px);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 32px;
+    }
+    .event-details {
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      gap: 0;
+      margin-bottom: 36px;
+      flex-wrap: wrap;
+    }
+    .event-detail-block {
+      padding: 20px 48px;
+      border-left: 1px solid rgba(255,255,255,0.15);
+      text-align: center;
+    }
+    .event-detail-block:last-child { border-left: none; }
+    .event-detail-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      color: rgba(255,255,255,0.45);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .event-detail-value {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: clamp(22px, 3vw, 36px);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1;
+    }
+    .event-detail-value.date-tbd {
+      font-size: clamp(18px, 2.2vw, 26px);
+      color: #7eb3ff;
+      border: 1.5px dashed rgba(126,179,255,0.4);
+      padding: 8px 20px;
+      letter-spacing: 0.04em;
+    }
+    .event-cta-wrap { margin-top: 8px; }
+    .event-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #4a90d9;
+      color: var(--white);
+      font-family: 'Heebo', sans-serif;
+      font-size: 17px;
+      font-weight: 800;
+      padding: 15px 40px;
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      transition: background 0.2s, transform 0.15s;
+      box-shadow: 0 4px 24px rgba(74,144,217,0.4);
+    }
+    .event-cta:hover { background: #5aa0e8; transform: translateY(-2px); box-shadow: 0 8px 32px rgba(74,144,217,0.5); }
+
     /* ══ CONTENT ══ */
     .content-outer { background: var(--gray-bg); }
     .content-wrap {
@@ -203,8 +300,8 @@
     .feature-list { margin-top: 40px; }
     .feature-item { display: flex; align-items: flex-start; gap: 20px; padding: 20px 0; border-bottom: 1px solid var(--border); }
     .feature-item:first-child { border-top: 1px solid var(--border); }
-    .feature-num { font-family: 'Frank Ruhl Libre', serif; font-size: 36px; font-weight: 900; color: var(--gray-light); line-height: 1; flex-shrink: 0; width: 48px; user-select: none; }
-    .feature-title { font-size: 15px; font-weight: 800; color: var(--text); margin-bottom: 5px; }
+    .feature-num { font-family: 'Frank Ruhl Libre', serif; font-size: 36px; font-weight: 900; color: #c8daf8; line-height: 1; flex-shrink: 0; width: 48px; user-select: none; }
+    .feature-title { font-size: 15px; font-weight: 800; color: var(--iaf-blue); margin-bottom: 5px; }
     .feature-desc { font-size: 14px; line-height: 1.7; color: var(--text-light); }
 
     /* ══ SIDEBAR FORM ══ */
@@ -260,6 +357,9 @@
       .site-header { padding: 0 24px; }
       .hero-content { padding: 0 28px 44px; }
       .urgent-banner { padding: 20px 28px; flex-direction: column; align-items: flex-start; gap: 16px; }
+      .event-card-outer { padding: 32px 24px; }
+      .event-card { padding: 32px 24px; }
+      .event-detail-block { padding: 16px 24px; }
       .content-wrap { grid-template-columns: 1fr; padding: 44px 28px; gap: 44px; }
       .sidebar-form { position: static; }
       .site-footer { padding: 24px 28px; flex-direction: column; text-align: center; }
@@ -289,14 +389,14 @@
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-content">
-    <p class="hero-top-label">חיל האוויר</p>
+    <p class="hero-top-label">חיל האוויר · מסלולי נוער</p>
     <h1 class="hero-title">
       מסלול השוחרות
       <span class="hero-title-accent">חיל האוויר</span>
     </h1>
     <div class="hero-divider"></div>
     <p class="hero-sub">
-      מסלול מצוינות לימודי וערכי המשלב לימודי ליבה עם מגמות טכנולוגיות ותכנים של חיל האוויר - לאורך כל הדרך.
+      מסלול מצוינות לימודי וערכי המשלב לימודי ליבה עם מגמות טכנולוגיות ותכנים של חיל האוויר — לאורך כל הדרך.
     </p>
   </div>
 </section>
@@ -311,6 +411,27 @@
     </div>
   </div>
   <a href="#register" class="urgent-cta">← להרשמה עכשיו</a>
+</div>
+
+<!-- EVENT CARD -->
+<div class="event-card-outer">
+  <div class="event-card">
+    <div class="event-eyebrow">הזדמנות להכיר את חיל האוויר מקרוב</div>
+    <div class="event-title">ערב פתוח יתקיים</div>
+    <div class="event-details">
+      <div class="event-detail-block">
+        <div class="event-detail-label">תאריך</div>
+        <div class="event-detail-value date-tbd">יפורסם בקרוב</div>
+      </div>
+      <div class="event-detail-block">
+        <div class="event-detail-label">שעה</div>
+        <div class="event-detail-value">18:00</div>
+      </div>
+    </div>
+    <div class="event-cta-wrap">
+      <a href="#register" class="event-cta">← לפרטים נוספים והרשמה</a>
+    </div>
+  </div>
 </div>
 
 <!-- MAIN CONTENT -->
@@ -403,7 +524,7 @@
           <div class="success-box" id="successBox">
             <div class="success-icon">✅</div>
             <div class="success-title">הפרטים התקבלו!</div>
-            <div class="success-text">תודה על ההרשמה.<br />סגל חיל האוויר יצור עמכם קשר לקראת הערב הפתוח</div>
+            <div class="success-text">תודה על ההרשמה.<br />נחזור אליכם עם פרטים על הערב הפתוח.</div>
           </div>
         </div>
       </div>
@@ -416,7 +537,7 @@
 <footer class="site-footer">
   <div class="footer-brand">
     <img class="footer-logo" src="logo.jpg" alt="חיל האוויר" />
-    <span class="footer-name">חיל האוויר - מסלול שוחרות</span>
+    <span class="footer-name">חיל האוויר — מסלול שוחרות</span>
   </div>
   <div class="footer-copy">© כל הזכויות שמורות לצבא הגנה לישראל</div>
 </footer>
