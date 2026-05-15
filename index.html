@@ -40,13 +40,11 @@
       padding: 0 40px;
       height: 70px;
     }
-    .header-left { display: flex; align-items: center; gap: 20px; }
-    .header-nav-link { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.85); text-decoration: none; transition: color 0.2s; }
-    .header-nav-link:hover { color: var(--white); }
-    .header-sep-v { width: 1px; height: 18px; background: rgba(255,255,255,0.3); }
+    .header-left { display: none; }
+    .header-sep-v { display: none; }
     .header-spacer { flex: 1; }
     .header-right { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
-    .header-logo { height: 48px; width: auto; object-fit: contain; filter: brightness(0) invert(1); }
+    .header-logo { height: 48px; width: auto; object-fit: contain; }
     .header-iaf-name { font-size: 13px; font-weight: 700; color: var(--white); letter-spacing: 0.04em; }
     .header-iaf-line { display: block; width: 100%; height: 2px; background: var(--iaf-blue-lt); margin-top: 2px; }
 
@@ -72,7 +70,7 @@
       padding: 0 56px 52px;
       max-width: 860px;
     }
-    .hero-label { font-size: 12px; font-weight: 700; letter-spacing: 0.18em; color: rgba(255,255,255,0.6); text-transform: uppercase; margin-bottom: 14px; }
+    .hero-label { font-family: 'Frank Ruhl Libre', serif; font-size: clamp(20px, 2.8vw, 30px); font-weight: 700; color: rgba(255,255,255,0.88); margin-bottom: 18px; letter-spacing: 0.01em; }
     .hero-title {
       font-family: 'Frank Ruhl Libre', serif;
       font-size: clamp(36px, 5.5vw, 64px);
@@ -201,7 +199,7 @@
     /* ══ FOOTER ══ */
     .site-footer { background: var(--iaf-blue); padding: 28px 56px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
     .footer-brand { display: flex; align-items: center; gap: 14px; }
-    .footer-logo { height: 34px; filter: brightness(0) invert(1) opacity(0.5); }
+    .footer-logo { height: 34px; }
     .footer-name { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.5); }
     .footer-copy { font-size: 12px; color: rgba(255,255,255,0.3); }
 
@@ -243,7 +241,7 @@
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-content">
-    <p class="hero-label">חיל האוויר · מסלולי נוער</p>
+    <p class="hero-label">מסלול השוחרות של חיל האוויר</p>
     <h1 class="hero-title">מעבר לבית-ספר:<br />הכירו את השוחרות</h1>
     <p class="hero-sub">
       מסלול מצוינות לימודי וערכי המשלב לימודי ליבה עם מגמות טכנולוגיות ותכנים של חיל האוויר — לאורך כל הדרך.
@@ -342,8 +340,8 @@
               <label for="grade">כיתה נוכחית</label>
               <select id="grade">
                 <option value="">בחרו כיתה...</option>
-                <option value="ח׳">ח׳ (שמינית)</option>
-                <option value="ט׳">ט׳ (תשיעית)</option>
+                <option value="ח׳">ח׳</option>
+                <option value="ט׳">ט׳</option>
               </select>
               <div class="field-error">נא לבחור כיתה</div>
             </div>
