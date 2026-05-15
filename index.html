@@ -9,159 +9,456 @@
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&family=Frank+Ruhl+Libre:wght@400;700;900&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --navy:       #1a2a4a;
-      --navy-dark:  #111c33;
-      --orange:     #c0392b;
-      --orange-lt:  #e04535;
-      --gray-bg:    #e8eaed;
-      --gray-mid:   #c5c9d0;
-      --gray-light: #f0f2f4;
-      --white:      #ffffff;
-      --text:       #1a1a2e;
-      --text-mid:   #3a4560;
-      --text-light: #6b7590;
-      --border:     #d0d4db;
+      --iaf-blue:    #1a3e7a;
+      --iaf-blue-lt: #2352a0;
+      --accent:      #2352a0;
+      --white:       #ffffff;
+      --gray-bg:     #f2f3f5;
+      --gray-light:  #e8eaed;
+      --text:        #1a1a2a;
+      --text-mid:    #3a4460;
+      --text-light:  #6b7590;
+      --border:      #d0d4db;
     }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
       font-family: 'Heebo', sans-serif;
-      background: var(--gray-bg);
+      background: var(--white);
       color: var(--text);
       direction: rtl;
       overflow-x: hidden;
     }
 
-    /* HEADER */
+    /* ══ HEADER ══ */
     .site-header {
-      background: var(--navy-dark);
-      height: 68px;
+      position: absolute;
+      top: 0; right: 0; left: 0;
+      z-index: 100;
       display: flex;
       align-items: center;
       padding: 0 40px;
+      height: 70px;
+      background: transparent;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
       gap: 20px;
-      position: sticky;
-      top: 0;
-      z-index: 200;
     }
-    .header-eagle { height: 38px; width: auto; object-fit: contain; filter: brightness(0) invert(1); }
-    .header-sep { width: 1px; height: 32px; background: rgba(255,255,255,0.2); }
-    .header-name { font-family: 'Frank Ruhl Libre', serif; font-size: 17px; font-weight: 700; color: var(--white); }
+
+    .header-nav-link {
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+    .header-nav-link:hover { color: var(--white); }
+
+    .header-sep-v {
+      width: 1px;
+      height: 18px;
+      background: rgba(255,255,255,0.3);
+    }
+
     .header-spacer { flex: 1; }
-    .header-nav { display: flex; align-items: center; gap: 28px; }
-    .header-nav a { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.75); text-decoration: none; transition: color 0.2s; }
-    .header-nav a:hover { color: var(--white); }
-    .header-lang { font-size: 13px; font-weight: 600; color: var(--white); border: 1px solid rgba(255,255,255,0.3); padding: 4px 12px; }
 
-    /* HERO */
-    .hero-outer { background: var(--gray-bg); }
+    .header-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 2px;
+    }
+
+    .header-logo {
+      height: 44px;
+      width: auto;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+    }
+
+    .header-iaf-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 0.04em;
+    }
+
+    .header-iaf-line {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background: var(--iaf-blue-lt);
+      margin-top: 2px;
+    }
+
+    /* ══ HERO ══ */
     .hero {
-      max-width: 1160px;
+      position: relative;
+      height: 520px;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to left, rgba(10,20,50,0.35) 0%, rgba(10,20,50,0.72) 55%, rgba(10,20,50,0.88) 100%),
+        url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/F-15I_raam.jpg/1280px-F-15I_raam.jpg')
+        center center / cover no-repeat;
+    }
+
+    /* grain texture overlay */
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 56px 52px;
+      max-width: 860px;
+    }
+
+    .hero-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: rgba(255,255,255,0.6);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .hero-title {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: clamp(36px, 5.5vw, 64px);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.08;
+      border-right: 5px solid var(--iaf-blue-lt);
+      padding-right: 20px;
+      margin-bottom: 22px;
+    }
+
+    .hero-sub {
+      font-size: 17px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.78);
+      line-height: 1.75;
+      max-width: 580px;
+    }
+
+    /* ══ OPEN DAY BAR ══ */
+    .open-day-bar {
+      background: var(--iaf-blue);
+      display: flex;
+      align-items: center;
+      padding: 18px 56px;
+      gap: 18px;
+    }
+
+    .od-icon { font-size: 20px; flex-shrink: 0; }
+
+    .od-label {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      color: rgba(255,255,255,0.6);
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .od-sep { width: 1px; height: 24px; background: rgba(255,255,255,0.2); flex-shrink: 0; }
+
+    .od-text {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .od-sub {
+      font-family: 'Heebo', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.55);
+      margin-right: 10px;
+    }
+
+    .od-spacer { flex: 1; }
+
+    .od-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: var(--white);
+      font-size: 14px;
+      font-weight: 700;
+      padding: 9px 22px;
+      text-decoration: none;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+    .od-cta:hover { background: rgba(255,255,255,0.2); }
+
+    /* ══ CONTENT AREA ══ */
+    .content-outer { background: var(--gray-bg); }
+
+    .content-wrap {
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 60px 48px 0;
+      padding: 64px 56px;
       display: grid;
-      grid-template-columns: 1fr 400px;
-      gap: 48px;
-      align-items: end;
+      grid-template-columns: 1fr 380px;
+      gap: 72px;
+      align-items: start;
     }
-    .hero-text { padding-bottom: 52px; }
-    .hero-breadcrumb { font-size: 13px; color: var(--text-light); margin-bottom: 22px; }
-    .hero-breadcrumb span { color: var(--orange); font-weight: 600; }
-    .hero-title { font-family: 'Frank Ruhl Libre', serif; font-size: clamp(44px, 5.5vw, 72px); font-weight: 900; color: var(--navy-dark); line-height: 1.05; margin-bottom: 22px; }
-    .hero-title em { font-style: normal; color: var(--orange); }
-    .hero-body { font-size: 18px; line-height: 1.8; color: var(--text-mid); max-width: 520px; margin-bottom: 36px; }
-    .hero-cta { display: inline-flex; align-items: center; gap: 10px; background: var(--orange); color: var(--white); font-weight: 800; font-size: 16px; padding: 14px 32px; text-decoration: none; transition: background 0.2s, transform 0.15s; }
-    .hero-cta:hover { background: var(--orange-lt); transform: translateX(-3px); }
-    .hero-panel { background: var(--navy); height: 360px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; position: relative; overflow: hidden; }
-    .hero-panel::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(192,57,43,0.18) 0%, transparent 60%); }
-    .hero-panel-emblem { width: 180px; opacity: 0.1; position: absolute; bottom: -20px; left: -20px; filter: brightness(0) invert(1); }
-    .hero-panel-tag { font-size: 11px; font-weight: 700; letter-spacing: 0.18em; color: var(--orange); text-transform: uppercase; position: relative; z-index: 1; }
-    .hero-panel-title { font-family: 'Frank Ruhl Libre', serif; font-size: 30px; font-weight: 900; color: var(--white); text-align: center; position: relative; z-index: 1; line-height: 1.2; padding: 0 24px; }
 
-    /* OPEN DAY BAR */
-    .open-day-wrap { background: var(--gray-bg); padding: 0 48px; }
-    .open-day-bar { max-width: 1160px; margin: 0 auto; background: var(--navy-dark); display: flex; align-items: center; padding: 20px 32px; gap: 20px; border-right: 4px solid var(--orange); }
-    .open-day-label { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; color: var(--orange); text-transform: uppercase; white-space: nowrap; }
-    .open-day-sep { width: 1px; height: 28px; background: rgba(255,255,255,0.15); flex-shrink: 0; }
-    .open-day-text { font-family: 'Frank Ruhl Libre', serif; font-size: 19px; font-weight: 700; color: var(--white); }
-    .open-day-sub { font-size: 13px; color: rgba(255,255,255,0.5); margin-right: 10px; font-family: 'Heebo', sans-serif; font-weight: 400; }
+    /* Article */
+    .article-tag {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      color: var(--iaf-blue);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
 
-    /* CONTENT */
-    .content-wrap { max-width: 1160px; margin: 0 auto; padding: 60px 48px; }
-    .content-grid { display: grid; grid-template-columns: 1fr 380px; gap: 64px; align-items: start; }
+    .article-title {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: clamp(26px, 2.8vw, 36px);
+      font-weight: 900;
+      color: var(--text);
+      line-height: 1.15;
+      margin-bottom: 24px;
+      border-right: 4px solid var(--iaf-blue);
+      padding-right: 16px;
+    }
 
-    .article-tag { font-size: 11px; font-weight: 700; letter-spacing: 0.15em; color: var(--orange); text-transform: uppercase; margin-bottom: 12px; }
-    .article-title { font-family: 'Frank Ruhl Libre', serif; font-size: clamp(26px, 3vw, 38px); font-weight: 900; color: var(--navy-dark); line-height: 1.15; margin-bottom: 24px; }
-    .article-body p { font-size: 17px; line-height: 1.9; color: var(--text-mid); margin-bottom: 18px; }
+    .article-body p {
+      font-size: 16px;
+      line-height: 1.9;
+      color: var(--text-mid);
+      margin-bottom: 16px;
+    }
 
-    .feature-list { margin-top: 36px; }
-    .feature-item { display: flex; align-items: flex-start; gap: 18px; padding: 20px 0; border-bottom: 1px solid var(--border); }
+    .feature-list { margin-top: 40px; }
+
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+    }
     .feature-item:first-child { border-top: 1px solid var(--border); }
-    .feature-num { font-family: 'Frank Ruhl Libre', serif; font-size: 34px; font-weight: 900; color: var(--gray-mid); line-height: 1; flex-shrink: 0; width: 44px; }
-    .feature-title { font-size: 16px; font-weight: 800; color: var(--navy-dark); margin-bottom: 5px; }
-    .feature-desc { font-size: 14px; line-height: 1.65; color: var(--text-light); }
 
-    /* SIDEBAR FORM */
-    .sidebar-form { background: var(--white); box-shadow: 0 4px 28px rgba(26,42,74,0.12); position: sticky; top: 84px; }
-    .sf-header { background: var(--navy-dark); padding: 24px 28px; border-bottom: 3px solid var(--orange); }
-    .sf-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.15em; color: var(--orange); text-transform: uppercase; margin-bottom: 6px; }
-    .sf-title { font-family: 'Frank Ruhl Libre', serif; font-size: 22px; font-weight: 900; color: var(--white); line-height: 1.25; }
-    .sf-body { padding: 28px; }
-
-    .form-group { margin-bottom: 18px; }
-    .form-group label { display: block; font-size: 12px; font-weight: 700; color: var(--text-mid); margin-bottom: 7px; letter-spacing: 0.03em; }
-    .form-group input, .form-group select {
-      width: 100%; background: var(--gray-light); border: 1.5px solid var(--border);
-      padding: 12px 14px; font-family: 'Heebo', sans-serif; font-size: 15px;
-      color: var(--text); outline: none; transition: border-color 0.2s, background 0.2s;
-      direction: rtl; border-radius: 0; appearance: none; -webkit-appearance: none;
+    .feature-num {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 36px;
+      font-weight: 900;
+      color: var(--gray-light);
+      line-height: 1;
+      flex-shrink: 0;
+      width: 48px;
+      user-select: none;
     }
+
+    .feature-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 5px;
+    }
+
+    .feature-desc {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text-light);
+    }
+
+    /* ══ SIDEBAR FORM ══ */
+    .sidebar-form {
+      background: var(--white);
+      box-shadow: 0 4px 32px rgba(26,62,122,0.13);
+      position: sticky;
+      top: 24px;
+    }
+
+    .sf-header {
+      background: var(--iaf-blue);
+      padding: 26px 28px 22px;
+      position: relative;
+    }
+
+    .sf-header::after {
+      content: '';
+      position: absolute;
+      bottom: 0; right: 0; left: 0;
+      height: 3px;
+      background: var(--iaf-blue-lt);
+    }
+
+    .sf-eyebrow {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      color: rgba(255,255,255,0.55);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .sf-title {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 23px;
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.2;
+    }
+
+    .sf-body { padding: 26px 28px 28px; }
+
+    .form-group { margin-bottom: 16px; }
+
+    .form-group label {
+      display: block;
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--text-mid);
+      margin-bottom: 7px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      background: var(--gray-bg);
+      border: 1.5px solid var(--border);
+      padding: 12px 14px;
+      font-family: 'Heebo', sans-serif;
+      font-size: 15px;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+      direction: rtl;
+      border-radius: 0;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
     .form-group select {
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%236b7590' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
-      background-repeat: no-repeat; background-position: left 14px center; padding-left: 36px;
+      background-repeat: no-repeat;
+      background-position: left 14px center;
+      padding-left: 36px;
     }
-    .form-group input::placeholder { color: var(--text-light); }
-    .form-group input:focus, .form-group select:focus { border-color: var(--navy); background: var(--white); }
-    .form-group.has-error input, .form-group.has-error select { border-color: var(--orange); background: #fff8f7; }
-    .field-error { font-size: 12px; color: var(--orange); margin-top: 5px; display: none; }
+
+    .form-group input::placeholder { color: var(--text-light); font-size: 14px; }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: var(--iaf-blue);
+      background: var(--white);
+    }
+
+    .form-group.has-error input,
+    .form-group.has-error select {
+      border-color: #c0392b;
+      background: #fff8f7;
+    }
+
+    .field-error {
+      font-size: 12px;
+      color: #c0392b;
+      margin-top: 5px;
+      display: none;
+    }
     .form-group.has-error .field-error { display: block; }
 
-    .form-submit { width: 100%; background: var(--orange); color: var(--white); border: none; padding: 15px; font-family: 'Heebo', sans-serif; font-size: 16px; font-weight: 800; cursor: pointer; transition: background 0.2s; margin-top: 4px; }
-    .form-submit:hover:not(:disabled) { background: var(--orange-lt); }
-    .form-submit:disabled { opacity: 0.55; cursor: not-allowed; }
-    .form-note { font-size: 11px; color: var(--text-light); text-align: center; margin-top: 12px; line-height: 1.6; }
+    .form-submit {
+      width: 100%;
+      background: var(--iaf-blue);
+      color: var(--white);
+      border: none;
+      padding: 15px;
+      font-family: 'Heebo', sans-serif;
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 6px;
+    }
+    .form-submit:hover:not(:disabled) { background: var(--iaf-blue-lt); }
+    .form-submit:disabled { opacity: 0.5; cursor: not-allowed; }
 
-    .success-box { display: none; padding: 32px 28px; text-align: center; }
+    .form-note {
+      font-size: 11px;
+      color: var(--text-light);
+      text-align: center;
+      margin-top: 12px;
+      line-height: 1.6;
+    }
+
+    /* Success */
+    .success-box { display: none; padding: 36px 28px; text-align: center; }
     .success-box.visible { display: block; }
-    .success-icon { font-size: 44px; margin-bottom: 14px; }
-    .success-title { font-family: 'Frank Ruhl Libre', serif; font-size: 22px; font-weight: 700; color: var(--navy-dark); margin-bottom: 10px; }
-    .success-text { font-size: 14px; line-height: 1.7; color: var(--text-light); }
+    .success-icon { font-size: 46px; margin-bottom: 14px; }
+    .success-title { font-family: 'Frank Ruhl Libre', serif; font-size: 22px; font-weight: 700; color: var(--iaf-blue); margin-bottom: 10px; }
+    .success-text { font-size: 14px; line-height: 1.75; color: var(--text-light); }
 
-    /* FOOTER */
-    .site-footer { background: var(--navy-dark); border-top: 3px solid var(--orange); padding: 32px 48px; }
-    .footer-inner { max-width: 1160px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
-    .footer-brand { display: flex; align-items: center; gap: 12px; }
-    .footer-eagle { height: 30px; filter: brightness(0) invert(1) opacity(0.4); }
-    .footer-name { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.45); }
-    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.25); }
+    /* ══ FOOTER ══ */
+    .site-footer {
+      background: var(--iaf-blue);
+      padding: 28px 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
 
-    /* ANIMATIONS */
-    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .footer-brand { display: flex; align-items: center; gap: 14px; }
+
+    .footer-logo {
+      height: 34px;
+      filter: brightness(0) invert(1) opacity(0.5);
+    }
+
+    .footer-name { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.5); }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.3); }
+
+    /* ══ ANIMATIONS ══ */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
     .fade-in.visible { opacity: 1; transform: none; }
 
-    /* RESPONSIVE */
+    /* ══ RESPONSIVE ══ */
     @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; padding: 40px 24px 0; gap: 32px; }
-      .hero-text { padding-bottom: 32px; }
-      .hero-panel { height: 180px; }
-      .open-day-wrap { padding: 0 24px; }
-      .content-wrap { padding: 40px 24px; }
-      .content-grid { grid-template-columns: 1fr; gap: 40px; }
-      .sidebar-form { position: static; }
-      .site-footer { padding: 28px 24px; }
-      .footer-inner { flex-direction: column; text-align: center; }
       .site-header { padding: 0 24px; }
-      .header-nav { gap: 16px; }
+      .hero-content { padding: 0 28px 44px; }
+      .open-day-bar { padding: 16px 28px; flex-wrap: wrap; }
+      .od-spacer { display: none; }
+      .od-cta { display: none; }
+      .content-wrap { grid-template-columns: 1fr; padding: 44px 28px; gap: 44px; }
+      .sidebar-form { position: static; }
+      .site-footer { padding: 24px 28px; flex-direction: column; text-align: center; }
     }
   </style>
 </head>
@@ -169,102 +466,105 @@
 
 <!-- HEADER -->
 <header class="site-header">
-  <img class="header-eagle"
-    src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/IAF_Roundel.svg/100px-IAF_Roundel.svg.png"
-    alt="חיל האוויר" />
-  <div class="header-sep"></div>
-  <div class="header-name">חיל האוויר הישראלי</div>
+  <div class="header-left">
+    <a href="#" class="header-nav-link">English</a>
+    <div class="header-sep-v"></div>
+    <a href="https://www.iaf.org.il" class="header-nav-link" target="_blank">לאתר המתגייסים</a>
+  </div>
   <div class="header-spacer"></div>
-  <nav class="header-nav">
-    <a href="#about">אודות המסלול</a>
-    <a href="#register">הרשמה</a>
-    <span class="header-lang">English</span>
-  </nav>
+  <div class="header-right">
+    <img
+      class="header-logo"
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/IAF_Roundel.svg/100px-IAF_Roundel.svg.png"
+      alt="חיל האוויר הישראלי"
+    />
+    <span class="header-iaf-name">חיל האוויר</span>
+    <span class="header-iaf-line"></span>
+  </div>
 </header>
 
 <!-- HERO -->
-<div class="hero-outer">
-  <div class="hero">
-    <div class="hero-text">
-      <div class="hero-breadcrumb">חיל האוויר › מסלולי נוער › <span>שוחרות</span></div>
-      <h1 class="hero-title">מסלול<br /><em>השוחרות</em></h1>
-      <p class="hero-body">
-        תכנית ייחודית של חיל האוויר הישראלי לנערות בכיתות ח׳–ט׳. חשיפה לעולם הטיס, פיתוח מנהיגות והיכרות עמוקה עם הרוח הצבאית — מגיל צעיר.
-      </p>
-      <a href="#register" class="hero-cta">← לרשמי ליום הפתוח</a>
-    </div>
-    <div class="hero-panel">
-      <img class="hero-panel-emblem"
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/IAF_Roundel.svg/200px-IAF_Roundel.svg.png"
-        alt="" />
-      <p class="hero-panel-tag">חיל האוויר הישראלי</p>
-      <p class="hero-panel-title">מסלול<br />השוחרות</p>
-    </div>
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-label">חיל האוויר הישראלי · מסלולי נוער</p>
+    <h1 class="hero-title">מעבר לבית-ספר:<br />הכירו את השוחרות</h1>
+    <p class="hero-sub">
+      תכנית ייחודית לנערות בכיתות ח׳–ט׳ המשלבת לימודים עם מגמות טכנולוגיות וחיל-אוויריות, פעילויות בית-ספריות לצד סיורים ייחודיים — לאורך כל הדרך.
+    </p>
   </div>
-</div>
+</section>
 
-<!-- OPEN DAY BANNER -->
-<div class="open-day-wrap">
-  <div class="open-day-bar">
-    <div class="open-day-label">📅 יום פתוח</div>
-    <div class="open-day-sep"></div>
-    <div class="open-day-text">
-      התאריך יפורסם בקרוב
-      <span class="open-day-sub">— הירשמי עכשיו לקבלת עדכון ישירות אלייך</span>
-    </div>
-  </div>
+<!-- OPEN DAY BAR -->
+<div class="open-day-bar">
+  <span class="od-icon">📅</span>
+  <span class="od-label">יום פתוח</span>
+  <div class="od-sep"></div>
+  <span class="od-text">
+    התאריך יפורסם בקרוב
+    <span class="od-sub">— הירשמי עכשיו לקבלת עדכון</span>
+  </span>
+  <div class="od-spacer"></div>
+  <a href="#register" class="od-cta">← להרשמה</a>
 </div>
 
 <!-- MAIN CONTENT -->
-<div class="content-wrap">
-  <div class="content-grid">
+<div class="content-outer">
+  <div class="content-wrap">
 
+    <!-- Article -->
     <main id="about" class="fade-in">
       <p class="article-tag">מסלול שוחרות — חיל האוויר</p>
-      <h2 class="article-title">מי אנחנו ומה המסלול מציע</h2>
+      <h2 class="article-title">מי הם השוחרות?</h2>
       <div class="article-body">
-        <p>מסלול השוחרות הוא תכנית חינוכית-לאומית המיועדת לנערות בגילאי חטיבת הביניים המעוניינות להתוודע לעולם חיל האוויר הישראלי. המסלול פועל מטעם חיל האוויר ומשלב חשיפה לעולם הטיס, לטכנולוגיה הצבאית ולערכי מנהיגות ייחודיים.</p>
-        <p>בסוף כיתה י״ב, בהתאם לשלב בו מסיימות השוחרות את לימודיהן, מוצגות להן אפשרויות להמשך מסלול בחיל האוויר ובאזרחות כאחד. רבים מבוגרינו משתלבים בתפקידים מפתח בחברות אזרחיות.</p>
-        <p>אנו מקנים לתלמידות כלים שיסייעו להן לאורך כל חייהן — מנהיגות, עבודת צוות וחשיבה מערכתית.</p>
+        <p>
+          הם לומדים בבתי ספר המשלבים ליבה יחד עם מגמות טכנולוגיות ותכנים חיל-אוויריות, פעילויות בית ספריות לצד סיורים ייחודיים לאורך כל הדרך, במטרה לעצב את הדור הבא של המערך הטכני בחיל-האוויר.
+        </p>
+        <p>
+          מנהריה שבצפון ועד אילת שבדרום — בכל רחבי הארץ פרוסים עשרות בתי ספר ייחודיים בשיתוף עם חיל-האוויר. מסלול השוחרות מתחיל בכיתה ט׳ ובמסגרת הלימודים מסיימים כל הקורסים הרלוונטיים למחזור המסיים.
+        </p>
+        <p>
+          בכל קשור לבחירת התפקיד העתידי של התלמידים, אנו קשובים אליהם מאוד — "לכל אחד ישנה העדפה אחרת, ואנו משתדלים לעשות את ההתאמה המלאה להקשותיהם לשיבוצים".
+        </p>
       </div>
 
       <div class="feature-list">
         <div class="feature-item">
           <div class="feature-num">01</div>
           <div>
-            <div class="feature-title">חשיפה לעולם הטיס</div>
-            <div class="feature-desc">ביקורים בבסיסי חיל האוויר, מפגשים עם טייסות ואנשי מקצוע, וסיורים בכלי טיס מתקדמים.</div>
+            <div class="feature-title">לימודים משולבים עם מגמות טכנולוגיות</div>
+            <div class="feature-desc">שילוב ליבה לימודית מלאה עם תכנים ייחודיים מעולם הטכנולוגיה הצבאית והאווירית.</div>
           </div>
         </div>
         <div class="feature-item">
           <div class="feature-num">02</div>
           <div>
-            <div class="feature-title">פיתוח מנהיגות</div>
-            <div class="feature-desc">מודולים ייחודיים של מנהיגות, עבודת צוות ואחריות אישית — מיומנויות לכל החיים.</div>
+            <div class="feature-title">סיורים ופעילויות בחיל האוויר</div>
+            <div class="feature-desc">ביקורים בבסיסי חיל האוויר, מפגשים עם אנשי מקצוע וחשיפה לכלי טיס מתקדמים לאורך כל שנות הלימוד.</div>
           </div>
         </div>
         <div class="feature-item">
           <div class="feature-num">03</div>
           <div>
-            <div class="feature-title">טכנולוגיה ומדע</div>
-            <div class="feature-desc">עידוד לימודי מדע, טכנולוגיה, הנדסה ומתמטיקה דרך פרספקטיבה צבאית ייחודית.</div>
+            <div class="feature-title">פיתוח מנהיגות ועבודת צוות</div>
+            <div class="feature-desc">מודולים ייחודיים שמטרתם לטפח את הדור הבא של המנהיגות הצבאית והאזרחית כאחד.</div>
           </div>
         </div>
         <div class="feature-item">
           <div class="feature-num">04</div>
           <div>
-            <div class="feature-title">שייכות ומורשת</div>
-            <div class="feature-desc">חיבור לרוח חיל האוויר, לערכים הצבאיים ולמורשת הקרב של מדינת ישראל.</div>
+            <div class="feature-title">מסלול מלא עד י״ב</div>
+            <div class="feature-desc">תכנית רצופה מכיתה ט׳ ועד סיום התיכון, עם תעודת בגרות רגילה ותעודה טכנולוגית ממימון חיל האוויר.</div>
           </div>
         </div>
       </div>
     </main>
 
-    <!-- FORM -->
+    <!-- Sidebar Form -->
     <aside id="register">
-      <div class="sidebar-form fade-in" style="transition-delay:0.15s">
+      <div class="sidebar-form fade-in" style="transition-delay:0.18s">
         <div class="sf-header">
-          <div class="sf-tag">הרשמה ליום הפתוח</div>
+          <div class="sf-eyebrow">הרשמה ליום הפתוח</div>
           <div class="sf-title">השאירי פרטים<br />ונחזור אלייך</div>
         </div>
         <div class="sf-body">
@@ -276,7 +576,7 @@
             </div>
             <div class="form-group" id="group-city">
               <label for="city">עיר מגורים</label>
-              <input type="text" id="city" placeholder="לדוגמה: תל אביב" />
+              <input type="text" id="city" placeholder="לדוגמה: חיפה" />
               <div class="field-error">נא להזין עיר</div>
             </div>
             <div class="form-group" id="group-phone">
@@ -310,27 +610,25 @@
 
 <!-- FOOTER -->
 <footer class="site-footer">
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <img class="footer-eagle"
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/IAF_Roundel.svg/100px-IAF_Roundel.svg.png"
-        alt="חיל האוויר" />
-      <span class="footer-name">חיל האוויר הישראלי — מסלול שוחרות</span>
-    </div>
-    <div class="footer-copy">© כל הזכויות שמורות לצבא הגנה לישראל</div>
+  <div class="footer-brand">
+    <img class="footer-logo"
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/IAF_Roundel.svg/100px-IAF_Roundel.svg.png"
+      alt="חיל האוויר" />
+    <span class="footer-name">חיל האוויר הישראלי — מסלול שוחרות</span>
   </div>
+  <div class="footer-copy">© כל הזכויות שמורות לצבא הגנה לישראל</div>
 </footer>
 
 <script>
   // Scroll animations
   const obs = new IntersectionObserver(
     es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
-    { threshold: 0.08 }
+    { threshold: 0.07 }
   );
   document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
 
-  // 👇 הדבק כאן את ה-URL של ה-Apps Script לאחר הפרסום
- const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyCoEQkjQIdWG72U4DcO59tK9cLWPY_7byQGIkMMrTz5mdangjcptsEeCXsn_OSHf64/exec';
+  // 👇 הדבק כאן את ה-URL של ה-Apps Script
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyCoEQkjQIdWG72U4DcO59tK9cLWPY_7byQGIkMMrTz5mdangjcptsEeCXsn_OSHf64/exec';
 
   const form       = document.getElementById('registrationForm');
   const submitBtn  = document.getElementById('submitBtn');
