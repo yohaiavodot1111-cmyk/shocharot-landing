@@ -162,36 +162,50 @@
     }
     .event-card-inner {
       max-width: 1200px; margin: 0 auto;
-      display: flex; align-items: stretch; min-height: 90px;
+      display: flex; align-items: stretch; min-height: 120px;
       padding: 0 56px;
     }
     .event-badge {
       background: var(--gold);
-      color: var(--white); font-weight: 800; font-size: 14px;
-      letter-spacing: 0.06em;
+      color: var(--white); font-weight: 900; font-size: 16px;
+      letter-spacing: 0.08em;
       display: flex; align-items: center; justify-content: center;
-      padding: 0 28px; flex-shrink: 0;
-      text-transform: uppercase;
+      padding: 0 36px; flex-shrink: 0;
+      text-transform: uppercase; writing-mode: horizontal-tb;
     }
     .event-blocks {
       display: flex; align-items: center; flex: 1;
-      padding: 0 32px; gap: 0;
+      padding: 0 20px; gap: 0;
     }
     .event-block {
       display: flex; flex-direction: column; justify-content: center;
-      padding: 0 32px; border-left: 1px solid var(--border); text-align: center;
+      padding: 0 36px; border-left: 1px solid var(--border); text-align: center;
     }
     .event-block:first-child { padding-right: 0; }
-    .ev-label { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; color: var(--light); text-transform: uppercase; margin-bottom: 5px; }
-    .ev-value { font-family: 'Frank Ruhl Libre', serif; font-size: clamp(20px, 2.5vw, 28px); font-weight: 900; color: var(--navy); }
-    .ev-value.tbd { font-size: 16px; color: var(--sky); border: 1.5px dashed rgba(74,144,217,0.4); padding: 4px 14px; font-family: 'Heebo', sans-serif; font-weight: 600; }
+    .ev-label { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; color: var(--light); text-transform: uppercase; margin-bottom: 8px; }
+
+    /* DATE — hero-sized */
+    .ev-value {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 900; color: var(--navy); line-height: 1;
+    }
+    .ev-value.tbd {
+      font-size: clamp(18px, 2.2vw, 26px);
+      color: var(--sky);
+      border: 2px dashed rgba(74,144,217,0.45);
+      padding: 8px 20px;
+      font-family: 'Heebo', sans-serif; font-weight: 700;
+      background: rgba(74,144,217,0.04);
+    }
     .ev-text { font-size: 15px; font-weight: 500; color: var(--mid); }
-    .event-cta-wrap { margin-right: auto; display: flex; align-items: center; flex-shrink: 0; }
+    .event-cta-wrap { margin-right: auto; display: flex; align-items: center; flex-shrink: 0; padding-right: 0; }
     .event-cta {
       background: var(--navy); color: var(--white);
-      font-size: 14px; font-weight: 800; letter-spacing: 0.03em;
-      padding: 12px 28px; text-decoration: none;
+      font-size: 15px; font-weight: 800; letter-spacing: 0.03em;
+      padding: 16px 32px; text-decoration: none;
       transition: background 0.2s;
+      white-space: nowrap;
     }
     .event-cta:hover { background: var(--blue); }
 
@@ -326,7 +340,7 @@
     <div class="event-blocks">
       <div class="event-block">
         <div class="ev-label">תאריך</div>
-        <div class="ev-value tbd">18/05/26</div>
+        <div class="ev-value tbd">יפורסם בקרוב</div>
       </div>
       <div class="event-block">
         <div class="ev-label">שעה</div>
