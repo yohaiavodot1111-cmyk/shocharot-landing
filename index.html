@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>מסלול השוחרות - חיל האוויר הישראלי</title>
+  <title>מסלול השוחרות — חיל האוויר</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&family=Frank+Ruhl+Libre:wght@400;700;900&display=swap" rel="stylesheet" />
@@ -11,7 +11,6 @@
     :root {
       --iaf-blue:    #1a3e7a;
       --iaf-blue-lt: #2352a0;
-      --accent:      #2352a0;
       --white:       #ffffff;
       --gray-bg:     #f2f3f5;
       --gray-light:  #e8eaed;
@@ -40,61 +39,16 @@
       align-items: center;
       padding: 0 40px;
       height: 70px;
-      background: transparent;
     }
-
-    .header-left {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-
-    .header-nav-link {
-      font-size: 14px;
-      font-weight: 500;
-      color: rgba(255,255,255,0.85);
-      text-decoration: none;
-      letter-spacing: 0.02em;
-      transition: color 0.2s;
-    }
+    .header-left { display: flex; align-items: center; gap: 20px; }
+    .header-nav-link { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.85); text-decoration: none; transition: color 0.2s; }
     .header-nav-link:hover { color: var(--white); }
-
-    .header-sep-v {
-      width: 1px;
-      height: 18px;
-      background: rgba(255,255,255,0.3);
-    }
-
+    .header-sep-v { width: 1px; height: 18px; background: rgba(255,255,255,0.3); }
     .header-spacer { flex: 1; }
-
-    .header-right {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 2px;
-    }
-
-    .header-logo {
-      height: 44px;
-      width: auto;
-      object-fit: contain;
-      filter: brightness(0) invert(1);
-    }
-
-    .header-iaf-name {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--white);
-      letter-spacing: 0.04em;
-    }
-
-    .header-iaf-line {
-      display: block;
-      width: 100%;
-      height: 2px;
-      background: var(--iaf-blue-lt);
-      margin-top: 2px;
-    }
+    .header-right { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
+    .header-logo { height: 48px; width: auto; object-fit: contain; filter: brightness(0) invert(1); }
+    .header-iaf-name { font-size: 13px; font-weight: 700; color: var(--white); letter-spacing: 0.04em; }
+    .header-iaf-line { display: block; width: 100%; height: 2px; background: var(--iaf-blue-lt); margin-top: 2px; }
 
     /* ══ HERO ══ */
     .hero {
@@ -104,7 +58,6 @@
       align-items: flex-end;
       overflow: hidden;
     }
-
     .hero-bg {
       position: absolute;
       inset: 0;
@@ -113,33 +66,13 @@
         url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/F-15I_raam.jpg/1280px-F-15I_raam.jpg')
         center center / cover no-repeat;
     }
-
-    /* grain texture overlay */
-    .hero-bg::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-      opacity: 0.5;
-      pointer-events: none;
-    }
-
     .hero-content {
       position: relative;
       z-index: 2;
       padding: 0 56px 52px;
       max-width: 860px;
     }
-
-    .hero-label {
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      color: rgba(255,255,255,0.6);
-      text-transform: uppercase;
-      margin-bottom: 14px;
-    }
-
+    .hero-label { font-size: 12px; font-weight: 700; letter-spacing: 0.18em; color: rgba(255,255,255,0.6); text-transform: uppercase; margin-bottom: 14px; }
     .hero-title {
       font-family: 'Frank Ruhl Libre', serif;
       font-size: clamp(36px, 5.5vw, 64px);
@@ -150,73 +83,63 @@
       padding-right: 20px;
       margin-bottom: 22px;
     }
+    .hero-sub { font-size: 17px; font-weight: 300; color: rgba(255,255,255,0.78); line-height: 1.75; max-width: 580px; }
 
-    .hero-sub {
-      font-size: 17px;
-      font-weight: 300;
-      color: rgba(255,255,255,0.78);
-      line-height: 1.75;
-      max-width: 580px;
-    }
-
-    /* ══ OPEN DAY BAR ══ */
-    .open-day-bar {
+    /* ══ URGENT BANNER ══ */
+    .urgent-banner {
       background: var(--iaf-blue);
+      padding: 22px 56px;
       display: flex;
       align-items: center;
-      padding: 18px 56px;
-      gap: 18px;
+      justify-content: space-between;
+      gap: 24px;
+      border-bottom: 3px solid var(--iaf-blue-lt);
     }
-
-    .od-icon { font-size: 20px; flex-shrink: 0; }
-
-    .od-label {
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.14em;
-      color: rgba(255,255,255,0.6);
-      text-transform: uppercase;
-      white-space: nowrap;
+    .urgent-text-wrap { display: flex; align-items: center; gap: 16px; }
+    .urgent-dot {
+      width: 12px; height: 12px;
+      background: #4fc3f7;
+      border-radius: 50%;
+      flex-shrink: 0;
+      box-shadow: 0 0 0 4px rgba(79,195,247,0.25);
+      animation: pulse 2s infinite;
     }
-
-    .od-sep { width: 1px; height: 24px; background: rgba(255,255,255,0.2); flex-shrink: 0; }
-
-    .od-text {
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 4px rgba(79,195,247,0.25); }
+      50%       { box-shadow: 0 0 0 8px rgba(79,195,247,0.1); }
+    }
+    .urgent-text {
       font-family: 'Frank Ruhl Libre', serif;
-      font-size: 18px;
-      font-weight: 700;
+      font-size: clamp(22px, 3vw, 32px);
+      font-weight: 900;
       color: var(--white);
+      letter-spacing: 0.01em;
     }
-
-    .od-sub {
+    .urgent-sub {
       font-family: 'Heebo', sans-serif;
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 400;
-      color: rgba(255,255,255,0.55);
-      margin-right: 10px;
+      color: rgba(255,255,255,0.6);
+      margin-top: 4px;
     }
-
-    .od-spacer { flex: 1; }
-
-    .od-cta {
+    .urgent-cta {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.25);
-      color: var(--white);
-      font-size: 14px;
-      font-weight: 700;
-      padding: 9px 22px;
+      background: var(--white);
+      color: var(--iaf-blue);
+      font-size: 15px;
+      font-weight: 800;
+      padding: 11px 28px;
       text-decoration: none;
-      transition: background 0.2s;
       white-space: nowrap;
+      flex-shrink: 0;
+      transition: background 0.2s, transform 0.15s;
     }
-    .od-cta:hover { background: rgba(255,255,255,0.2); }
+    .urgent-cta:hover { background: var(--gray-light); transform: translateX(-2px); }
 
-    /* ══ CONTENT AREA ══ */
+    /* ══ CONTENT ══ */
     .content-outer { background: var(--gray-bg); }
-
     .content-wrap {
       max-width: 1200px;
       margin: 0 auto;
@@ -227,235 +150,70 @@
       align-items: start;
     }
 
-    /* Article */
-    .article-tag {
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.16em;
-      color: var(--iaf-blue);
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-
-    .article-title {
-      font-family: 'Frank Ruhl Libre', serif;
-      font-size: clamp(26px, 2.8vw, 36px);
-      font-weight: 900;
-      color: var(--text);
-      line-height: 1.15;
-      margin-bottom: 24px;
-      border-right: 4px solid var(--iaf-blue);
-      padding-right: 16px;
-    }
-
-    .article-body p {
-      font-size: 16px;
-      line-height: 1.9;
-      color: var(--text-mid);
-      margin-bottom: 16px;
-    }
+    .article-tag { font-size: 11px; font-weight: 800; letter-spacing: 0.16em; color: var(--iaf-blue); text-transform: uppercase; margin-bottom: 12px; }
+    .article-title { font-family: 'Frank Ruhl Libre', serif; font-size: clamp(26px, 2.8vw, 36px); font-weight: 900; color: var(--text); line-height: 1.15; margin-bottom: 24px; border-right: 4px solid var(--iaf-blue); padding-right: 16px; }
+    .article-body p { font-size: 16px; line-height: 1.9; color: var(--text-mid); margin-bottom: 16px; }
 
     .feature-list { margin-top: 40px; }
-
-    .feature-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 20px;
-      padding: 20px 0;
-      border-bottom: 1px solid var(--border);
-    }
+    .feature-item { display: flex; align-items: flex-start; gap: 20px; padding: 20px 0; border-bottom: 1px solid var(--border); }
     .feature-item:first-child { border-top: 1px solid var(--border); }
-
-    .feature-num {
-      font-family: 'Frank Ruhl Libre', serif;
-      font-size: 36px;
-      font-weight: 900;
-      color: var(--gray-light);
-      line-height: 1;
-      flex-shrink: 0;
-      width: 48px;
-      user-select: none;
-    }
-
-    .feature-title {
-      font-size: 15px;
-      font-weight: 800;
-      color: var(--text);
-      margin-bottom: 5px;
-    }
-
-    .feature-desc {
-      font-size: 14px;
-      line-height: 1.7;
-      color: var(--text-light);
-    }
+    .feature-num { font-family: 'Frank Ruhl Libre', serif; font-size: 36px; font-weight: 900; color: var(--gray-light); line-height: 1; flex-shrink: 0; width: 48px; user-select: none; }
+    .feature-title { font-size: 15px; font-weight: 800; color: var(--text); margin-bottom: 5px; }
+    .feature-desc { font-size: 14px; line-height: 1.7; color: var(--text-light); }
 
     /* ══ SIDEBAR FORM ══ */
-    .sidebar-form {
-      background: var(--white);
-      box-shadow: 0 4px 32px rgba(26,62,122,0.13);
-      position: sticky;
-      top: 24px;
-    }
-
-    .sf-header {
-      background: var(--iaf-blue);
-      padding: 26px 28px 22px;
-      position: relative;
-    }
-
-    .sf-header::after {
-      content: '';
-      position: absolute;
-      bottom: 0; right: 0; left: 0;
-      height: 3px;
-      background: var(--iaf-blue-lt);
-    }
-
-    .sf-eyebrow {
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 0.16em;
-      color: rgba(255,255,255,0.55);
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-
-    .sf-title {
-      font-family: 'Frank Ruhl Libre', serif;
-      font-size: 23px;
-      font-weight: 900;
-      color: var(--white);
-      line-height: 1.2;
-    }
-
+    .sidebar-form { background: var(--white); box-shadow: 0 4px 32px rgba(26,62,122,0.13); position: sticky; top: 24px; }
+    .sf-header { background: var(--iaf-blue); padding: 26px 28px 22px; position: relative; }
+    .sf-header::after { content: ''; position: absolute; bottom: 0; right: 0; left: 0; height: 3px; background: var(--iaf-blue-lt); }
+    .sf-eyebrow { font-size: 10px; font-weight: 800; letter-spacing: 0.16em; color: rgba(255,255,255,0.55); text-transform: uppercase; margin-bottom: 8px; }
+    .sf-title { font-family: 'Frank Ruhl Libre', serif; font-size: 23px; font-weight: 900; color: var(--white); line-height: 1.2; }
     .sf-body { padding: 26px 28px 28px; }
 
     .form-group { margin-bottom: 16px; }
-
-    .form-group label {
-      display: block;
-      font-size: 11px;
-      font-weight: 800;
-      color: var(--text-mid);
-      margin-bottom: 7px;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
+    .form-group label { display: block; font-size: 11px; font-weight: 800; color: var(--text-mid); margin-bottom: 7px; letter-spacing: 0.06em; text-transform: uppercase; }
+    .form-group input, .form-group select {
+      width: 100%; background: var(--gray-bg); border: 1.5px solid var(--border);
+      padding: 12px 14px; font-family: 'Heebo', sans-serif; font-size: 15px;
+      color: var(--text); outline: none; transition: border-color 0.2s, background 0.2s;
+      direction: rtl; border-radius: 0; appearance: none; -webkit-appearance: none;
     }
-
-    .form-group input,
-    .form-group select {
-      width: 100%;
-      background: var(--gray-bg);
-      border: 1.5px solid var(--border);
-      padding: 12px 14px;
-      font-family: 'Heebo', sans-serif;
-      font-size: 15px;
-      color: var(--text);
-      outline: none;
-      transition: border-color 0.2s, background 0.2s;
-      direction: rtl;
-      border-radius: 0;
-      appearance: none;
-      -webkit-appearance: none;
-    }
-
     .form-group select {
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%236b7590' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: left 14px center;
-      padding-left: 36px;
+      background-repeat: no-repeat; background-position: left 14px center; padding-left: 36px;
     }
-
     .form-group input::placeholder { color: var(--text-light); font-size: 14px; }
-
-    .form-group input:focus,
-    .form-group select:focus {
-      border-color: var(--iaf-blue);
-      background: var(--white);
-    }
-
-    .form-group.has-error input,
-    .form-group.has-error select {
-      border-color: #c0392b;
-      background: #fff8f7;
-    }
-
-    .field-error {
-      font-size: 12px;
-      color: #c0392b;
-      margin-top: 5px;
-      display: none;
-    }
+    .form-group input:focus, .form-group select:focus { border-color: var(--iaf-blue); background: var(--white); }
+    .form-group.has-error input, .form-group.has-error select { border-color: #c0392b; background: #fff8f7; }
+    .field-error { font-size: 12px; color: #c0392b; margin-top: 5px; display: none; }
     .form-group.has-error .field-error { display: block; }
 
-    .form-submit {
-      width: 100%;
-      background: var(--iaf-blue);
-      color: var(--white);
-      border: none;
-      padding: 15px;
-      font-family: 'Heebo', sans-serif;
-      font-size: 16px;
-      font-weight: 800;
-      letter-spacing: 0.03em;
-      cursor: pointer;
-      transition: background 0.2s;
-      margin-top: 6px;
-    }
-    .form-submit:hover:not(:disabled) { background: var(--iaf-blue-lt); }
-    .form-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+    .form-submit { width: 100%; background: var(--iaf-blue); color: var(--white); border: none; padding: 15px; font-family: 'Heebo', sans-serif; font-size: 16px; font-weight: 800; letter-spacing: 0.03em; cursor: pointer; transition: background 0.2s; margin-top: 6px; }
+    .form-submit:hover { background: var(--iaf-blue-lt); }
+    .form-note { font-size: 11px; color: var(--text-light); text-align: center; margin-top: 12px; line-height: 1.6; }
 
-    .form-note {
-      font-size: 11px;
-      color: var(--text-light);
-      text-align: center;
-      margin-top: 12px;
-      line-height: 1.6;
-    }
-
-    /* Success */
     .success-box { display: none; padding: 36px 28px; text-align: center; }
-    .success-box.visible { display: block; }
+    .success-box.visible { display: block; animation: fadeIn 0.4s ease; }
     .success-icon { font-size: 46px; margin-bottom: 14px; }
     .success-title { font-family: 'Frank Ruhl Libre', serif; font-size: 22px; font-weight: 700; color: var(--iaf-blue); margin-bottom: 10px; }
     .success-text { font-size: 14px; line-height: 1.75; color: var(--text-light); }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 
     /* ══ FOOTER ══ */
-    .site-footer {
-      background: var(--iaf-blue);
-      padding: 28px 56px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
+    .site-footer { background: var(--iaf-blue); padding: 28px 56px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
     .footer-brand { display: flex; align-items: center; gap: 14px; }
-
-    .footer-logo {
-      height: 34px;
-      filter: brightness(0) invert(1) opacity(0.5);
-    }
-
+    .footer-logo { height: 34px; filter: brightness(0) invert(1) opacity(0.5); }
     .footer-name { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.5); }
     .footer-copy { font-size: 12px; color: rgba(255,255,255,0.3); }
 
     /* ══ ANIMATIONS ══ */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(22px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
+    .fade-in { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .fade-in.visible { opacity: 1; transform: none; }
 
     /* ══ RESPONSIVE ══ */
     @media (max-width: 900px) {
       .site-header { padding: 0 24px; }
       .hero-content { padding: 0 28px 44px; }
-      .open-day-bar { padding: 16px 28px; flex-wrap: wrap; }
-      .od-spacer { display: none; }
-      .od-cta { display: none; }
+      .urgent-banner { padding: 20px 28px; flex-direction: column; align-items: flex-start; gap: 16px; }
       .content-wrap { grid-template-columns: 1fr; padding: 44px 28px; gap: 44px; }
       .sidebar-form { position: static; }
       .site-footer { padding: 24px 28px; flex-direction: column; text-align: center; }
@@ -473,11 +231,9 @@
   </div>
   <div class="header-spacer"></div>
   <div class="header-right">
-    <img
-      class="header-logo"
-      src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/IAF_Roundel.svg/100px-IAF_Roundel.svg.png"
-      alt="חיל האוויר הישראלי"
-    />
+    <img class="header-logo"
+      src="logo.jpg"
+      alt="חיל האוויר" />
     <span class="header-iaf-name">חיל האוויר</span>
     <span class="header-iaf-line"></span>
   </div>
@@ -487,44 +243,42 @@
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-content">
-    <p class="hero-label">חיל האוויר הישראלי · מסלולי נוער</p>
+    <p class="hero-label">חיל האוויר · מסלולי נוער</p>
     <h1 class="hero-title">מעבר לבית-ספר:<br />הכירו את השוחרות</h1>
     <p class="hero-sub">
-      תכנית ייחודית לנערות בכיתות ח׳–ט׳ המשלבת לימודים עם מגמות טכנולוגיות וחיל-אוויריות, פעילויות בית-ספריות לצד סיורים ייחודיים — לאורך כל הדרך.
+      מסלול מצוינות לימודי וערכי המשלב לימודי ליבה עם מגמות טכנולוגיות ותכנים של חיל האוויר — לאורך כל הדרך.
     </p>
   </div>
 </section>
 
-<!-- OPEN DAY BAR -->
-<div class="open-day-bar">
-  <span class="od-icon">📅</span>
-  <span class="od-label">יום פתוח</span>
-  <div class="od-sep"></div>
-  <span class="od-text">
-    התאריך יפורסם בקרוב
-    <span class="od-sub">— הירשמי עכשיו לקבלת עדכון</span>
-  </span>
-  <div class="od-spacer"></div>
-  <a href="#register" class="od-cta">← להרשמה</a>
+<!-- URGENT BANNER -->
+<div class="urgent-banner">
+  <div class="urgent-text-wrap">
+    <div class="urgent-dot"></div>
+    <div>
+      <div class="urgent-text">ההרשמה לערב הפתוח בעיצומה!</div>
+      <div class="urgent-sub">השאירו פרטים ונחזור אליכם בהקדם</div>
+    </div>
+  </div>
+  <a href="#register" class="urgent-cta">← להרשמה עכשיו</a>
 </div>
 
 <!-- MAIN CONTENT -->
 <div class="content-outer">
   <div class="content-wrap">
 
-    <!-- Article -->
     <main id="about" class="fade-in">
       <p class="article-tag">מסלול שוחרות — חיל האוויר</p>
       <h2 class="article-title">מי הם השוחרות?</h2>
       <div class="article-body">
         <p>
-          הם לומדים בבתי ספר המשלבים ליבה יחד עם מגמות טכנולוגיות ותכנים חיל-אוויריות, פעילויות בית ספריות לצד סיורים ייחודיים לאורך כל הדרך, במטרה לעצב את הדור הבא של המערך הטכני בחיל-האוויר.
+          מסלול השוחרות של חיל האוויר הינו מסלול מצוינות לימודי וערכי, המשלב לימודי ליבה עם מגמות טכנולוגיות ותכנים של חיל האוויר, פעילויות וסיורים ייחודיים לאורך כל הדרך. המטרה — לעצב את הדור הבא של המערך הטכני של חיל האוויר.
         </p>
         <p>
-          מנהריה שבצפון ועד אילת שבדרום — בכל רחבי הארץ פרוסים עשרות בתי ספר ייחודיים בשיתוף עם חיל-האוויר. מסלול השוחרות מתחיל בכיתה ט׳ ובמסגרת הלימודים מסיימים כל הקורסים הרלוונטיים למחזור המסיים.
+          מנהריה שבצפון ועד אילת שבדרום — בכל הארץ פרוסים עשרות בתי ספר ייחודיים בשיתוף עם חיל האוויר. מסלול השוחרות מתחיל בכיתה ט׳ עד י״ב, עם אפשרות להמשך לימודי הנדסאי בסבסוד של חיל האוויר.
         </p>
         <p>
-          בכל קשור לבחירת התפקיד העתידי של התלמידים, אנו קשובים אליהם מאוד — "לכל אחד ישנה העדפה אחרת, ואנו משתדלים לעשות את ההתאמה המלאה להקשותיהם לשיבוצים".
+          אנו מקנים לתלמידים והתלמידות שלנו כלים שיסייעו להם לאורך כל חייהם — מנהיגות, עבודת צוות וחשיבה מערכתית.
         </p>
       </div>
 
@@ -553,19 +307,19 @@
         <div class="feature-item">
           <div class="feature-num">04</div>
           <div>
-            <div class="feature-title">מסלול מלא עד י״ב</div>
-            <div class="feature-desc">תכנית רצופה מכיתה ט׳ ועד סיום התיכון, עם תעודת בגרות רגילה ותעודה טכנולוגית ממימון חיל האוויר.</div>
+            <div class="feature-title">מסלול מלא עד י״ב + המשך הנדסאי</div>
+            <div class="feature-desc">תכנית רצופה מכיתה ט׳ ועד סיום התיכון, עם אפשרות להמשך לימודי הנדסאי בסבסוד חיל האוויר.</div>
           </div>
         </div>
       </div>
     </main>
 
-    <!-- Sidebar Form -->
+    <!-- FORM -->
     <aside id="register">
       <div class="sidebar-form fade-in" style="transition-delay:0.18s">
         <div class="sf-header">
-          <div class="sf-eyebrow">הרשמה ליום הפתוח</div>
-          <div class="sf-title">השאירי פרטים<br />ונחזור אלייך</div>
+          <div class="sf-eyebrow">הרשמה לערב הפתוח</div>
+          <div class="sf-title">השאירו פרטים<br />ונחזור אליכם</div>
         </div>
         <div class="sf-body">
           <form id="registrationForm" novalidate>
@@ -587,7 +341,7 @@
             <div class="form-group" id="group-grade">
               <label for="grade">כיתה נוכחית</label>
               <select id="grade">
-                <option value="">בחרי כיתה...</option>
+                <option value="">בחרו כיתה...</option>
                 <option value="ח׳">ח׳ (שמינית)</option>
                 <option value="ט׳">ט׳ (תשיעית)</option>
               </select>
@@ -599,7 +353,7 @@
           <div class="success-box" id="successBox">
             <div class="success-icon">✅</div>
             <div class="success-title">הפרטים התקבלו!</div>
-            <div class="success-text">תודה על ההרשמה.<br />נחזור אלייך עם פרטים על יום הפתוח הקרוב.</div>
+            <div class="success-text">תודה על ההרשמה.<br />נחזור אליכם עם פרטים על הערב הפתוח.</div>
           </div>
         </div>
       </div>
@@ -611,27 +365,22 @@
 <!-- FOOTER -->
 <footer class="site-footer">
   <div class="footer-brand">
-    <img class="footer-logo"
-      src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/IAF_Roundel.svg/100px-IAF_Roundel.svg.png"
-      alt="חיל האוויר" />
-    <span class="footer-name">חיל האוויר הישראלי — מסלול שוחרות</span>
+    <img class="footer-logo" src="logo.jpg" alt="חיל האוויר" />
+    <span class="footer-name">חיל האוויר — מסלול שוחרות</span>
   </div>
   <div class="footer-copy">© כל הזכויות שמורות לצבא הגנה לישראל</div>
 </footer>
 
 <script>
-  // Scroll animations
   const obs = new IntersectionObserver(
     es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
     { threshold: 0.07 }
   );
   document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
 
-  // 👇 הדבק כאן את ה-URL של ה-Apps Script
   const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyCoEQkjQIdWG72U4DcO59tK9cLWPY_7byQGIkMMrTz5mdangjcptsEeCXsn_OSHf64/exec';
 
   const form       = document.getElementById('registrationForm');
-  const submitBtn  = document.getElementById('submitBtn');
   const successBox = document.getElementById('successBox');
 
   function validate(id, fn) {
@@ -646,7 +395,7 @@
     return /^0\d[\d\-\s]{7,9}$/.test(v.replace(/\s/g, ''));
   }
 
-  form.addEventListener('submit', async e => {
+  form.addEventListener('submit', e => {
     e.preventDefault();
     const ok = [
       validate('name',  v => v.length >= 2),
@@ -656,8 +405,9 @@
     ].every(Boolean);
     if (!ok) return;
 
-    submitBtn.disabled    = true;
-    submitBtn.textContent = 'שולח...';
+    // הצג הצלחה מיידית
+    form.style.display = 'none';
+    successBox.classList.add('visible');
 
     const payload = {
       name:      document.getElementById('name').value.trim(),
@@ -667,19 +417,18 @@
       timestamp: new Date().toLocaleString('he-IL', { timeZone: 'Asia/Jerusalem' }),
     };
 
-    try {
-      await fetch(APPS_SCRIPT_URL, {
+    // שליחה ברקע עם retry
+    fetch(APPS_SCRIPT_URL, {
+      method: 'POST', mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    }).catch(() => {
+      setTimeout(() => fetch(APPS_SCRIPT_URL, {
         method: 'POST', mode: 'no-cors',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
-      });
-      form.style.display = 'none';
-      successBox.classList.add('visible');
-    } catch {
-      submitBtn.disabled    = false;
-      submitBtn.textContent = 'שליחת הפרטים ←';
-      alert('אירעה שגיאה בשליחה. אנא נסי שנית.');
-    }
+      }), 3000);
+    });
   });
 </script>
 </body>
