@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>לימודים עם חיל האוויר</title>
+  <title>מסלול השוחרות — חיל האוויר</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&family=Frank+Ruhl+Libre:wght@400;700;900&display=swap" rel="stylesheet" />
@@ -138,6 +138,10 @@
       animation: ruleExpand 0.7s 0.4s ease forwards;
     }
     @keyframes ruleExpand { to { width: 64px; } }
+    @keyframes glowPulse {
+      0%, 100% { box-shadow: 0 4px 22px rgba(232,160,32,0.35); }
+      50%       { box-shadow: 0 4px 36px rgba(232,160,32,0.7), 0 0 48px rgba(232,160,32,0.22); }
+    }
     .hero-sub {
       font-size: 17px; font-weight: 300;
       color: rgba(255,255,255,0.68); line-height: 1.85;
@@ -149,11 +153,21 @@
       background: var(--gold); color: var(--white);
       font-size: 17px; font-weight: 800; letter-spacing: 0.02em;
       padding: 15px 44px; text-decoration: none;
-      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      transition: background 0.2s, transform 0.15s;
       box-shadow: 0 4px 22px rgba(232,160,32,0.38);
-      animation: revealUp 0.9s 0.35s ease both;
+      opacity: 0;
+      animation: revealUp 0.9s 0.35s ease forwards;
     }
-    .hero-btn:hover { background: #d4911c; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(232,160,32,0.5); }
+    .hero-btn.ready {
+      opacity: 1;
+      animation: glowPulse 5s ease-in-out infinite;
+    }
+    .hero-btn.ready:hover {
+      background: #d4911c;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(232,160,32,0.5);
+      animation-play-state: paused;
+    }
 
     /* ══ EVENT CARD ══ */
     .event-card-wrap {
@@ -209,6 +223,32 @@
     }
     .event-cta:hover { background: var(--blue); }
 
+    /* ══ STATS BAR ══ */
+    .stats-bar {
+      background: var(--navy);
+      padding: 36px 56px;
+      display: flex; align-items: center; justify-content: center;
+      gap: 0;
+    }
+    .stat-block {
+      display: flex; flex-direction: column; align-items: center;
+      padding: 0 52px; border-left: 1px solid rgba(255,255,255,0.12);
+      text-align: center;
+    }
+    .stat-block:last-child { border-left: none; }
+    .stat-num {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: clamp(36px, 4vw, 56px);
+      font-weight: 900; color: var(--white); line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .stat-num .suffix { color: var(--sky); }
+    .stat-label {
+      font-size: 13px; font-weight: 500;
+      color: rgba(255,255,255,0.55); margin-top: 8px;
+      letter-spacing: 0.02em;
+    }
+
     /* ══ CONTENT ══ */
     .content-wrap {
       max-width: 1200px; margin: 0 auto;
@@ -219,15 +259,21 @@
     .article-title { font-family: 'Frank Ruhl Libre', serif; font-size: clamp(26px, 2.8vw, 36px); font-weight: 900; color: var(--navy); line-height: 1.15; margin-bottom: 20px; border-right: 4px solid var(--sky); padding-right: 16px; }
     .article-body p { font-size: 16px; line-height: 1.95; color: var(--mid); margin-bottom: 0; }
 
-    /* benefit cards */
+    /* benefit cards — staggered reveal */
     .benefits-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 28px; }
     .benefit-card {
       background: var(--white); border: 1px solid var(--border);
       border-top: 3px solid var(--sky); padding: 20px 18px;
       transition: transform 0.2s, box-shadow 0.2s, border-top-color 0.2s;
       position: relative; overflow: hidden;
+      opacity: 0; transform: translateY(24px);
     }
-    .benefit-card::before {
+    .benefit-card.card-visible {
+      animation: cardReveal 0.3s ease forwards;
+    }
+    @keyframes cardReveal {
+      to { opacity: 1; transform: translateY(0); }
+    }    .benefit-card::before {
       content: ''; position: absolute; top: 0; right: 0;
       width: 0; height: 100%;
       background: linear-gradient(135deg, rgba(74,144,217,0.04) 0%, transparent 60%);
@@ -296,6 +342,9 @@
       .event-cta-wrap { margin-right: 0; width: 100%; padding: 0; }
       .event-cta { display: block; text-align: center; padding: 16px; }
 
+      .stats-bar { padding: 28px 20px; gap: 0; flex-wrap: wrap; }
+      .stat-block { flex: 1; min-width: 100px; padding: 12px 16px; border-left: 1px solid rgba(255,255,255,0.12); }
+      .stat-block:first-child { border-left: none; }
       .content-wrap { grid-template-columns: 1fr; padding: 40px 20px; gap: 36px; }
       .benefits-grid { grid-template-columns: 1fr; gap: 12px; }
       .sidebar-form { position: static; }
@@ -354,6 +403,22 @@
     <div class="event-cta-wrap">
       <a href="#register" class="event-cta">← להרשמה</a>
     </div>
+  </div>
+</div>
+
+<!-- STATS BAR -->
+<div class="stats-bar" id="statsBar">
+  <div class="stat-block">
+    <div class="stat-num"><span class="count" data-target="40">0</span><span class="suffix">+</span></div>
+    <div class="stat-label">בתי ספר ושלוחות ברחבי הארץ</div>
+  </div>
+  <div class="stat-block">
+    <div class="stat-num"><span class="count" data-target="40">0</span><span class="suffix"></span></div>
+    <div class="stat-label">שנות ניסיון</div>
+  </div>
+  <div class="stat-block">
+    <div class="stat-num"><span class="count" data-target="6">0</span><span class="suffix"></span></div>
+    <div class="stat-label">שנות ליווי במסלול</div>
   </div>
 </div>
 
@@ -499,6 +564,50 @@
       else frame = requestAnimationFrame(draw);
     });
   })();
+
+  // ── Hero button: switch to glow after reveal ──
+  const heroBtn = document.querySelector('.hero-btn');
+  if (heroBtn) {
+    setTimeout(() => heroBtn.classList.add('ready'), 1300);
+  }
+
+  // ── Counter animation ──
+  function animateCount(el, target, duration) {
+    const start = performance.now();
+    function step(now) {
+      const p = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - p, 3); // ease-out cubic
+      el.textContent = Math.round(ease * target);
+      if (p < 1) requestAnimationFrame(step);
+      else el.textContent = target;
+    }
+    requestAnimationFrame(step);
+  }
+
+  let countersDone = false;
+  const statsObs = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting && !countersDone) {
+      countersDone = true;
+      document.querySelectorAll('.count').forEach((el, i) => {
+        setTimeout(() => animateCount(el, +el.dataset.target, 1400), i * 180);
+      });
+    }
+  }, { threshold: 0.4 });
+  const statsBar = document.getElementById('statsBar');
+  if (statsBar) statsObs.observe(statsBar);
+
+  // ── Card stagger reveal ──
+  const cards = document.querySelectorAll('.benefit-card');
+  let cardsDone = false;
+  const cardsObs = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting && !cardsDone) {
+      cardsDone = true;
+      cards.forEach((card, i) => {
+        setTimeout(() => card.classList.add('card-visible'), i * 60);
+      });
+    }
+  }, { threshold: 0.15 });
+  if (cards.length) cardsObs.observe(cards[0].parentElement);
 
   // ── Form ──
   const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyCoEQkjQIdWG72U4DcO59tK9cLWPY_7byQGIkMMrTz5mdangjcptsEeCXsn_OSHf64/exec';
