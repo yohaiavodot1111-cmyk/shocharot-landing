@@ -9,16 +9,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&family=Frank+Ruhl+Libre:wght@400;700;900&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --navy:    #0d2257;
-      --blue:    #1a3e7a;
-      --sky:     #4a90d9;
-      --gold:    #e8a020;
-      --white:   #ffffff;
-      --bg:      #f7f8fa;
-      --text:    #12192e;
-      --mid:     #3a4460;
-      --light:   #6b7590;
-      --border:  #dde1ea;
+      --navy:   #0d2257;
+      --blue:   #1a3e7a;
+      --sky:    #4a90d9;
+      --gold:   #e8a020;
+      --white:  #ffffff;
+      --bg:     #f7f8fa;
+      --text:   #12192e;
+      --mid:    #3a4460;
+      --light:  #6b7590;
+      --border: #dde1ea;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -26,8 +26,8 @@
 
     /* ══ HEADER ══ */
     .site-header {
-      position: absolute; top: 0; right: 0; left: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: flex-end;
+      position: absolute; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: flex-start;
       padding: 16px 40px; height: 76px;
     }
     .header-logo { height: 52px; width: auto; object-fit: contain; }
@@ -40,224 +40,160 @@
       background: #060e28;
     }
 
-    /* deep sky gradient base */
     .hero-sky {
       position: absolute; inset: 0;
-      background: linear-gradient(180deg, #060e28 0%, #0d1f5c 40%, #112470 70%, #0a1840 100%);
+      background: linear-gradient(180deg, #040b20 0%, #0b1a50 35%, #0f2268 65%, #080f38 100%);
     }
 
-    /* subtle horizontal scan lines */
-    .hero-sky::after {
-      content: '';
-      position: absolute; inset: 0;
+    /* star-field canvas sits here */
+    #hero-canvas {
+      position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    }
+
+    /* subtle scan lines */
+    .hero-scan {
+      position: absolute; inset: 0; z-index: 2; pointer-events: none;
       background-image: repeating-linear-gradient(
-        0deg, transparent, transparent 3px,
-        rgba(255,255,255,0.012) 3px, rgba(255,255,255,0.012) 4px
+        0deg, transparent, transparent 2px,
+        rgba(255,255,255,0.008) 2px, rgba(255,255,255,0.008) 3px
       );
-      pointer-events: none;
     }
 
-    /* radar sweep circle */
-    .hero-radar {
-      position: absolute;
-      width: 700px; height: 700px;
-      border-radius: 50%;
-      border: 1px solid rgba(74,144,217,0.08);
-      top: 50%; left: 50%;
+    /* radar rings */
+    .hero-rings {
+      position: absolute; top: 50%; left: 50%;
       transform: translate(-50%, -50%);
-      box-shadow:
-        0 0 0 100px rgba(74,144,217,0.025),
-        0 0 0 200px rgba(74,144,217,0.018),
-        0 0 0 300px rgba(74,144,217,0.01);
+      width: 1px; height: 1px; z-index: 2; pointer-events: none;
     }
-    .hero-radar::before {
-      content: '';
-      position: absolute; inset: -1px;
-      border-radius: 50%;
-      border: 1px solid rgba(74,144,217,0.15);
-      animation: radarPulse 4s ease-in-out infinite;
+    .hero-rings span {
+      position: absolute; border-radius: 50%;
+      border: 1px solid rgba(74,144,217,0.07);
+      transform: translate(-50%, -50%);
+      animation: ringPulse 5s ease-in-out infinite;
     }
-    @keyframes radarPulse {
-      0%, 100% { transform: scale(1); opacity: 0.5; }
-      50% { transform: scale(1.04); opacity: 1; }
+    .hero-rings span:nth-child(1) { width: 320px; height: 320px; animation-delay: 0s; }
+    .hero-rings span:nth-child(2) { width: 560px; height: 560px; animation-delay: 0.6s; }
+    .hero-rings span:nth-child(3) { width: 800px; height: 800px; animation-delay: 1.2s; }
+    .hero-rings span:nth-child(4) { width: 1040px; height: 1040px; animation-delay: 1.8s; }
+    @keyframes ringPulse {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 1; }
     }
 
-    /* crosshair lines */
-    .hero-crosshair {
-      position: absolute;
-      top: 50%; left: 50%;
+    /* crosshair */
+    .hero-cross {
+      position: absolute; top: 50%; left: 50%;
       transform: translate(-50%, -50%);
-      width: 100%; height: 100%;
-      pointer-events: none;
+      width: 100vw; height: 100%; z-index: 2; pointer-events: none;
     }
-    .hero-crosshair::before {
-      content: '';
-      position: absolute;
+    .hero-cross::before {
+      content: ''; position: absolute;
       top: 50%; left: 0; right: 0; height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(74,144,217,0.12) 20%, rgba(74,144,217,0.12) 80%, transparent);
+      background: linear-gradient(90deg, transparent 0%, rgba(74,144,217,0.1) 30%, rgba(74,144,217,0.1) 70%, transparent 100%);
     }
-    .hero-crosshair::after {
-      content: '';
-      position: absolute;
-      top: 0; bottom: 0; left: 50%; width: 1px;
-      background: linear-gradient(180deg, transparent, rgba(74,144,217,0.12) 20%, rgba(74,144,217,0.12) 80%, transparent);
-    }
-
-    /* F-35 plane — right side, large, crisp */
-    .hero-plane {
-      position: absolute;
-      left: -2%;
-      bottom: -5%;
-      height: 85%;
-      width: auto;
-      object-fit: contain;
-      object-position: left bottom;
-      z-index: 2;
-      filter:
-        drop-shadow(0 0 60px rgba(74,144,217,0.25))
-        drop-shadow(0 20px 40px rgba(0,0,0,0.7))
-        brightness(1.05) contrast(1.05);
-      animation: planeDrift 8s ease-in-out infinite;
-    }
-    @keyframes planeDrift {
-      0%, 100% { transform: translateY(0px) rotate(-1deg); }
-      50% { transform: translateY(-12px) rotate(-1deg); }
+    .hero-cross::after {
+      content: ''; position: absolute;
+      left: 50%; top: 0; bottom: 0; width: 1px;
+      background: linear-gradient(180deg, transparent 0%, rgba(74,144,217,0.1) 30%, rgba(74,144,217,0.1) 70%, transparent 100%);
     }
 
-    /* engine glow under the plane */
-    .hero-glow {
-      position: absolute;
-      left: 10%; bottom: 0;
-      width: 300px; height: 120px;
-      background: radial-gradient(ellipse, rgba(74,144,217,0.18) 0%, transparent 70%);
-      z-index: 1;
-      animation: glowPulse 3s ease-in-out infinite;
-    }
-    @keyframes glowPulse {
-      0%, 100% { opacity: 0.6; transform: scaleX(1); }
-      50% { opacity: 1; transform: scaleX(1.15); }
-    }
-
-    /* floating data points */
+    /* telemetry dots */
     .hero-dot {
-      position: absolute;
-      width: 4px; height: 4px;
-      border-radius: 50%;
-      background: rgba(126,200,255,0.6);
-      animation: dotFloat 6s ease-in-out infinite;
+      position: absolute; z-index: 3;
+      width: 5px; height: 5px; border-radius: 50%;
+      background: rgba(126,200,255,0.55);
+      box-shadow: 0 0 6px rgba(126,200,255,0.4);
     }
     .hero-dot::after {
-      content: '';
-      position: absolute;
-      inset: -3px;
-      border-radius: 50%;
-      border: 1px solid rgba(126,200,255,0.3);
+      content: ''; position: absolute; inset: -4px;
+      border-radius: 50%; border: 1px solid rgba(126,200,255,0.2);
     }
+    .hero-dot { animation: dotFloat 7s ease-in-out infinite; }
     @keyframes dotFloat {
-      0%, 100% { transform: translateY(0); opacity: 0.6; }
-      50% { transform: translateY(-8px); opacity: 1; }
+      0%, 100% { transform: translateY(0); opacity: 0.55; }
+      50% { transform: translateY(-10px); opacity: 1; }
     }
 
-    .hero-content { position: relative; z-index: 4; padding: 0 32px; margin-right: 30%; }
+    /* hero content — centered */
+    .hero-content {
+      position: relative; z-index: 5;
+      display: flex; flex-direction: column; align-items: center;
+      padding: 0 40px;
+    }
     .hero-title {
       font-family: 'Frank Ruhl Libre', serif;
-      font-size: clamp(48px, 7.5vw, 92px);
+      font-size: clamp(52px, 8vw, 96px);
       font-weight: 900; color: var(--white); line-height: 1.0;
-      text-shadow: 0 0 80px rgba(74,144,217,0.3), 0 4px 24px rgba(0,0,0,0.6);
-      animation: titleReveal 1s ease both;
+      text-shadow: 0 0 60px rgba(74,144,217,0.25), 0 4px 20px rgba(0,0,0,0.5);
+      animation: revealUp 0.9s ease both;
     }
-    @keyframes titleReveal {
-      from { opacity: 0; transform: translateY(16px); }
+    @keyframes revealUp {
+      from { opacity: 0; transform: translateY(20px); }
       to   { opacity: 1; transform: none; }
     }
     .hero-title-line2 { display: block; color: #7ec8ff; }
-    .hero-rule { width: 56px; height: 3px; background: var(--sky); margin: 24px auto; animation: ruleGrow 0.8s 0.3s ease both; }
-    @keyframes ruleGrow { from { width: 0; opacity: 0; } to { width: 56px; opacity: 1; } }
+    .hero-rule {
+      width: 0; height: 3px; background: var(--sky);
+      margin: 26px auto;
+      animation: ruleExpand 0.7s 0.4s ease forwards;
+    }
+    @keyframes ruleExpand { to { width: 64px; } }
     .hero-sub {
       font-size: 17px; font-weight: 300;
-      color: rgba(255,255,255,0.7); line-height: 1.8; max-width: 520px; margin: 0 auto 32px;
-      animation: titleReveal 1s 0.2s ease both;
+      color: rgba(255,255,255,0.68); line-height: 1.85;
+      max-width: 540px; margin-bottom: 36px;
+      animation: revealUp 0.9s 0.2s ease both;
     }
     .hero-btn {
       display: inline-flex; align-items: center; gap: 10px;
       background: var(--gold); color: var(--white);
-      font-size: 17px; font-weight: 800;
-      padding: 15px 40px; text-decoration: none;
+      font-size: 17px; font-weight: 800; letter-spacing: 0.02em;
+      padding: 15px 44px; text-decoration: none;
       transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-      box-shadow: 0 4px 20px rgba(232,160,32,0.4);
-      animation: titleReveal 1s 0.35s ease both;
+      box-shadow: 0 4px 22px rgba(232,160,32,0.38);
+      animation: revealUp 0.9s 0.35s ease both;
     }
-    .hero-btn:hover { background: #d4911c; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(232,160,32,0.5); }
+    .hero-btn:hover { background: #d4911c; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(232,160,32,0.5); }
 
-    /* ══ BENEFITS GRID ══ */
-    .benefits-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-top: 32px;
-    }
-    .benefit-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-top: 3px solid var(--sky);
-      padding: 20px 18px;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .benefit-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(13,34,87,0.1); }
-    .benefit-title { font-size: 15px; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
-    .benefit-desc { font-size: 13px; line-height: 1.65; color: var(--light); }
-
-    /* ══ EVENT STRIP ══ */
-    .event-strip {
+    /* ══ EVENT CARD ══ */
+    .event-card-wrap {
       background: var(--white);
       border-bottom: 1px solid var(--border);
-      padding: 0 56px;
     }
-    .event-strip-inner {
+    .event-card-inner {
       max-width: 1200px; margin: 0 auto;
-      display: flex; align-items: stretch;
-      min-height: 100px; gap: 0;
+      display: flex; align-items: stretch; min-height: 90px;
+      padding: 0 56px;
     }
     .event-badge {
       background: var(--gold);
-      color: var(--white);
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      padding: 0 32px; gap: 2px; flex-shrink: 0;
+      color: var(--white); font-weight: 800; font-size: 14px;
+      letter-spacing: 0.06em;
+      display: flex; align-items: center; justify-content: center;
+      padding: 0 28px; flex-shrink: 0;
+      text-transform: uppercase;
     }
-    .event-badge-icon { font-size: 22px; }
-    .event-badge-label { font-size: 10px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; }
-
-    .event-main {
-      flex: 1; display: flex; align-items: center; gap: 0;
-      padding: 0 40px;
+    .event-blocks {
+      display: flex; align-items: center; flex: 1;
+      padding: 0 32px; gap: 0;
     }
     .event-block {
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      padding: 0 36px; border-left: 1px solid var(--border); text-align: center;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 0 32px; border-left: 1px solid var(--border); text-align: center;
     }
     .event-block:first-child { padding-right: 0; }
-    .event-block-label { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; color: var(--light); text-transform: uppercase; margin-bottom: 6px; }
-    .event-block-value {
-      font-family: 'Frank Ruhl Libre', serif;
-      font-size: clamp(18px, 2.5vw, 28px); font-weight: 900; color: var(--navy);
-    }
-    .event-block-value.tbd {
-      font-size: clamp(14px, 1.8vw, 18px); color: var(--sky);
-      border: 1.5px dashed rgba(74,144,217,0.5);
-      padding: 4px 16px; border-radius: 2px;
-    }
-    .event-cta-block {
-      margin-right: auto; padding-right: 0; border: none;
-      flex-shrink: 0;
-    }
+    .ev-label { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; color: var(--light); text-transform: uppercase; margin-bottom: 5px; }
+    .ev-value { font-family: 'Frank Ruhl Libre', serif; font-size: clamp(20px, 2.5vw, 28px); font-weight: 900; color: var(--navy); }
+    .ev-value.tbd { font-size: 16px; color: var(--sky); border: 1.5px dashed rgba(74,144,217,0.4); padding: 4px 14px; font-family: 'Heebo', sans-serif; font-weight: 600; }
+    .ev-text { font-size: 15px; font-weight: 500; color: var(--mid); }
+    .event-cta-wrap { margin-right: auto; display: flex; align-items: center; flex-shrink: 0; }
     .event-cta {
-      display: inline-flex; align-items: center; gap: 8px;
       background: var(--navy); color: var(--white);
-      font-size: 15px; font-weight: 800;
-      padding: 13px 28px; text-decoration: none;
-      transition: background 0.2s, transform 0.15s;
+      font-size: 14px; font-weight: 800; letter-spacing: 0.03em;
+      padding: 12px 28px; text-decoration: none;
+      transition: background 0.2s;
     }
-    .event-cta:hover { background: var(--blue); transform: translateX(-2px); }
+    .event-cta:hover { background: var(--blue); }
 
     /* ══ CONTENT ══ */
     .content-wrap {
@@ -265,25 +201,35 @@
       padding: 64px 56px;
       display: grid; grid-template-columns: 1fr 370px; gap: 64px; align-items: start;
     }
-
     .article-tag { font-size: 11px; font-weight: 800; letter-spacing: 0.16em; color: var(--sky); text-transform: uppercase; margin-bottom: 10px; }
-    .article-title { font-family: 'Frank Ruhl Libre', serif; font-size: clamp(26px, 2.8vw, 36px); font-weight: 900; color: var(--navy); line-height: 1.15; margin-bottom: 24px; border-right: 4px solid var(--sky); padding-right: 16px; }
-    .article-body p { font-size: 16px; line-height: 1.95; color: var(--mid); margin-bottom: 16px; }
+    .article-title { font-family: 'Frank Ruhl Libre', serif; font-size: clamp(26px, 2.8vw, 36px); font-weight: 900; color: var(--navy); line-height: 1.15; margin-bottom: 20px; border-right: 4px solid var(--sky); padding-right: 16px; }
+    .article-body p { font-size: 16px; line-height: 1.95; color: var(--mid); margin-bottom: 0; }
 
-    .feature-list { margin-top: 36px; }
-    .feature-item { display: flex; align-items: flex-start; gap: 18px; padding: 18px 0; border-bottom: 1px solid var(--border); }
-    .feature-item:first-child { border-top: 1px solid var(--border); }
-    .feature-num { font-family: 'Frank Ruhl Libre', serif; font-size: 32px; font-weight: 900; color: #cddff5; line-height: 1; flex-shrink: 0; width: 44px; }
-    .feature-title { font-size: 15px; font-weight: 800; color: var(--blue); margin-bottom: 4px; }
-    .feature-desc { font-size: 14px; line-height: 1.7; color: var(--light); }
+    /* benefit cards */
+    .benefits-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 28px; }
+    .benefit-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-top: 3px solid var(--sky); padding: 20px 18px;
+      transition: transform 0.2s, box-shadow 0.2s, border-top-color 0.2s;
+      position: relative; overflow: hidden;
+    }
+    .benefit-card::before {
+      content: ''; position: absolute; top: 0; right: 0;
+      width: 0; height: 100%;
+      background: linear-gradient(135deg, rgba(74,144,217,0.04) 0%, transparent 60%);
+      transition: width 0.3s ease;
+    }
+    .benefit-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(13,34,87,0.1); border-top-color: var(--navy); }
+    .benefit-card:hover::before { width: 100%; }
+    .benefit-title { font-size: 14px; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
+    .benefit-desc { font-size: 13px; line-height: 1.65; color: var(--light); }
 
     /* ══ FORM ══ */
-    .sidebar-form { background: var(--white); box-shadow: 0 2px 28px rgba(13,34,87,0.12); position: sticky; top: 24px; }
+    .sidebar-form { background: var(--white); box-shadow: 0 2px 28px rgba(13,34,87,0.11); position: sticky; top: 24px; }
     .sf-header { background: var(--navy); padding: 24px 28px; border-bottom: 3px solid var(--sky); }
     .sf-eyebrow { font-size: 10px; font-weight: 800; letter-spacing: 0.16em; color: var(--sky); text-transform: uppercase; margin-bottom: 8px; }
     .sf-title { font-family: 'Frank Ruhl Libre', serif; font-size: 22px; font-weight: 900; color: var(--white); line-height: 1.25; }
-    .sf-body { padding: 24px 28px 28px; background: var(--white); }
-
+    .sf-body { padding: 24px 28px 28px; }
     .form-group { margin-bottom: 16px; }
     .form-group label { display: block; font-size: 11px; font-weight: 800; color: var(--mid); margin-bottom: 7px; letter-spacing: 0.05em; text-transform: uppercase; }
     .form-group input, .form-group select {
@@ -301,17 +247,13 @@
     .form-group.has-error input, .form-group.has-error select { border-color: #c0392b; background: #fff8f7; }
     .field-error { font-size: 12px; color: #c0392b; margin-top: 5px; display: none; }
     .form-group.has-error .field-error { display: block; }
-
-    .form-submit { width: 100%; background: var(--gold); color: var(--white); border: none; padding: 15px; font-family: 'Heebo', sans-serif; font-size: 16px; font-weight: 800; cursor: pointer; transition: background 0.2s, transform 0.15s; margin-top: 6px; letter-spacing: 0.02em; }
+    .form-submit { width: 100%; background: var(--gold); color: var(--white); border: none; padding: 15px; font-family: 'Heebo', sans-serif; font-size: 16px; font-weight: 800; cursor: pointer; transition: background 0.2s, transform 0.15s; margin-top: 6px; }
     .form-submit:hover { background: #d4911c; transform: translateY(-1px); }
     .form-note { font-size: 11px; color: var(--light); text-align: center; margin-top: 12px; line-height: 1.6; }
-
     .success-box { display: none; padding: 36px 28px; text-align: center; }
-    .success-box.visible { display: block; animation: fadeIn 0.4s ease; }
-    .success-icon { font-size: 44px; margin-bottom: 14px; }
+    .success-box.visible { display: block; animation: revealUp 0.4s ease; }
     .success-title { font-family: 'Frank Ruhl Libre', serif; font-size: 22px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
     .success-text { font-size: 14px; line-height: 1.75; color: var(--light); }
-    @keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
 
     /* ══ FOOTER ══ */
     .site-footer { background: var(--navy); padding: 28px 56px; display: flex; align-items: center; justify-content: space-between; gap: 20px; border-top: 3px solid var(--sky); }
@@ -323,25 +265,32 @@
     .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.65s ease, transform 0.65s ease; }
     .fade-in.visible { opacity: 1; transform: none; }
 
+    /* ══ MOBILE ══ */
     @media (max-width: 900px) {
-      .site-header { padding: 12px 24px; }
-      .hero-content { margin-right: 0 !important; }
-      .hero-plane { height: 45%; left: -5%; bottom: 0; opacity: 0.5; }
-      .event-strip { padding: 0 24px; }
-      .event-strip-inner { flex-direction: column; height: auto; padding: 20px 0; gap: 16px; }
-      .event-badge { flex-direction: row; padding: 12px 0; gap: 8px; }
-      .event-main { flex-direction: column; align-items: flex-start; padding: 0; gap: 12px; }
-      .event-block { border: none; padding: 0; align-items: flex-start; text-align: right; }
-      .event-cta-block { margin-right: 0; }
-      .content-wrap { grid-template-columns: 1fr; padding: 40px 24px; gap: 40px; }
+      .site-header { padding: 12px 20px; }
+      .header-logo { height: 44px; }
+      .hero { height: auto; min-height: 520px; padding: 100px 24px 60px; }
+      .hero-title { font-size: clamp(40px, 11vw, 64px); }
+
+      /* event card mobile — clean single card */
+      .event-card-inner { flex-direction: column; padding: 0; min-height: auto; }
+      .event-badge { padding: 14px 24px; font-size: 13px; border-bottom: 1px solid rgba(255,255,255,0.2); }
+      .event-blocks { flex-direction: row; flex-wrap: wrap; padding: 20px 20px 0; gap: 0; }
+      .event-block { flex: 1; min-width: 100px; padding: 0 16px 20px; border-left: none; border-right: 1px solid var(--border); text-align: center; }
+      .event-block:first-child { border-right: none; }
+      .event-block:last-child { flex: 100%; border-right: none; padding-top: 16px; border-top: 1px solid var(--border); }
+      .event-cta-wrap { margin-right: 0; width: 100%; padding: 0; }
+      .event-cta { display: block; text-align: center; padding: 16px; }
+
+      .content-wrap { grid-template-columns: 1fr; padding: 40px 20px; gap: 36px; }
+      .benefits-grid { grid-template-columns: 1fr; gap: 12px; }
       .sidebar-form { position: static; }
-      .site-footer { padding: 24px 28px; flex-direction: column; text-align: center; }
+      .site-footer { padding: 24px 20px; flex-direction: column; text-align: center; }
     }
   </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <header class="site-header">
   <img class="header-logo" src="logo.jpg" alt="חיל האוויר" />
 </header>
@@ -349,23 +298,16 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-sky"></div>
-  <div class="hero-radar"></div>
-  <div class="hero-crosshair"></div>
-  <div class="hero-glow"></div>
-
-  <!-- floating dots -->
-  <div class="hero-dot" style="right:38%; top:22%; animation-delay:0s"></div>
-  <div class="hero-dot" style="right:55%; top:60%; animation-delay:1.5s"></div>
-  <div class="hero-dot" style="right:72%; top:35%; animation-delay:3s"></div>
-  <div class="hero-dot" style="right:25%; top:70%; animation-delay:2s"></div>
-
-  <img
-    class="hero-plane"
-    src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/F-35A_flight_%28cropped%29.jpg/1280px-F-35A_flight_%28cropped%29.jpg"
-    alt="F-35"
-    onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/F-15I_raam.jpg/1280px-F-15I_raam.jpg'"
-  />
-
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-scan"></div>
+  <div class="hero-rings">
+    <span></span><span></span><span></span><span></span>
+  </div>
+  <div class="hero-cross"></div>
+  <div class="hero-dot" style="top:18%;right:15%;animation-delay:0s"></div>
+  <div class="hero-dot" style="top:65%;right:8%;animation-delay:2s"></div>
+  <div class="hero-dot" style="top:30%;left:12%;animation-delay:1s"></div>
+  <div class="hero-dot" style="top:72%;left:18%;animation-delay:3s"></div>
   <div class="hero-content">
     <h1 class="hero-title">
       מסלול השוחרות
@@ -377,27 +319,25 @@
   </div>
 </section>
 
-<!-- EVENT STRIP -->
-<div class="event-strip">
-  <div class="event-strip-inner">
-    <div class="event-badge">
-      <span class="event-badge-label">ערב פתוח</span>
-    </div>
-    <div class="event-main">
+<!-- EVENT CARD -->
+<div class="event-card-wrap">
+  <div class="event-card-inner">
+    <div class="event-badge">ערב פתוח</div>
+    <div class="event-blocks">
       <div class="event-block">
-        <div class="event-block-label">תאריך</div>
-        <div class="event-block-value tbd">יפורסם בקרוב</div>
+        <div class="ev-label">תאריך</div>
+        <div class="ev-value tbd">יפורסם בקרוב</div>
       </div>
       <div class="event-block">
-        <div class="event-block-label">שעה</div>
-        <div class="event-block-value">18:00</div>
+        <div class="ev-label">שעה</div>
+        <div class="ev-value">18:00</div>
       </div>
       <div class="event-block">
-        <div class="event-block-label">פרטים נוספים</div>
-        <div class="event-block-value" style="font-size:16px; color:var(--mid); font-family:'Heebo',sans-serif; font-weight:500;">השאירו פרטים ונחזור אליכם</div>
+        <div class="ev-label">פרטים נוספים</div>
+        <div class="ev-text">השאירו פרטים ונחזור אליכם</div>
       </div>
     </div>
-    <div class="event-cta-block">
+    <div class="event-cta-wrap">
       <a href="#register" class="event-cta">← להרשמה</a>
     </div>
   </div>
@@ -411,7 +351,6 @@
     <div class="article-body">
       <p>מסלול השוחרות של חיל האוויר הינו מסלול מצוינות לימודי וערכי, המשלב לימודי ליבה עם מגמות טכנולוגיות ותכנים של חיל האוויר. מנהריה שבצפון ועד אילת שבדרום — בכל הארץ פרוסים עשרות בתי ספר ייחודיים.</p>
     </div>
-
     <div class="benefits-grid">
       <div class="benefit-card">
         <div class="benefit-title">חשיפה לעולם הטיס</div>
@@ -476,7 +415,6 @@
           <p class="form-note">הפרטים ישמשו ליצירת קשר בלבד ולא יועברו לגורם שלישי.</p>
         </form>
         <div class="success-box" id="successBox">
-          <div class="success-icon">✅</div>
           <div class="success-title">הפרטים התקבלו!</div>
           <div class="success-text">תודה על ההרשמה.<br />נחזור אליכם עם פרטים על הערב הפתוח.</div>
         </div>
@@ -485,7 +423,6 @@
   </aside>
 </div>
 
-<!-- FOOTER -->
 <footer class="site-footer">
   <div class="footer-brand">
     <img class="footer-logo" src="logo.jpg" alt="חיל האוויר" />
@@ -495,17 +432,69 @@
 </footer>
 
 <script>
-  const obs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.07 });
+  // ── Scroll animations ──
+  const obs = new IntersectionObserver(
+    es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+    { threshold: 0.07 }
+  );
   document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
 
+  // ── Star field canvas (no infinite loop = no spinner) ──
+  (function() {
+    const canvas = document.getElementById('hero-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const hero = canvas.parentElement;
+
+    function resize() {
+      canvas.width  = hero.offsetWidth;
+      canvas.height = hero.offsetHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    const STARS = 140;
+    const stars = Array.from({ length: STARS }, () => ({
+      x: Math.random(),
+      y: Math.random(),
+      r: Math.random() * 1.4 + 0.3,
+      o: Math.random() * 0.5 + 0.15,
+      speed: Math.random() * 0.0003 + 0.0001,
+      phase: Math.random() * Math.PI * 2
+    }));
+
+    let frame;
+    function draw(t) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      stars.forEach(s => {
+        const opacity = s.o * (0.7 + 0.3 * Math.sin(t * s.speed * 1000 + s.phase));
+        ctx.beginPath();
+        ctx.arc(s.x * canvas.width, s.y * canvas.height, s.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(180,210,255,${opacity})`;
+        ctx.fill();
+      });
+      frame = requestAnimationFrame(draw);
+    }
+
+    // Use requestAnimationFrame — does NOT trigger browser loading spinner
+    frame = requestAnimationFrame(draw);
+
+    // Stop animation when tab hidden (saves battery)
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) cancelAnimationFrame(frame);
+      else frame = requestAnimationFrame(draw);
+    });
+  })();
+
+  // ── Form ──
   const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyCoEQkjQIdWG72U4DcO59tK9cLWPY_7byQGIkMMrTz5mdangjcptsEeCXsn_OSHf64/exec';
-  const form = document.getElementById('registrationForm');
+  const form       = document.getElementById('registrationForm');
   const successBox = document.getElementById('successBox');
 
   function validate(id, fn) {
-    const el = document.getElementById(id);
+    const el    = document.getElementById(id);
     const group = document.getElementById('group-' + id);
-    const ok = fn(el ? el.value.trim() : '');
+    const ok    = fn(el ? el.value.trim() : '');
     group.classList.toggle('has-error', !ok);
     return ok;
   }
@@ -524,15 +513,24 @@
     successBox.classList.add('visible');
 
     const payload = {
-      name: document.getElementById('name').value.trim(),
-      city: document.getElementById('city').value.trim(),
-      phone: document.getElementById('phone').value.trim(),
-      grade: document.getElementById('grade').value,
+      name:      document.getElementById('name').value.trim(),
+      city:      document.getElementById('city').value.trim(),
+      phone:     document.getElementById('phone').value.trim(),
+      grade:     document.getElementById('grade').value,
       timestamp: new Date().toLocaleString('he-IL', { timeZone: 'Asia/Jerusalem' }),
     };
 
-    fetch(APPS_SCRIPT_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) })
-      .catch(() => setTimeout(() => fetch(APPS_SCRIPT_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) }), 3000));
+    fetch(APPS_SCRIPT_URL, {
+      method: 'POST', mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    }).catch(() => setTimeout(() =>
+      fetch(APPS_SCRIPT_URL, {
+        method: 'POST', mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      }), 3000
+    ));
   });
 </script>
 </body>
