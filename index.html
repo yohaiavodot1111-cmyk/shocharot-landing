@@ -51,37 +51,85 @@
     /* ══ HERO ══ */
     .hero {
       position: relative;
-      height: 520px;
+      height: 600px;
       display: flex;
-      align-items: flex-end;
+      align-items: center;
+      justify-content: center;
       overflow: hidden;
+      text-align: center;
     }
     .hero-bg {
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(to left, rgba(10,20,50,0.35) 0%, rgba(10,20,50,0.72) 55%, rgba(10,20,50,0.88) 100%),
         url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/F-15I_raam.jpg/1280px-F-15I_raam.jpg')
-        center center / cover no-repeat;
+        center 40% / cover no-repeat;
+    }
+    /* dramatic dark + blue gradient */
+    .hero-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        160deg,
+        rgba(5,10,30,0.92) 0%,
+        rgba(15,35,90,0.82) 40%,
+        rgba(5,15,50,0.88) 100%
+      );
+    }
+    /* subtle grid lines for "tech" feel */
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
     }
     .hero-content {
       position: relative;
       z-index: 2;
-      padding: 0 56px 52px;
-      max-width: 860px;
+      padding: 0 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
-    .hero-label { font-family: 'Frank Ruhl Libre', serif; font-size: clamp(20px, 2.8vw, 30px); font-weight: 700; color: rgba(255,255,255,0.88); margin-bottom: 18px; letter-spacing: 0.01em; }
+    .hero-top-label {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
     .hero-title {
       font-family: 'Frank Ruhl Libre', serif;
-      font-size: clamp(36px, 5.5vw, 64px);
+      font-size: clamp(48px, 8vw, 96px);
       font-weight: 900;
       color: var(--white);
-      line-height: 1.08;
-      border-right: 5px solid var(--iaf-blue-lt);
-      padding-right: 20px;
-      margin-bottom: 22px;
+      line-height: 1.02;
+      margin-bottom: 0;
+      text-shadow: 0 4px 40px rgba(0,0,0,0.5);
+      letter-spacing: -0.01em;
     }
-    .hero-sub { font-size: 17px; font-weight: 300; color: rgba(255,255,255,0.78); line-height: 1.75; max-width: 580px; }
+    .hero-title-accent {
+      display: block;
+      color: #7eb3ff;
+    }
+    .hero-divider {
+      width: 64px;
+      height: 3px;
+      background: var(--iaf-blue-lt);
+      margin: 28px auto;
+    }
+    .hero-sub {
+      font-size: 18px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.72);
+      line-height: 1.75;
+      max-width: 600px;
+    }
 
     /* ══ URGENT BANNER ══ */
     .urgent-banner {
@@ -241,8 +289,12 @@
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-content">
-    <p class="hero-label">מסלול השוחרות של חיל האוויר</p>
-    <h1 class="hero-title">מעבר לבית-ספר:<br />הכירו את השוחרות</h1>
+    <p class="hero-top-label">חיל האוויר · מסלולי נוער</p>
+    <h1 class="hero-title">
+      מסלול השוחרות
+      <span class="hero-title-accent">של חיל האוויר</span>
+    </h1>
+    <div class="hero-divider"></div>
     <p class="hero-sub">
       מסלול מצוינות לימודי וערכי המשלב לימודי ליבה עם מגמות טכנולוגיות ותכנים של חיל האוויר — לאורך כל הדרך.
     </p>
