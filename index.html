@@ -9,313 +9,181 @@
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&family=Frank+Ruhl+Libre:wght@400;700;900&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --iaf-blue:    #1a3e7a;
-      --iaf-blue-lt: #2352a0;
-      --white:       #ffffff;
-      --gray-bg:     #f2f3f5;
-      --gray-light:  #e8eaed;
-      --text:        #1a1a2a;
-      --text-mid:    #3a4460;
-      --text-light:  #6b7590;
-      --border:      #d0d4db;
+      --navy:    #0d2257;
+      --blue:    #1a3e7a;
+      --sky:     #4a90d9;
+      --gold:    #e8a020;
+      --white:   #ffffff;
+      --bg:      #f7f8fa;
+      --text:    #12192e;
+      --mid:     #3a4460;
+      --light:   #6b7590;
+      --border:  #dde1ea;
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Heebo', sans-serif;
-      background: var(--white);
-      color: var(--text);
-      direction: rtl;
-      overflow-x: hidden;
-    }
+    body { font-family: 'Heebo', sans-serif; background: var(--bg); color: var(--text); direction: rtl; overflow-x: hidden; }
 
     /* ══ HEADER ══ */
     .site-header {
-      position: absolute;
-      top: 0; right: 0; left: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      padding: 0 40px;
-      height: 70px;
+      position: absolute; top: 0; right: 0; left: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: flex-end;
+      padding: 16px 40px; height: 76px;
     }
-    .header-left { display: none; }
-    .header-sep-v { display: none; }
-    .header-spacer { flex: 1; }
-    .header-right { display: flex; align-items: center; }
     .header-logo { height: 52px; width: auto; object-fit: contain; }
-    .header-iaf-name { display: none; }
-    .header-iaf-line { display: none; }
 
     /* ══ HERO ══ */
     .hero {
-      position: relative;
-      height: 600px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      text-align: center;
+      position: relative; height: 620px;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; text-align: center;
     }
     .hero-bg {
-      position: absolute;
-      inset: 0;
-      background:
-        url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/F-15I_raam.jpg/1280px-F-15I_raam.jpg')
-        center 40% / cover no-repeat;
+      position: absolute; inset: 0;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/F-15I_raam.jpg/1280px-F-15I_raam.jpg') center 40% / cover no-repeat;
     }
-    /* dramatic dark + blue gradient */
     .hero-bg::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        160deg,
-        rgba(5,10,30,0.92) 0%,
-        rgba(15,35,90,0.82) 40%,
-        rgba(5,15,50,0.88) 100%
-      );
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(170deg, rgba(8,16,48,0.88) 0%, rgba(13,34,87,0.72) 45%, rgba(8,20,60,0.55) 100%);
     }
-    /* subtle grid lines for "tech" feel */
     .hero-bg::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-      background-size: 60px 60px;
+      content: ''; position: absolute; inset: 0;
+      background-image: linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 56px 56px;
     }
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      padding: 0 40px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .hero-top-label {
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.22em;
-      color: rgba(255,255,255,0.5);
-      text-transform: uppercase;
-      margin-bottom: 28px;
+    .hero-content { position: relative; z-index: 2; padding: 0 32px; }
+    .hero-kicker {
+      font-size: 12px; font-weight: 700; letter-spacing: 0.24em;
+      color: var(--sky); text-transform: uppercase; margin-bottom: 20px;
     }
     .hero-title {
       font-family: 'Frank Ruhl Libre', serif;
-      font-size: clamp(48px, 8vw, 96px);
-      font-weight: 900;
-      color: var(--white);
-      line-height: 1.02;
-      margin-bottom: 0;
-      text-shadow: 0 4px 40px rgba(0,0,0,0.5);
-      letter-spacing: -0.01em;
+      font-size: clamp(52px, 9vw, 100px);
+      font-weight: 900; color: var(--white); line-height: 1.0;
+      text-shadow: 0 2px 32px rgba(0,0,0,0.4);
     }
-    .hero-title-accent {
-      display: block;
-      color: #7eb3ff;
-    }
-    .hero-divider {
-      width: 64px;
-      height: 3px;
-      background: var(--iaf-blue-lt);
-      margin: 28px auto;
-    }
+    .hero-title-line2 { display: block; color: #7ec8ff; }
+    .hero-rule { width: 56px; height: 3px; background: var(--sky); margin: 28px auto; }
     .hero-sub {
-      font-size: 18px;
-      font-weight: 300;
-      color: rgba(255,255,255,0.72);
-      line-height: 1.75;
-      max-width: 600px;
+      font-size: 17px; font-weight: 300;
+      color: rgba(255,255,255,0.7); line-height: 1.8; max-width: 560px; margin: 0 auto;
     }
 
-    /* ══ URGENT BANNER ══ */
-    .urgent-banner {
-      background: linear-gradient(135deg, #0d2b6b 0%, #1a3e7a 60%, #1e4d8c 100%);
-      padding: 22px 56px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-      border-bottom: 3px solid #4a90d9;
-    }
-    .urgent-text-wrap { display: flex; align-items: center; gap: 16px; }
-    .urgent-dot {
-      width: 12px; height: 12px;
-      background: #4fc3f7;
-      border-radius: 50%;
-      flex-shrink: 0;
-      box-shadow: 0 0 0 4px rgba(79,195,247,0.25);
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { box-shadow: 0 0 0 4px rgba(79,195,247,0.25); }
-      50%       { box-shadow: 0 0 0 8px rgba(79,195,247,0.1); }
-    }
-    .urgent-text {
-      font-family: 'Frank Ruhl Libre', serif;
-      font-size: clamp(22px, 3vw, 32px);
-      font-weight: 900;
-      color: var(--white);
-      letter-spacing: 0.01em;
-    }
-    .urgent-sub {
-      font-family: 'Heebo', sans-serif;
-      font-size: 14px;
-      font-weight: 400;
-      color: rgba(255,255,255,0.6);
-      margin-top: 4px;
-    }
-    .urgent-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--white);
-      color: var(--iaf-blue);
-      font-size: 15px;
-      font-weight: 800;
-      padding: 11px 28px;
-      text-decoration: none;
-      white-space: nowrap;
-      flex-shrink: 0;
-      transition: background 0.2s, transform 0.15s;
-    }
-    .urgent-cta:hover { background: var(--gray-light); transform: translateX(-2px); }
-
-    /* ══ EVENT CARD ══ */
-    .event-card-outer {
-      background: linear-gradient(135deg, #0a1e52 0%, #112d7a 50%, #0d2460 100%);
-      padding: 56px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .event-card-outer::before {
-      content: '';
+    /* ══ F-35 HERO PLANE ══ */
+    .hero-plane {
       position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
-      background-size: 48px 48px;
+      left: -40px; bottom: -20px;
+      width: clamp(320px, 45vw, 620px);
+      z-index: 3;
+      filter: drop-shadow(0 8px 40px rgba(0,0,80,0.5));
+      animation: planeIn 1.1s cubic-bezier(0.22,1,0.36,1) both;
+      pointer-events: none;
     }
-    .event-card {
-      position: relative;
-      z-index: 1;
-      max-width: 860px;
-      margin: 0 auto;
-      border: 1.5px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.04);
-      padding: 48px 56px;
-      backdrop-filter: blur(4px);
+    @keyframes planeIn {
+      from { opacity: 0; transform: translateX(-80px) translateY(20px); }
+      to   { opacity: 1; transform: none; }
     }
-    .event-eyebrow {
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.22em;
-      color: #7eb3ff;
-      text-transform: uppercase;
-      margin-bottom: 20px;
+
+    /* ══ BENEFITS GRID ══ */
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 32px;
     }
-    .event-title {
-      font-family: 'Frank Ruhl Libre', serif;
-      font-size: clamp(28px, 4vw, 52px);
-      font-weight: 900;
+    .benefit-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--sky);
+      padding: 20px 18px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .benefit-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(13,34,87,0.1); }
+    .benefit-icon { font-size: 28px; margin-bottom: 10px; display: block; }
+    .benefit-title { font-size: 15px; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
+    .benefit-desc { font-size: 13px; line-height: 1.65; color: var(--light); }
+
+    /* ══ EVENT STRIP ══ */
+    .event-strip {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 0 56px;
+    }
+    .event-strip-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: stretch;
+      min-height: 100px; gap: 0;
+    }
+    .event-badge {
+      background: var(--gold);
       color: var(--white);
-      line-height: 1.1;
-      margin-bottom: 32px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 0 32px; gap: 2px; flex-shrink: 0;
     }
-    .event-details {
-      display: flex;
-      align-items: stretch;
-      justify-content: center;
-      gap: 0;
-      margin-bottom: 36px;
-      flex-wrap: wrap;
+    .event-badge-icon { font-size: 22px; }
+    .event-badge-label { font-size: 10px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; }
+
+    .event-main {
+      flex: 1; display: flex; align-items: center; gap: 0;
+      padding: 0 40px;
     }
-    .event-detail-block {
-      padding: 20px 48px;
-      border-left: 1px solid rgba(255,255,255,0.15);
-      text-align: center;
+    .event-block {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 0 36px; border-left: 1px solid var(--border); text-align: center;
     }
-    .event-detail-block:last-child { border-left: none; }
-    .event-detail-label {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      color: rgba(255,255,255,0.45);
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-    .event-detail-value {
+    .event-block:first-child { padding-right: 0; }
+    .event-block-label { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; color: var(--light); text-transform: uppercase; margin-bottom: 6px; }
+    .event-block-value {
       font-family: 'Frank Ruhl Libre', serif;
-      font-size: clamp(22px, 3vw, 36px);
-      font-weight: 900;
-      color: var(--white);
-      line-height: 1;
+      font-size: clamp(18px, 2.5vw, 28px); font-weight: 900; color: var(--navy);
     }
-    .event-detail-value.date-tbd {
-      font-size: clamp(18px, 2.2vw, 26px);
-      color: #7eb3ff;
-      border: 1.5px dashed rgba(126,179,255,0.4);
-      padding: 8px 20px;
-      letter-spacing: 0.04em;
+    .event-block-value.tbd {
+      font-size: clamp(14px, 1.8vw, 18px); color: var(--sky);
+      border: 1.5px dashed rgba(74,144,217,0.5);
+      padding: 4px 16px; border-radius: 2px;
     }
-    .event-cta-wrap { margin-top: 8px; }
+    .event-cta-block {
+      margin-right: auto; padding-right: 0; border: none;
+      flex-shrink: 0;
+    }
     .event-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: #4a90d9;
-      color: var(--white);
-      font-family: 'Heebo', sans-serif;
-      font-size: 17px;
-      font-weight: 800;
-      padding: 15px 40px;
-      text-decoration: none;
-      letter-spacing: 0.03em;
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--navy); color: var(--white);
+      font-size: 15px; font-weight: 800;
+      padding: 13px 28px; text-decoration: none;
       transition: background 0.2s, transform 0.15s;
-      box-shadow: 0 4px 24px rgba(74,144,217,0.4);
     }
-    .event-cta:hover { background: #5aa0e8; transform: translateY(-2px); box-shadow: 0 8px 32px rgba(74,144,217,0.5); }
+    .event-cta:hover { background: var(--blue); transform: translateX(-2px); }
 
     /* ══ CONTENT ══ */
-    .content-outer { background: var(--gray-bg); }
     .content-wrap {
-      max-width: 1200px;
-      margin: 0 auto;
+      max-width: 1200px; margin: 0 auto;
       padding: 64px 56px;
-      display: grid;
-      grid-template-columns: 1fr 380px;
-      gap: 72px;
-      align-items: start;
+      display: grid; grid-template-columns: 1fr 370px; gap: 64px; align-items: start;
     }
 
-    .article-tag { font-size: 11px; font-weight: 800; letter-spacing: 0.16em; color: var(--iaf-blue); text-transform: uppercase; margin-bottom: 12px; }
-    .article-title { font-family: 'Frank Ruhl Libre', serif; font-size: clamp(26px, 2.8vw, 36px); font-weight: 900; color: var(--text); line-height: 1.15; margin-bottom: 24px; border-right: 4px solid var(--iaf-blue); padding-right: 16px; }
-    .article-body p { font-size: 16px; line-height: 1.9; color: var(--text-mid); margin-bottom: 16px; }
+    .article-tag { font-size: 11px; font-weight: 800; letter-spacing: 0.16em; color: var(--sky); text-transform: uppercase; margin-bottom: 10px; }
+    .article-title { font-family: 'Frank Ruhl Libre', serif; font-size: clamp(26px, 2.8vw, 36px); font-weight: 900; color: var(--navy); line-height: 1.15; margin-bottom: 24px; border-right: 4px solid var(--sky); padding-right: 16px; }
+    .article-body p { font-size: 16px; line-height: 1.95; color: var(--mid); margin-bottom: 16px; }
 
-    .feature-list { margin-top: 40px; }
-    .feature-item { display: flex; align-items: flex-start; gap: 20px; padding: 20px 0; border-bottom: 1px solid var(--border); }
+    .feature-list { margin-top: 36px; }
+    .feature-item { display: flex; align-items: flex-start; gap: 18px; padding: 18px 0; border-bottom: 1px solid var(--border); }
     .feature-item:first-child { border-top: 1px solid var(--border); }
-    .feature-num { font-family: 'Frank Ruhl Libre', serif; font-size: 36px; font-weight: 900; color: #c8daf8; line-height: 1; flex-shrink: 0; width: 48px; user-select: none; }
-    .feature-title { font-size: 15px; font-weight: 800; color: var(--iaf-blue); margin-bottom: 5px; }
-    .feature-desc { font-size: 14px; line-height: 1.7; color: var(--text-light); }
+    .feature-num { font-family: 'Frank Ruhl Libre', serif; font-size: 32px; font-weight: 900; color: #cddff5; line-height: 1; flex-shrink: 0; width: 44px; }
+    .feature-title { font-size: 15px; font-weight: 800; color: var(--blue); margin-bottom: 4px; }
+    .feature-desc { font-size: 14px; line-height: 1.7; color: var(--light); }
 
-    /* ══ SIDEBAR FORM ══ */
-    .sidebar-form { background: var(--white); box-shadow: 0 4px 32px rgba(26,62,122,0.13); position: sticky; top: 24px; }
-    .sf-header { background: var(--iaf-blue); padding: 26px 28px 22px; position: relative; }
-    .sf-header::after { content: ''; position: absolute; bottom: 0; right: 0; left: 0; height: 3px; background: var(--iaf-blue-lt); }
-    .sf-eyebrow { font-size: 10px; font-weight: 800; letter-spacing: 0.16em; color: rgba(255,255,255,0.55); text-transform: uppercase; margin-bottom: 8px; }
-    .sf-title { font-family: 'Frank Ruhl Libre', serif; font-size: 23px; font-weight: 900; color: var(--white); line-height: 1.2; }
-    .sf-body { padding: 26px 28px 28px; }
+    /* ══ FORM ══ */
+    .sidebar-form { background: var(--white); box-shadow: 0 2px 28px rgba(13,34,87,0.12); position: sticky; top: 24px; }
+    .sf-header { background: var(--navy); padding: 24px 28px; border-bottom: 3px solid var(--sky); }
+    .sf-eyebrow { font-size: 10px; font-weight: 800; letter-spacing: 0.16em; color: var(--sky); text-transform: uppercase; margin-bottom: 8px; }
+    .sf-title { font-family: 'Frank Ruhl Libre', serif; font-size: 22px; font-weight: 900; color: var(--white); line-height: 1.25; }
+    .sf-body { padding: 24px 28px 28px; background: var(--white); }
 
     .form-group { margin-bottom: 16px; }
-    .form-group label { display: block; font-size: 11px; font-weight: 800; color: var(--text-mid); margin-bottom: 7px; letter-spacing: 0.06em; text-transform: uppercase; }
+    .form-group label { display: block; font-size: 11px; font-weight: 800; color: var(--mid); margin-bottom: 7px; letter-spacing: 0.05em; text-transform: uppercase; }
     .form-group input, .form-group select {
-      width: 100%; background: var(--gray-bg); border: 1.5px solid var(--border);
+      width: 100%; background: var(--bg); border: 1.5px solid var(--border);
       padding: 12px 14px; font-family: 'Heebo', sans-serif; font-size: 15px;
       color: var(--text); outline: none; transition: border-color 0.2s, background 0.2s;
       direction: rtl; border-radius: 0; appearance: none; -webkit-appearance: none;
@@ -324,43 +192,42 @@
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%236b7590' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
       background-repeat: no-repeat; background-position: left 14px center; padding-left: 36px;
     }
-    .form-group input::placeholder { color: var(--text-light); font-size: 14px; }
-    .form-group input:focus, .form-group select:focus { border-color: var(--iaf-blue); background: var(--white); }
+    .form-group input::placeholder { color: var(--light); }
+    .form-group input:focus, .form-group select:focus { border-color: var(--sky); background: var(--white); }
     .form-group.has-error input, .form-group.has-error select { border-color: #c0392b; background: #fff8f7; }
     .field-error { font-size: 12px; color: #c0392b; margin-top: 5px; display: none; }
     .form-group.has-error .field-error { display: block; }
 
-    .form-submit { width: 100%; background: var(--iaf-blue); color: var(--white); border: none; padding: 15px; font-family: 'Heebo', sans-serif; font-size: 16px; font-weight: 800; letter-spacing: 0.03em; cursor: pointer; transition: background 0.2s; margin-top: 6px; }
-    .form-submit:hover { background: var(--iaf-blue-lt); }
-    .form-note { font-size: 11px; color: var(--text-light); text-align: center; margin-top: 12px; line-height: 1.6; }
+    .form-submit { width: 100%; background: var(--gold); color: var(--white); border: none; padding: 15px; font-family: 'Heebo', sans-serif; font-size: 16px; font-weight: 800; cursor: pointer; transition: background 0.2s, transform 0.15s; margin-top: 6px; letter-spacing: 0.02em; }
+    .form-submit:hover { background: #d4911c; transform: translateY(-1px); }
+    .form-note { font-size: 11px; color: var(--light); text-align: center; margin-top: 12px; line-height: 1.6; }
 
     .success-box { display: none; padding: 36px 28px; text-align: center; }
     .success-box.visible { display: block; animation: fadeIn 0.4s ease; }
-    .success-icon { font-size: 46px; margin-bottom: 14px; }
-    .success-title { font-family: 'Frank Ruhl Libre', serif; font-size: 22px; font-weight: 700; color: var(--iaf-blue); margin-bottom: 10px; }
-    .success-text { font-size: 14px; line-height: 1.75; color: var(--text-light); }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+    .success-icon { font-size: 44px; margin-bottom: 14px; }
+    .success-title { font-family: 'Frank Ruhl Libre', serif; font-size: 22px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+    .success-text { font-size: 14px; line-height: 1.75; color: var(--light); }
+    @keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
 
     /* ══ FOOTER ══ */
-    .site-footer { background: var(--iaf-blue); padding: 28px 56px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .site-footer { background: var(--navy); padding: 28px 56px; display: flex; align-items: center; justify-content: space-between; gap: 20px; border-top: 3px solid var(--sky); }
     .footer-brand { display: flex; align-items: center; gap: 14px; }
-    .footer-logo { height: 34px; }
-    .footer-name { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.5); }
-    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.3); }
+    .footer-logo { height: 32px; }
+    .footer-name { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.45); }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.25); }
 
-    /* ══ ANIMATIONS ══ */
-    .fade-in { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.65s ease, transform 0.65s ease; }
     .fade-in.visible { opacity: 1; transform: none; }
 
-    /* ══ RESPONSIVE ══ */
     @media (max-width: 900px) {
-      .site-header { padding: 0 24px; }
-      .hero-content { padding: 0 28px 44px; }
-      .urgent-banner { padding: 20px 28px; flex-direction: column; align-items: flex-start; gap: 16px; }
-      .event-card-outer { padding: 32px 24px; }
-      .event-card { padding: 32px 24px; }
-      .event-detail-block { padding: 16px 24px; }
-      .content-wrap { grid-template-columns: 1fr; padding: 44px 28px; gap: 44px; }
+      .site-header { padding: 12px 24px; }
+      .event-strip { padding: 0 24px; }
+      .event-strip-inner { flex-direction: column; height: auto; padding: 20px 0; gap: 16px; }
+      .event-badge { flex-direction: row; padding: 12px 0; gap: 8px; }
+      .event-main { flex-direction: column; align-items: flex-start; padding: 0; gap: 12px; }
+      .event-block { border: none; padding: 0; align-items: flex-start; text-align: right; }
+      .event-cta-block { margin-right: 0; }
+      .content-wrap { grid-template-columns: 1fr; padding: 40px 24px; gap: 40px; }
       .sidebar-form { position: static; }
       .site-footer { padding: 24px 28px; flex-direction: column; text-align: center; }
     }
@@ -370,167 +237,142 @@
 
 <!-- HEADER -->
 <header class="site-header">
-  <div class="header-left">
-    <a href="#" class="header-nav-link">English</a>
-    <div class="header-sep-v"></div>
-    <a href="https://www.iaf.org.il" class="header-nav-link" target="_blank">לאתר המתגייסים</a>
-  </div>
-  <div class="header-spacer"></div>
-  <div class="header-right">
-    <img class="header-logo"
-      src="logo.jpg"
-      alt="חיל האוויר" />
-    <span class="header-iaf-name">חיל האוויר</span>
-    <span class="header-iaf-line"></span>
-  </div>
+  <img class="header-logo" src="logo.jpg" alt="חיל האוויר" />
 </header>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
-  <div class="hero-content">
-    <p class="hero-top-label">חיל האוויר · מסלולי נוער</p>
+  <img
+    class="hero-plane"
+    src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/F-35A_flight_%28cropped%29.jpg/1280px-F-35A_flight_%28cropped%29.jpg"
+    alt="F-35"
+    onerror="this.style.display='none'"
+  />
+  <div class="hero-content" style="margin-right: clamp(0px, 30vw, 400px); text-align: right; align-items: flex-start;">
+    <p class="hero-kicker">חיל האוויר · מסלולי נוער</p>
     <h1 class="hero-title">
       מסלול השוחרות
-      <span class="hero-title-accent">חיל האוויר</span>
+      <span class="hero-title-line2">חיל האוויר</span>
     </h1>
-    <div class="hero-divider"></div>
-    <p class="hero-sub">
-      מסלול מצוינות לימודי וערכי המשלב לימודי ליבה עם מגמות טכנולוגיות ותכנים של חיל האוויר — לאורך כל הדרך.
-    </p>
+    <div class="hero-rule" style="margin: 28px 0;"></div>
+    <p class="hero-sub">מסלול מצוינות לימודי וערכי המשלב לימודי ליבה עם מגמות טכנולוגיות ותכנים של חיל האוויר — לאורך כל הדרך.</p>
   </div>
 </section>
 
-<!-- URGENT BANNER -->
-<div class="urgent-banner">
-  <div class="urgent-text-wrap">
-    <div class="urgent-dot"></div>
-    <div>
-      <div class="urgent-text">ההרשמה לערב הפתוח בעיצומה!</div>
-      <div class="urgent-sub">השאירו פרטים ונחזור אליכם בהקדם</div>
+<!-- EVENT STRIP -->
+<div class="event-strip">
+  <div class="event-strip-inner">
+    <div class="event-badge">
+      <span class="event-badge-icon">✈️</span>
+      <span class="event-badge-label">ערב פתוח</span>
     </div>
-  </div>
-  <a href="#register" class="urgent-cta">← להרשמה עכשיו</a>
-</div>
-
-<!-- EVENT CARD -->
-<div class="event-card-outer">
-  <div class="event-card">
-    <div class="event-eyebrow">הזדמנות להכיר את חיל האוויר מקרוב</div>
-    <div class="event-title">ערב פתוח יתקיים</div>
-    <div class="event-details">
-      <div class="event-detail-block">
-        <div class="event-detail-label">תאריך</div>
-        <div class="event-detail-value date-tbd">יפורסם בקרוב</div>
+    <div class="event-main">
+      <div class="event-block">
+        <div class="event-block-label">תאריך</div>
+        <div class="event-block-value tbd">יפורסם בקרוב</div>
       </div>
-      <div class="event-detail-block">
-        <div class="event-detail-label">שעה</div>
-        <div class="event-detail-value">18:00</div>
+      <div class="event-block">
+        <div class="event-block-label">שעה</div>
+        <div class="event-block-value">18:00</div>
+      </div>
+      <div class="event-block">
+        <div class="event-block-label">פרטים נוספים</div>
+        <div class="event-block-value" style="font-size:16px; color:var(--mid); font-family:'Heebo',sans-serif; font-weight:500;">השאירו פרטים ונחזור אליכם</div>
       </div>
     </div>
-    <div class="event-cta-wrap">
-      <a href="#register" class="event-cta">← לפרטים נוספים והרשמה</a>
+    <div class="event-cta-block">
+      <a href="#register" class="event-cta">← להרשמה</a>
     </div>
   </div>
 </div>
 
-<!-- MAIN CONTENT -->
-<div class="content-outer">
-  <div class="content-wrap">
+<!-- CONTENT -->
+<div class="content-wrap">
+  <main id="about" class="fade-in">
+    <p class="article-tag">מסלול שוחרות — חיל האוויר</p>
+    <h2 class="article-title">מי הם השוחרות?</h2>
+    <div class="article-body">
+      <p>מסלול השוחרות של חיל האוויר הינו מסלול מצוינות לימודי וערכי, המשלב לימודי ליבה עם מגמות טכנולוגיות ותכנים של חיל האוויר. מנהריה שבצפון ועד אילת שבדרום — בכל הארץ פרוסים עשרות בתי ספר ייחודיים.</p>
+    </div>
 
-    <main id="about" class="fade-in">
-      <p class="article-tag">מסלול שוחרות — חיל האוויר</p>
-      <h2 class="article-title">מי הם השוחרות?</h2>
-      <div class="article-body">
-        <p>
-          מסלול השוחרות של חיל האוויר הינו מסלול מצוינות לימודי וערכי, המשלב לימודי ליבה עם מגמות טכנולוגיות ותכנים של חיל האוויר, פעילויות וסיורים ייחודיים לאורך כל הדרך. המטרה — לעצב את הדור הבא של המערך הטכני של חיל האוויר.
-        </p>
-        <p>
-          מנהריה שבצפון ועד אילת שבדרום — בכל הארץ פרוסים עשרות בתי ספר ייחודיים בשיתוף עם חיל האוויר. מסלול השוחרות מתחיל בכיתה ט׳ עד י״ב, עם אפשרות להמשך לימודי הנדסאי בסבסוד של חיל האוויר.
-        </p>
-        <p>
-          אנו מקנים לתלמידים והתלמידות שלנו כלים שיסייעו להם לאורך כל חייהם — מנהיגות, עבודת צוות וחשיבה מערכתית.
-        </p>
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <span class="benefit-icon">✈️</span>
+        <div class="benefit-title">חשיפה לעולם הטיס</div>
+        <div class="benefit-desc">סיורים בבסיסי חיל האוויר ומפגשים עם אנשי מקצוע לאורך כל הדרך.</div>
       </div>
-
-      <div class="feature-list">
-        <div class="feature-item">
-          <div class="feature-num">01</div>
-          <div>
-            <div class="feature-title">לימודים משולבים עם מגמות טכנולוגיות</div>
-            <div class="feature-desc">שילוב ליבה לימודית מלאה עם תכנים ייחודיים מעולם הטכנולוגיה הצבאית והאווירית.</div>
-          </div>
-        </div>
-        <div class="feature-item">
-          <div class="feature-num">02</div>
-          <div>
-            <div class="feature-title">סיורים ופעילויות בחיל האוויר</div>
-            <div class="feature-desc">ביקורים בבסיסי חיל האוויר, מפגשים עם אנשי מקצוע וחשיפה לכלי טיס מתקדמים לאורך כל שנות הלימוד.</div>
-          </div>
-        </div>
-        <div class="feature-item">
-          <div class="feature-num">03</div>
-          <div>
-            <div class="feature-title">פיתוח מנהיגות ועבודת צוות</div>
-            <div class="feature-desc">מודולים ייחודיים שמטרתם לטפח את הדור הבא של המנהיגות הצבאית והאזרחית כאחד.</div>
-          </div>
-        </div>
-        <div class="feature-item">
-          <div class="feature-num">04</div>
-          <div>
-            <div class="feature-title">מסלול מלא עד י״ב + המשך הנדסאי</div>
-            <div class="feature-desc">תכנית רצופה מכיתה ט׳ ועד סיום התיכון, עם אפשרות להמשך לימודי הנדסאי בסבסוד חיל האוויר.</div>
-          </div>
-        </div>
+      <div class="benefit-card">
+        <span class="benefit-icon">🔬</span>
+        <div class="benefit-title">מגמות טכנולוגיות</div>
+        <div class="benefit-desc">לימודי ליבה משולבים עם תכנים טכנולוגיים ייחודיים של חיל האוויר.</div>
       </div>
-    </main>
+      <div class="benefit-card">
+        <span class="benefit-icon">🎖️</span>
+        <div class="benefit-title">פיתוח מנהיגות</div>
+        <div class="benefit-desc">מיומנויות מנהיגות, עבודת צוות וחשיבה מערכתית — לכל החיים.</div>
+      </div>
+      <div class="benefit-card">
+        <span class="benefit-icon">🎓</span>
+        <div class="benefit-title">המשך אקדמי</div>
+        <div class="benefit-desc">בגרות מלאה + אפשרות ללימודי הנדסאי בסבסוד חיל האוויר.</div>
+      </div>
+      <div class="benefit-card">
+        <span class="benefit-icon">🗺️</span>
+        <div class="benefit-title">בכל רחבי הארץ</div>
+        <div class="benefit-desc">עשרות בתי ספר מנהריה עד אילת בשיתוף עם חיל האוויר.</div>
+      </div>
+      <div class="benefit-card">
+        <span class="benefit-icon">⚡</span>
+        <div class="benefit-title">מגיל 14</div>
+        <div class="benefit-desc">המסלול מתחיל בכיתה ט׳ ומלווה עד סיום י״ב ומעבר לכך.</div>
+      </div>
+    </div>
+  </main>
 
-    <!-- FORM -->
-    <aside id="register">
-      <div class="sidebar-form fade-in" style="transition-delay:0.18s">
-        <div class="sf-header">
-          <div class="sf-eyebrow">הרשמה לערב הפתוח</div>
-          <div class="sf-title">השאירו פרטים<br />ונחזור אליכם</div>
-        </div>
-        <div class="sf-body">
-          <form id="registrationForm" novalidate>
-            <div class="form-group" id="group-name">
-              <label for="name">שם מלא</label>
-              <input type="text" id="name" placeholder="שם פרטי ושם משפחה" autocomplete="name" />
-              <div class="field-error">נא להזין שם מלא</div>
-            </div>
-            <div class="form-group" id="group-city">
-              <label for="city">עיר מגורים</label>
-              <input type="text" id="city" placeholder="לדוגמה: אשקלון" />
-              <div class="field-error">נא להזין עיר</div>
-            </div>
-            <div class="form-group" id="group-phone">
-              <label for="phone">מספר טלפון</label>
-              <input type="tel" id="phone" placeholder="05X-XXXXXXX" inputmode="numeric" autocomplete="tel" />
-              <div class="field-error">נא להזין מספר טלפון תקין</div>
-            </div>
-            <div class="form-group" id="group-grade">
-              <label for="grade">כיתה נוכחית</label>
-              <select id="grade">
-                <option value="">בחרו כיתה...</option>
-                <option value="ח׳">ח׳</option>
-                <option value="ט׳">ט׳</option>
-              </select>
-              <div class="field-error">נא לבחור כיתה</div>
-            </div>
-            <button type="submit" class="form-submit" id="submitBtn">שליחת הפרטים ←</button>
-            <p class="form-note">הפרטים ישמשו ליצירת קשר בלבד ולא יועברו לגורם שלישי.</p>
-          </form>
-          <div class="success-box" id="successBox">
-            <div class="success-icon">✅</div>
-            <div class="success-title">הפרטים התקבלו!</div>
-            <div class="success-text">תודה על ההרשמה.<br />נחזור אליכם עם פרטים על הערב הפתוח.</div>
+  <aside id="register">
+    <div class="sidebar-form fade-in" style="transition-delay:0.15s">
+      <div class="sf-header">
+        <div class="sf-eyebrow">הרשמה לערב הפתוח</div>
+        <div class="sf-title">השאירו פרטים<br />ונחזור אליכם</div>
+      </div>
+      <div class="sf-body">
+        <form id="registrationForm" novalidate>
+          <div class="form-group" id="group-name">
+            <label for="name">שם מלא</label>
+            <input type="text" id="name" placeholder="שם פרטי ושם משפחה" autocomplete="name" />
+            <div class="field-error">נא להזין שם מלא</div>
           </div>
+          <div class="form-group" id="group-city">
+            <label for="city">עיר מגורים</label>
+            <input type="text" id="city" placeholder="לדוגמה: חיפה" />
+            <div class="field-error">נא להזין עיר</div>
+          </div>
+          <div class="form-group" id="group-phone">
+            <label for="phone">מספר טלפון</label>
+            <input type="tel" id="phone" placeholder="05X-XXXXXXX" inputmode="numeric" autocomplete="tel" />
+            <div class="field-error">נא להזין מספר טלפון תקין</div>
+          </div>
+          <div class="form-group" id="group-grade">
+            <label for="grade">כיתה נוכחית</label>
+            <select id="grade">
+              <option value="">בחרו כיתה...</option>
+              <option value="ח׳">ח׳</option>
+              <option value="ט׳">ט׳</option>
+            </select>
+            <div class="field-error">נא לבחור כיתה</div>
+          </div>
+          <button type="submit" class="form-submit">שליחת הפרטים ←</button>
+          <p class="form-note">הפרטים ישמשו ליצירת קשר בלבד ולא יועברו לגורם שלישי.</p>
+        </form>
+        <div class="success-box" id="successBox">
+          <div class="success-icon">✅</div>
+          <div class="success-title">הפרטים התקבלו!</div>
+          <div class="success-text">תודה על ההרשמה.<br />נחזור אליכם עם פרטים על הערב הפתוח.</div>
         </div>
       </div>
-    </aside>
-
-  </div>
+    </div>
+  </aside>
 </div>
 
 <!-- FOOTER -->
@@ -543,27 +385,19 @@
 </footer>
 
 <script>
-  const obs = new IntersectionObserver(
-    es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
-    { threshold: 0.07 }
-  );
+  const obs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.07 });
   document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
 
   const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyCoEQkjQIdWG72U4DcO59tK9cLWPY_7byQGIkMMrTz5mdangjcptsEeCXsn_OSHf64/exec';
-
-  const form       = document.getElementById('registrationForm');
+  const form = document.getElementById('registrationForm');
   const successBox = document.getElementById('successBox');
 
   function validate(id, fn) {
-    const el    = document.getElementById(id);
+    const el = document.getElementById(id);
     const group = document.getElementById('group-' + id);
-    const ok    = fn(el ? el.value.trim() : '');
+    const ok = fn(el ? el.value.trim() : '');
     group.classList.toggle('has-error', !ok);
     return ok;
-  }
-
-  function validPhone(v) {
-    return /^0\d[\d\-\s]{7,9}$/.test(v.replace(/\s/g, ''));
   }
 
   form.addEventListener('submit', e => {
@@ -571,35 +405,24 @@
     const ok = [
       validate('name',  v => v.length >= 2),
       validate('city',  v => v.length >= 2),
-      validate('phone', v => validPhone(v)),
+      validate('phone', v => /^0\d[\d\-\s]{7,9}$/.test(v.replace(/\s/g,''))),
       validate('grade', v => v !== ''),
     ].every(Boolean);
     if (!ok) return;
 
-    // הצג הצלחה מיידית
     form.style.display = 'none';
     successBox.classList.add('visible');
 
     const payload = {
-      name:      document.getElementById('name').value.trim(),
-      city:      document.getElementById('city').value.trim(),
-      phone:     document.getElementById('phone').value.trim(),
-      grade:     document.getElementById('grade').value,
+      name: document.getElementById('name').value.trim(),
+      city: document.getElementById('city').value.trim(),
+      phone: document.getElementById('phone').value.trim(),
+      grade: document.getElementById('grade').value,
       timestamp: new Date().toLocaleString('he-IL', { timeZone: 'Asia/Jerusalem' }),
     };
 
-    // שליחה ברקע עם retry
-    fetch(APPS_SCRIPT_URL, {
-      method: 'POST', mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    }).catch(() => {
-      setTimeout(() => fetch(APPS_SCRIPT_URL, {
-        method: 'POST', mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      }), 3000);
-    });
+    fetch(APPS_SCRIPT_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) })
+      .catch(() => setTimeout(() => fetch(APPS_SCRIPT_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) }), 3000));
   });
 </script>
 </body>
