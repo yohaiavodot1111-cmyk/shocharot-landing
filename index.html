@@ -29,7 +29,6 @@
       -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;
     }
 
-    /* ══ HEADER ══ */
     .site-header {
       position: absolute; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: flex-start;
@@ -37,20 +36,16 @@
     }
     .header-logo { height: 64px; width: auto; object-fit: contain; }
 
-    /* ══ HERO ══ */
     .hero {
       position: relative; height: 660px;
       display: flex; align-items: center; justify-content: center;
       overflow: hidden; text-align: center;
       background: #060e28;
     }
-
     .hero-sky {
       position: absolute; inset: 0;
       background: linear-gradient(135deg, #0a1535 0%, #0e2060 50%, #0a1840 100%);
     }
-
-    /* breathing light border */
     .hero-border {
       position: absolute; inset: 0; z-index: 4; pointer-events: none;
       animation: borderBreathe 6s ease-in-out infinite;
@@ -59,298 +54,80 @@
       0%,100% { box-shadow: inset 0 0 0px 0px rgba(74,144,217,0.0), inset 0 0 0 1px rgba(100,180,255,0.0); }
       50%      { box-shadow: inset 0 0 80px 0px rgba(74,144,217,0.15), inset 0 0 0 1px rgba(100,180,255,0.3); }
     }
-
-    /* geometric shapes */
-    .hero-lines {
-      position: absolute; inset: 0; z-index: 2; pointer-events: none; overflow: hidden;
-    }
-
+    .hero-lines { position: absolute; inset: 0; z-index: 2; pointer-events: none; overflow: hidden; }
     .shape {
       position: absolute;
       transform: rotate(-24deg);
       clip-path: polygon(8% 0%, 100% 0%, 92% 100%, 0% 100%);
       animation: breatheShape 7s ease-in-out infinite;
     }
-    /* הצורה הראשית — מכסה את כל הרוחב */
-    .shape.main {
-      width: 200%; height: 200px;
-      left: -50%; bottom: 80px;
-      background: linear-gradient(90deg, #003b88 0%, #005fc5 35%, #3c9eff 70%, #9ddcff 100%);
-      opacity: 0.9;
-      box-shadow: 0 0 60px rgba(0,100,255,0.2);
-    }
-    .shape.second {
-      width: 200%; height: 140px;
-      left: -50%; bottom: 290px;
-      background: linear-gradient(90deg, rgba(0,90,180,0.8), rgba(140,220,255,0.3));
-      opacity: 0.75;
-      animation-delay: 1s;
-    }
-    .shape.third {
-      width: 200%; height: 100px;
-      left: -50%; bottom: 450px;
-      background: linear-gradient(90deg, rgba(0,70,150,0.5), rgba(180,220,255,0.15));
-      opacity: 0.65;
-      animation-delay: 2s;
-    }
-    .shape.fourth {
-      width: 200%; height: 70px;
-      left: -50%; bottom: 570px;
-      background: linear-gradient(90deg, rgba(0,60,130,0.35), rgba(200,235,255,0.1));
-      opacity: 0.5;
-      animation-delay: 0.5s;
-    }
+    .shape.main { width: 200%; height: 200px; left: -50%; bottom: 80px; background: linear-gradient(90deg, #003b88 0%, #005fc5 35%, #3c9eff 70%, #9ddcff 100%); opacity: 0.9; box-shadow: 0 0 60px rgba(0,100,255,0.2); }
+    .shape.second { width: 200%; height: 140px; left: -50%; bottom: 290px; background: linear-gradient(90deg, rgba(0,90,180,0.8), rgba(140,220,255,0.3)); opacity: 0.75; animation-delay: 1s; }
+    .shape.third { width: 200%; height: 100px; left: -50%; bottom: 450px; background: linear-gradient(90deg, rgba(0,70,150,0.5), rgba(180,220,255,0.15)); opacity: 0.65; animation-delay: 2s; }
+    .shape.fourth { width: 200%; height: 70px; left: -50%; bottom: 570px; background: linear-gradient(90deg, rgba(0,60,130,0.35), rgba(200,235,255,0.1)); opacity: 0.5; animation-delay: 0.5s; }
+    .geo-line { position: absolute; height: 3px; border-radius: 0; width: 200%; left: -50%; transform: rotate(-24deg); animation: breatheLine 6s ease-in-out infinite; }
+    .geo-line.l1 { bottom: 230px; background: rgba(255,255,255,0.9); }
+    .geo-line.l2 { bottom: 280px; background: rgba(255,255,255,0.55); animation-delay: 1s; }
+    .geo-line.l3 { bottom: 165px; background: rgba(60,160,255,0.7); animation-delay: 2s; }
+    .geo-line.l4 { bottom: 420px; background: rgba(255,255,255,0.35); animation-delay: 1.5s; }
+    .geo-line.l5 { bottom: 510px; background: rgba(140,200,255,0.3); animation-delay: 0.8s; }
+    @keyframes breatheShape { 0%,100% { transform: rotate(-24deg) translateY(0px); } 50% { transform: rotate(-24deg) translateY(-12px); } }
+    @keyframes breatheLine { 0%,100% { transform: rotate(-24deg) translateX(0px); opacity: 0.6; } 50% { transform: rotate(-24deg) translateX(30px); opacity: 1; } }
 
-    .geo-line {
-      position: absolute;
-      height: 3px;
-      border-radius: 0;
-      width: 200%;
-      left: -50%;
-      transform: rotate(-24deg);
-      animation: breatheLine 6s ease-in-out infinite;
-    }
-    .geo-line.l1 {
-      bottom: 230px;
-      background: rgba(255,255,255,0.9);
-    }
-    .geo-line.l2 {
-      bottom: 280px;
-      background: rgba(255,255,255,0.55);
-      animation-delay: 1s;
-    }
-    .geo-line.l3 {
-      bottom: 165px;
-      background: rgba(60,160,255,0.7);
-      animation-delay: 2s;
-    }
-    .geo-line.l4 {
-      bottom: 420px;
-      background: rgba(255,255,255,0.35);
-      animation-delay: 1.5s;
-    }
-    .geo-line.l5 {
-      bottom: 510px;
-      background: rgba(140,200,255,0.3);
-      animation-delay: 0.8s;
-    }
+    .hero-cross { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100vw; height: 100%; z-index: 2; pointer-events: none; }
+    .hero-cross::before { content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent 0%, rgba(74,144,217,0.1) 30%, rgba(74,144,217,0.1) 70%, transparent 100%); }
+    .hero-cross::after { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: linear-gradient(180deg, transparent 0%, rgba(74,144,217,0.1) 30%, rgba(74,144,217,0.1) 70%, transparent 100%); }
 
-    @keyframes breatheShape {
-      0%,100% { transform: rotate(-24deg) translateY(0px); }
-      50%      { transform: rotate(-24deg) translateY(-12px); }
-    }
-    @keyframes breatheLine {
-      0%,100% { transform: rotate(-24deg) translateX(0px); opacity: 0.6; }
-      50%      { transform: rotate(-24deg) translateX(30px); opacity: 1; }
-    }
-
-    .geo-a { animation: geoFloat 22s ease-in-out infinite alternate; }
-    .geo-b { animation: geoFloat 28s ease-in-out infinite alternate-reverse; animation-delay: -4s; }
-    .geo-c { animation: geoFloat 18s ease-in-out infinite alternate; animation-delay: -9s; }
-    @keyframes geoFloat {
-      from { transform: translateY(0px); }
-      to   { transform: translateY(-14px); }
-    }
-
-    /* crosshair */
-    .hero-cross {
-      position: absolute; top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 100vw; height: 100%; z-index: 2; pointer-events: none;
-    }
-    .hero-cross::before {
-      content: ''; position: absolute;
-      top: 50%; left: 0; right: 0; height: 1px;
-      background: linear-gradient(90deg, transparent 0%, rgba(74,144,217,0.1) 30%, rgba(74,144,217,0.1) 70%, transparent 100%);
-    }
-    .hero-cross::after {
-      content: ''; position: absolute;
-      left: 50%; top: 0; bottom: 0; width: 1px;
-      background: linear-gradient(180deg, transparent 0%, rgba(74,144,217,0.1) 30%, rgba(74,144,217,0.1) 70%, transparent 100%);
-    }
-
-    /* telemetry dots */
-    .hero-dot {
-      position: absolute; z-index: 3;
-      width: 5px; height: 5px; border-radius: 50%;
-      background: rgba(126,200,255,0.55);
-      box-shadow: 0 0 6px rgba(126,200,255,0.4);
-    }
-    .hero-dot::after {
-      content: ''; position: absolute; inset: -4px;
-      border-radius: 50%; border: 1px solid rgba(126,200,255,0.2);
-    }
-    .hero-dot { animation: dotFloat 7s ease-in-out infinite; }
-    @keyframes dotFloat {
-      0%, 100% { transform: translateY(0); opacity: 0.55; }
-      50% { transform: translateY(-10px); opacity: 1; }
-    }
-
-    /* hero content — centered */
-    .hero-content {
-      position: relative; z-index: 5;
-      display: flex; flex-direction: column; align-items: center;
-      padding: 0 40px;
-    }
-    .hero-title {
-      font-family: 'Secular One', sans-serif;
-      font-size: clamp(52px, 8vw, 96px);
-      font-weight: 400; color: var(--white); line-height: 1.0;
-      text-shadow: 0 0 60px rgba(74,144,217,0.25), 0 4px 20px rgba(0,0,0,0.5);
-      animation: revealUp 0.9s ease both;
-      letter-spacing: -0.01em;
-    }
-    @keyframes revealUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: none; }
-    }
+    .hero-content { position: relative; z-index: 5; display: flex; flex-direction: column; align-items: center; padding: 0 40px; }
+    .hero-title { font-family: 'Secular One', sans-serif; font-size: clamp(52px, 8vw, 96px); font-weight: 400; color: var(--white); line-height: 1.0; text-shadow: 0 0 60px rgba(74,144,217,0.25), 0 4px 20px rgba(0,0,0,0.5); animation: revealUp 0.9s ease both; letter-spacing: -0.01em; }
+    @keyframes revealUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
     .hero-title-line2 { display: block; color: #5dd8f8; }
     .hero-rule { display: none; }
     @keyframes glowPulse {
       0%, 100% { box-shadow: 0 4px 22px rgba(240,180,41,0.35); }
       50%       { box-shadow: 0 4px 40px rgba(244,124,48,0.65), 0 0 52px rgba(240,180,41,0.22); }
     }
-    .hero-sub {
-      font-size: 19px; font-weight: 700;
-      color: rgba(255,255,255,0.88); line-height: 1.75;
-      max-width: 540px; margin-bottom: 36px;
-      animation: revealUp 0.9s 0.2s ease both;
-    }
-    .hero-btn {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: linear-gradient(135deg, var(--gold) 0%, var(--orange) 100%);
-      color: var(--white);
-      font-size: 17px; font-weight: 800; letter-spacing: 0.02em;
-      padding: 15px 44px; text-decoration: none;
-      transition: filter 0.2s, transform 0.15s;
-      box-shadow: 0 4px 22px rgba(244,124,48,0.38);
-      opacity: 0;
-      animation: revealUp 0.9s 0.35s ease forwards;
-    }
-    .hero-btn.ready {
-      opacity: 1;
-      animation: glowPulse 5s ease-in-out infinite;
-    }
-    .hero-btn.ready:hover {
-      filter: brightness(1.1);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 32px rgba(244,124,48,0.5);
-      animation-play-state: paused;
-    }
+    .hero-sub { font-size: 19px; font-weight: 700; color: rgba(255,255,255,0.88); line-height: 1.75; max-width: 540px; margin-bottom: 36px; animation: revealUp 0.9s 0.2s ease both; }
+    .hero-btn { display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, var(--gold) 0%, var(--orange) 100%); color: var(--white); font-size: 17px; font-weight: 800; letter-spacing: 0.02em; padding: 15px 44px; text-decoration: none; transition: filter 0.2s, transform 0.15s; box-shadow: 0 4px 22px rgba(244,124,48,0.38); opacity: 0; animation: revealUp 0.9s 0.35s ease forwards; }
+    .hero-btn.ready { opacity: 1; animation: glowPulse 5s ease-in-out infinite; }
+    .hero-btn.ready:hover { filter: brightness(1.1); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(244,124,48,0.5); animation-play-state: paused; }
 
-    /* ══ EVENT CARD ══ */
-    .event-card-wrap {
-      background: var(--white);
-      border-bottom: 3px solid var(--border);
-      box-shadow: 0 4px 24px rgba(13,34,87,0.07);
-    }
-    .event-card-inner {
-      max-width: 1200px; margin: 0 auto;
-      display: flex; align-items: stretch; min-height: 120px;
-      padding: 0 56px;
-    }
-    .event-badge {
-      background: linear-gradient(135deg, var(--gold) 0%, var(--orange) 100%);
-      color: var(--white); font-weight: 900; font-size: 16px;
-      letter-spacing: 0.08em;
-      display: flex; align-items: center; justify-content: center;
-      padding: 0 36px; flex-shrink: 0;
-      text-transform: uppercase;
-    }
-    .event-blocks {
-      display: flex; align-items: center; flex: 1;
-      padding: 0 20px; gap: 0;
-    }
-    .event-block {
-      display: flex; flex-direction: column; justify-content: center;
-      padding: 0 36px; border-left: 1px solid var(--border); text-align: center;
-    }
+    .event-card-wrap { background: var(--white); border-bottom: 3px solid var(--border); box-shadow: 0 4px 24px rgba(13,34,87,0.07); }
+    .event-card-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: stretch; min-height: 120px; padding: 0 56px; }
+    .event-badge { background: linear-gradient(135deg, var(--gold) 0%, var(--orange) 100%); color: var(--white); font-weight: 900; font-size: 16px; letter-spacing: 0.08em; display: flex; align-items: center; justify-content: center; padding: 0 36px; flex-shrink: 0; text-transform: uppercase; }
+    .event-blocks { display: flex; align-items: center; flex: 1; padding: 0 20px; gap: 0; }
+    .event-block { display: flex; flex-direction: column; justify-content: center; padding: 0 36px; border-left: 1px solid var(--border); text-align: center; }
     .event-block:first-child { padding-right: 0; }
     .ev-label { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; color: var(--light); text-transform: uppercase; margin-bottom: 8px; }
-    .ev-value {
-      font-family: 'Secular One', sans-serif;
-      font-size: clamp(32px, 4vw, 52px);
-      font-weight: 400; color: var(--navy); line-height: 1;
-    }
-    .ev-value.tbd {
-      font-size: clamp(18px, 2.2vw, 26px);
-      color: var(--sky);
-      border: 2px dashed rgba(46,156,219,0.4);
-      padding: 8px 20px;
-      font-family: 'Heebo', sans-serif; font-weight: 700;
-      background: rgba(46,156,219,0.05);
-    }
+    .ev-value { font-family: 'Secular One', sans-serif; font-size: clamp(38px, 5vw, 64px); font-weight: 400; color: var(--navy); line-height: 1; }
+    .ev-value.tbd { font-size: clamp(18px, 2.2vw, 26px); color: var(--sky); border: 2px dashed rgba(46,156,219,0.4); padding: 8px 20px; font-family: 'Assistant', sans-serif; font-weight: 700; background: rgba(46,156,219,0.05); }
     .ev-text { font-size: 15px; font-weight: 500; color: var(--mid); }
     .event-cta-wrap { margin-right: auto; display: flex; align-items: center; flex-shrink: 0; padding-right: 0; }
-    .event-cta {
-      background: linear-gradient(135deg, var(--blue) 0%, var(--sky) 100%);
-      color: var(--white);
-      font-size: 15px; font-weight: 800; letter-spacing: 0.03em;
-      padding: 16px 32px; text-decoration: none;
-      transition: filter 0.2s, transform 0.15s;
-      white-space: nowrap; box-shadow: 0 4px 14px rgba(46,156,219,0.3);
-    }
+    .event-cta { background: linear-gradient(135deg, var(--blue) 0%, var(--sky) 100%); color: var(--white); font-size: 15px; font-weight: 800; letter-spacing: 0.03em; padding: 16px 32px; text-decoration: none; transition: filter 0.2s, transform 0.15s; white-space: nowrap; box-shadow: 0 4px 14px rgba(46,156,219,0.3); }
     .event-cta:hover { filter: brightness(1.12); transform: translateX(-2px); }
 
-    /* ══ STATS BAR ══ */
-    .stats-bar {
-      background: linear-gradient(135deg, #0d2257 0%, #1a4a9f 50%, #0d2a6a 100%);
-      padding: 36px 56px;
-      display: flex; align-items: center; justify-content: center; gap: 0;
-      box-shadow: 0 4px 24px rgba(13,34,87,0.2);
-    }
-    .stat-block {
-      display: flex; flex-direction: column; align-items: center;
-      padding: 0 52px; border-left: 1px solid rgba(255,255,255,0.12); text-align: center;
-    }
+    .stats-bar { background: linear-gradient(135deg, #0d2257 0%, #1a4a9f 50%, #0d2a6a 100%); padding: 36px 56px; display: flex; align-items: center; justify-content: center; gap: 0; box-shadow: 0 4px 24px rgba(13,34,87,0.2); }
+    .stat-block { display: flex; flex-direction: column; align-items: center; padding: 0 52px; border-left: 1px solid rgba(255,255,255,0.12); text-align: center; }
     .stat-block:last-child { border-left: none; }
-    .stat-num {
-      font-family: 'Secular One', sans-serif;
-      font-size: clamp(36px, 4vw, 56px);
-      font-weight: 400; color: var(--white); line-height: 1; letter-spacing: 0.02em;
-    }
+    .stat-num { font-family: 'Secular One', sans-serif; font-size: clamp(36px, 4vw, 56px); font-weight: 400; color: var(--white); line-height: 1; letter-spacing: 0.02em; }
     .stat-num .suffix { color: var(--gold); }
-    .stat-label {
-      font-size: 13px; font-weight: 500;
-      color: rgba(255,255,255,0.6); margin-top: 8px; letter-spacing: 0.02em;
-    }
+    .stat-label { font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.6); margin-top: 8px; letter-spacing: 0.02em; }
 
-    /* ══ CONTENT ══ */
-    .content-wrap {
-      max-width: 1200px; margin: 0 auto;
-      padding: 64px 56px;
-      display: grid; grid-template-columns: 1fr 370px; gap: 64px; align-items: start;
-    }
+    .content-wrap { max-width: 1200px; margin: 0 auto; padding: 64px 56px; display: grid; grid-template-columns: 1fr 370px; gap: 64px; align-items: start; }
     .article-tag { font-size: 11px; font-weight: 700; letter-spacing: 0.18em; color: var(--teal); text-transform: uppercase; margin-bottom: 10px; font-family: 'Assistant', sans-serif; }
     .article-title { font-family: 'Secular One', sans-serif; font-size: clamp(26px, 2.8vw, 36px); font-weight: 400; color: var(--navy); line-height: 1.15; margin-bottom: 20px; padding-right: 0; letter-spacing: 0.01em; }
     .article-body p { font-size: 16px; line-height: 1.95; color: var(--mid); margin-bottom: 0; font-family: 'Assistant', sans-serif; }
 
-    /* benefit cards */
     .benefits-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 28px; }
-    .benefit-card {
-      background: var(--card-bg); border: 1px solid var(--border);
-      border-top: 3px solid var(--sky); padding: 20px 18px;
-      transition: transform 0.2s, box-shadow 0.2s, border-top-color 0.2s;
-      position: relative; overflow: hidden;
-      opacity: 0; transform: translateY(24px);
-    }
-    .benefit-card:nth-child(odd)  { border-top-color: var(--sky); }
-    .benefit-card:nth-child(even) { border-top-color: var(--teal); }
-    .benefit-card:nth-child(3n)   { border-top-color: var(--orange); }
+    .benefit-card { background: var(--card-bg); border: 1px solid var(--border); border-top: 3px solid var(--sky); padding: 20px 18px; transition: transform 0.2s, box-shadow 0.2s, border-top-color 0.2s; position: relative; overflow: hidden; opacity: 0; transform: translateY(24px); }
     .benefit-card.card-visible { animation: cardReveal 0.3s ease forwards; }
     @keyframes cardReveal { to { opacity: 1; transform: translateY(0); } }
-    .benefit-card::before {
-      content: ''; position: absolute; top: 0; right: 0;
-      width: 0; height: 100%;
-      background: linear-gradient(135deg, rgba(46,156,219,0.05) 0%, transparent 60%);
-      transition: width 0.3s ease;
-    }
+    .benefit-card::before { content: ''; position: absolute; top: 0; right: 0; width: 0; height: 100%; background: linear-gradient(135deg, rgba(46,156,219,0.05) 0%, transparent 60%); transition: width 0.3s ease; }
     .benefit-card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(46,156,219,0.15); border-top-color: var(--blue); }
     .benefit-card:hover::before { width: 100%; }
     .benefit-title { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 6px; font-family: 'Assistant', sans-serif; letter-spacing: 0.02em; }
     .benefit-desc { font-size: 13px; line-height: 1.65; color: var(--light); font-family: 'Assistant', sans-serif; }
 
-    /* ══ FORM ══ */
     .sidebar-form { background: var(--white); box-shadow: 0 4px 32px rgba(13,34,87,0.13); position: sticky; top: 24px; border-radius: 2px; overflow: hidden; }
     .sf-header { background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%); padding: 28px 28px; border-bottom: 3px solid var(--teal); text-align: center; }
     .sf-eyebrow { font-size: 15px; font-weight: 800; letter-spacing: 0.1em; color: var(--teal); text-transform: uppercase; margin-bottom: 10px; text-align: center; }
@@ -358,30 +135,14 @@
     .sf-body { padding: 24px 28px 28px; background: linear-gradient(180deg, #f8fbff 0%, #ffffff 100%); }
     .form-group { margin-bottom: 16px; position: relative; }
     .form-group label { display: block; font-size: 11px; font-weight: 800; color: var(--mid); margin-bottom: 7px; letter-spacing: 0.05em; text-transform: uppercase; }
-    .form-group input, .form-group select {
-      width: 100%; background: #f0f6ff; border: 1.5px solid var(--border);
-      padding: 12px 14px; font-family: 'Assistant', sans-serif; font-size: 15px;
-      color: var(--text); outline: none; transition: border-color 0.2s, background 0.2s;
-      direction: rtl; border-radius: 0; appearance: none; -webkit-appearance: none;
-    }
-    .form-group select {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%236b80a8' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
-      background-repeat: no-repeat; background-position: left 14px center; padding-left: 36px;
-      background-color: #f0f6ff;
-    }
+    .form-group input, .form-group select { width: 100%; background: #f0f6ff; border: 1.5px solid var(--border); padding: 12px 14px; font-family: 'Assistant', sans-serif; font-size: 15px; color: var(--text); outline: none; transition: border-color 0.2s, background 0.2s; direction: rtl; border-radius: 0; appearance: none; -webkit-appearance: none; }
+    .form-group select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%236b80a8' d='M6 8L0 0h12z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: left 14px center; padding-left: 36px; background-color: #f0f6ff; }
     .form-group input::placeholder { color: var(--light); }
     .form-group input:focus, .form-group select:focus { border-color: var(--sky); background: var(--white); }
     .form-group.has-error input, .form-group.has-error select { border-color: #e0452a; background: #fff5f2; }
     .field-error { font-size: 12px; color: #e0452a; margin-top: 5px; display: none; }
     .form-group.has-error .field-error { display: block; }
-    .form-submit {
-      width: 100%;
-      background: linear-gradient(135deg, var(--gold) 0%, var(--orange) 100%);
-      color: var(--white); border: none; padding: 15px;
-      font-family: 'Assistant', sans-serif; font-size: 16px; font-weight: 800;
-      cursor: pointer; transition: filter 0.2s, transform 0.15s; margin-top: 6px;
-      box-shadow: 0 4px 14px rgba(244,124,48,0.3);
-    }
+    .form-submit { width: 100%; background: linear-gradient(135deg, var(--gold) 0%, var(--orange) 100%); color: var(--white); border: none; padding: 15px; font-family: 'Assistant', sans-serif; font-size: 16px; font-weight: 800; cursor: pointer; transition: filter 0.2s, transform 0.15s; margin-top: 6px; box-shadow: 0 4px 14px rgba(244,124,48,0.3); }
     .form-submit:hover { filter: brightness(1.08); transform: translateY(-1px); }
     .form-note { font-size: 11px; color: var(--light); text-align: center; margin-top: 12px; line-height: 1.6; }
     .success-box { display: none; padding: 36px 28px; text-align: center; }
@@ -389,12 +150,7 @@
     .success-title { font-family: 'Secular One', sans-serif; font-size: 22px; font-weight: 400; color: var(--navy); margin-bottom: 10px; }
     .success-text { font-size: 14px; line-height: 1.75; color: var(--light); font-family: 'Assistant', sans-serif; }
 
-    /* ══ FOOTER ══ */
-    .site-footer {
-      background: linear-gradient(135deg, #0a1840 0%, #0d2257 60%, #0a1535 100%);
-      padding: 28px 56px; display: flex; align-items: center; justify-content: space-between; gap: 20px;
-      border-top: 3px solid var(--teal);
-    }
+    .site-footer { background: linear-gradient(135deg, #0a1840 0%, #0d2257 60%, #0a1535 100%); padding: 28px 56px; display: flex; align-items: center; justify-content: space-between; gap: 20px; border-top: 3px solid var(--teal); }
     .footer-brand { display: flex; align-items: center; gap: 14px; }
     .footer-logo { height: 32px; }
     .footer-name { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.45); }
@@ -403,54 +159,28 @@
     .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.65s ease, transform 0.65s ease; }
     .fade-in.visible { opacity: 1; transform: none; }
 
-    /* ══ MOBILE ══ */
     @media (max-width: 900px) {
       .site-header { padding: 12px 20px; }
       .header-logo { height: 44px; }
       .hero { height: auto; min-height: 520px; padding: 100px 24px 60px; }
       .hero-title { font-size: clamp(40px, 11vw, 64px); }
-
-      /* event card mobile */
       .event-card-inner { flex-direction: column; padding: 0; min-height: auto; }
       .event-badge { padding: 16px 24px; font-size: 14px; }
-      .event-blocks {
-        display: flex; flex-direction: row;
-        justify-content: center;
-        padding: 20px; gap: 0;
-      }
-      .event-block {
-        flex: 1; max-width: 180px;
-        padding: 0 20px; border-left: none; border-right: none; text-align: center;
-      }
+      .event-blocks { display: flex; flex-direction: row; justify-content: center; padding: 20px; gap: 0; }
+      .event-block { flex: 1; max-width: 180px; padding: 0 20px; border-left: none; border-right: none; text-align: center; }
       .event-block:first-child { border-left: 1px solid var(--border); }
       .event-block:last-child { border-left: none; }
-      /* hide inline desktop CTA on mobile */
       .event-cta-wrap { display: none; }
-      /* mobile CTA shown below blocks */
-      .event-cta-mobile {
-        display: block !important; background: var(--navy); color: var(--white);
-        text-align: center; font-size: 16px; font-weight: 800;
-        padding: 16px; text-decoration: none;
-        border-top: 1px solid var(--border);
-      }
-
-      /* stats */
+      .event-cta-mobile { display: block !important; background: var(--navy); color: var(--white); text-align: center; font-size: 16px; font-weight: 800; padding: 16px; text-decoration: none; border-top: 1px solid var(--border); }
       .stats-bar { padding: 28px 20px; gap: 0; flex-wrap: wrap; }
       .stat-block { flex: 1; min-width: 100px; padding: 12px 16px; border-left: 1px solid rgba(255,255,255,0.12); }
       .stat-block:first-child { border-left: none; }
-
-      /* content */
       .content-wrap { grid-template-columns: 1fr; padding: 40px 20px; gap: 36px; }
-
-      /* benefit cards — keep 2 columns on mobile too */
       .benefits-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
-
-      /* form — centered header */
       .sidebar-form { position: static; }
       .sf-header { text-align: center; padding: 24px 20px; }
       .sf-eyebrow { text-align: center; }
       .sf-title { text-align: center; font-size: 26px; }
-
       .site-footer { padding: 24px 20px; flex-direction: column; text-align: center; }
     }
   </style>
@@ -461,7 +191,6 @@
   <img class="header-logo" src="logo.jpg" alt="חיל האוויר" />
 </header>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-sky"></div>
   <div class="hero-border"></div>
@@ -488,7 +217,6 @@
   </div>
 </section>
 
-<!-- EVENT CARD -->
 <div class="event-card-wrap">
   <div class="event-card-inner">
     <div class="event-badge">ערב פתוח</div>
@@ -509,7 +237,6 @@
 </div>
 <a href="#register" class="event-cta-mobile" style="display:none">← להרשמה לערב הפתוח</a>
 
-<!-- STATS BAR -->
 <div class="stats-bar" id="statsBar">
   <div class="stat-block">
     <div class="stat-num"><span class="count" data-target="40">0</span><span class="suffix">+</span></div>
@@ -525,7 +252,6 @@
   </div>
 </div>
 
-<!-- CONTENT -->
 <div class="content-wrap">
   <main id="about" class="fade-in">
     <p class="article-tag">מסלול שוחרות — חיל האוויר</p>
@@ -540,7 +266,7 @@
       </div>
       <div class="benefit-card">
         <div class="benefit-title">מגמות טכנולוגיות</div>
-        <div class="benefit-desc">לימודי ליבה משולבים עם תכנים טכנולוגיים ייחודיים של חיל האוויר.</div>
+        <div class="benefit-desc">תעודת בגרות ותעודת הסמכה טכנולוגית במקצועות המבוקשים בשוק: אלקטרוניקה, מחשבים, מכונות, חשמל ועוד!</div>
       </div>
       <div class="benefit-card">
         <div class="benefit-title">פיתוח מנהיגות</div>
@@ -578,12 +304,7 @@
             <label for="city">עיר מגורים</label>
             <input type="text" id="city" placeholder="הקלד עיר ובחר מהרשימה" autocomplete="off" />
             <div class="field-error">נא לבחור עיר מהרשימה</div>
-            <div id="city-suggestions" style="
-              position:absolute; z-index:999; background:#fff;
-              border:1.5px solid var(--sky); border-top:none;
-              max-height:200px; overflow-y:auto; width:100%;
-              display:none; box-shadow:0 4px 12px rgba(13,34,87,0.12);
-            "></div>
+            <div id="city-suggestions" style="position:absolute;z-index:999;background:#fff;border:1.5px solid var(--sky);border-top:none;max-height:200px;overflow-y:auto;width:100%;display:none;box-shadow:0 4px 12px rgba(13,34,87,0.12);"></div>
           </div>
           <div class="form-group" id="group-phone">
             <label for="phone">מספר טלפון</label>
@@ -620,18 +341,15 @@
 </footer>
 
 <script>
-  // ── Scroll animations ──
-  document.querySelectorAll('.fade-in').forEach(el => {
-    new IntersectionObserver((entries, obs) => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  document.querySelectorAll('.fade-in').forEach(function(el) {
+    new IntersectionObserver(function(entries, obs) {
+      entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
     }, { threshold: 0.07 }).observe(el);
   });
 
-  // ── Hero button glow ──
   var heroBtn = document.querySelector('.hero-btn');
   if (heroBtn) setTimeout(function() { heroBtn.classList.add('ready'); }, 1300);
 
-  // ── Counter animation ──
   function animateCount(el, target, duration) {
     var start = performance.now();
     function step(now) {
@@ -657,7 +375,6 @@
     }, { threshold: 0.4 }).observe(statsBar);
   }
 
-  // ── Card stagger reveal ──
   var cards = document.querySelectorAll('.benefit-card');
   if (cards.length) {
     var cardsDone = false;
@@ -671,10 +388,99 @@
     }, { threshold: 0.15 }).observe(cards[0].parentElement);
   }
 
-  // ── Form ──
   var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyCoEQkjQIdWG72U4DcO59tK9cLWPY_7byQGIkMMrTz5mdangjcptsEeCXsn_OSHf64/exec';
   var form = document.getElementById('registrationForm');
   var successBox = document.getElementById('successBox');
+
+  var IL_CITIES = [
+    'אבו גוש','אבו סנאן','אבטליון','אבן יהודה','אבן ספיר','אביחיל','אביעזר','אביקם','אבירים','אבן מנחם',
+    'אגמון','אגר','אד הלום','אדורה','אדמית','אודים','אוחוד','אום אל פחם','אום אל קוטוף','אופקים',
+    'אור יהודה','אור עקיבא','אורה','אורות','אורנים','אורנית','אושה','אזור','אחיהוד','אחיטוב',
+    'אחיסמך','אחיעזר','אחישמר','איבים','אייל','אילון','אילות','אילת','אכסאל','אל עזי',
+    'אל רום','אלוני אבא','אלוני הבשן','אלוני יצחק','אלונים','אלי עד','אליכין','אליפז','אליפלט',
+    'אלישיב','אלישמע','אלמגור','אלמוג','אלעד','אלעזר','אמונים','אמירים','אמנון','אמציה',
+    'אניעם','אספה','אפיק','אפיקים','אפק','אפרת','ארבל','ארגמן','אריאל','ארסוף',
+    'אשבול','אשדוד','אשדות יעקב','אשחר','אשכולות','אשל הנשיא','אשלים','אשקלון','אשרת','אתגר',
+    'באקה אל גרביה','בארות יצחק','באר אורה','באר גנים','באר טוביה','באר יעקב','באר מילכה','באר שבע','בארותיים',
+    'בדולח','בועיינה נוג׳ידאת','בוסתן הגליל','בחן','בטחה','בית אורן','בית אל','בית אלפא',
+    'בית אריה','בית גמליאל','בית גן','בית גוברין','בית דגן','בית הגדי','בית הלוי','בית העמק','בית הערבה','בית השיטה',
+    'בית זית','בית זרע','בית חגי','בית חורון','בית חלקיה','בית חנן','בית חנניה','בית יהושע','בית יוסף','בית ינאי',
+    'בית יצחק','בית לחם הגלילית','בית מאיר','בית נחמיה','בית ניר','בית עובד','בית עוזיאל','בית עזרא','בית עריף','בית צבי',
+    'בית קמה','בית קשת','בית רבן','בית שאן','בית שמש','בית שערים','בני ברק','בני דרום','בני דרור',
+    'בני יהודה','בני נצרים','בני עם','בנימינה','בסמה','בסמת טבעון','בענה','בצרה',
+    'בקוע','בקעות','בר גיורא','ברוש','ברכה','ברכיה','ברעם','ברקאי','ברקן','בת הדר',
+    'בת חן','בת חפר','בת ים','בת שלמה','גאולי תימן','גאולים','גבולות','גבים','גבעון החדשה','גבעות בר',
+    'גבעת אבני','גבעת אלה','גבעת ברנר','גבעת השלושה','גבעת זאב','גבעת חביבה','גבעת חיים','גבעת כח','גבעת נילי','גבעת עדה',
+    'גבעת שפירא','גבעתי','גבעתיים','גדות','גדיש','גדעונה','גונן','גורן','גזר',
+    'גיאה','גיבתון','גיזו','גיניגר','גינתון','גיתה','גיתית','גלאון','גלגל','גלעד',
+    'גמזו','גן הדרום','גן השומרון','גן יבנה','גן יושב','גן נר','גן שורק','גן שמואל','גנות','גנות הדר',
+    'גני טל','גני מודיעין','גני עם','גני תקווה','גרופית','דאלית אל כרמל','דבוריה','דברת','דגניה א','דגניה ב',
+    'דולב','דור','דורות','דחי','דימונה','דינה','דישון','דליה','דלתון',
+    'דן','דפנה','דקל','האון','הבונים','הגושרים','הוד השרון','הושעיה','הזורעים',
+    'החותרים','הטורן','היוגב','הכפר הירוק','הר אדר','הר גילה','הר עמשא','הראל','הרדוף','זבדיאל',
+    'זוהר','זיקים','זיתן','זכריה','זמר','זנוח','זרועה','זרחיה','חבצלת השרון','חברון',
+    'חגור','חגי','חגלה','חד נס','חדיד','חדרה','חולדה','חולון','חולית','חולתה',
+    'חופית','חוקוק','חורה','חורפיש','חורשים','חזון','חיבת ציון','חיפה','חלוץ','חלץ',
+    'חמד','חמדיה','חמדת','חמרה','חניאל','חניתה','חפץ חיים','חצב','חצבה','חצור הגלילית',
+    'חצור העגלונית','חצרים','חרב לאת','חרוצים','חרות','חרשים','חשמונאים',
+    'טבריה','טובא זנגריה','טורעאן','טייבה','טירה','טירת יהודה','טירת כרמל','טירת צבי','טל אל',
+    'טל שחר','טלמון','טמרה','טפחות','יבנאל','יבנה','יגור','יגל',
+    'יד בנימין','יד הנה','יד חנה','יד מרדכי','יהל','יהוד','יהוד מונוסון','יובלים','יודפת',
+    'יוטבתה','יונתן','יזרעאל','יחיעם','ייטב','יכיני','ינוב','יסוד המעלה','יסודות',
+    'יסעור','יעד','יעל','יעף','יפיע','יפית','יפתח','יקום','יקיר','יקנעם',
+    'ירוחם','ירושלים','ירחיב','ירכא','ישע','כאבול','כברי',
+    'כדיתה','כוכב השחר','כוכב יאיר','כוכב יעקב','כוכב מיכאל','כחל','כישור','כליל','כלנית',
+    'כמהין','כמון','כנות','כנף','כנרת','כסיפה','כסלון','כסרא סמיע','כפר ביאליק','כפר בלום',
+    'כפר ברא','כפר גדעון','כפר גלים','כפר גלעדי','כפר דניאל','כפר האורנים','כפר הנגיד','כפר הנשיא','כפר הס',
+    'כפר ויתקין','כפר זיתים','כפר חב"ד','כפר חיים','כפר חנניה','כפר חסידים','כפר חרוב','כפר יאסיף',
+    'כפר יהושע','כפר יונה','כפר יחזקאל','כפר כמא','כפר כנא','כפר מונש','כפר מימון','כפר מנחם','כפר מסריק',
+    'כפר מצר','כפר נטר','כפר סאלד','כפר סבא','כפר סילבר','כפר סירקין','כפר עבודה','כפר עזה','כפר עציון','כפר פינס',
+    'כפר קאסם','כפר קיש','כפר קרע','כפר ראש הנקרה','כפר רוזנר','כפר רות','כפר שמאי','כפר שמריהו','כפר תבור','כפר תפוח',
+    'כרכום','כרם בן זמרה','כרם בן שמן','כרם יבנה','כרם שלום','כרמי יוסף','כרמי צור','כרמיאל','כרמים','כרמל',
+    'לביא','לבון','להב','להבות חביבה','להבות הבשן','לוד','לוחמי הגטאות','לוטם','לוטן','ליבנים',
+    'לימן','לכיש','לפיד','לפידות','לקיה','מאור','מבוא ביתר','מבוא דותן','מבוא חורון','מבוא חמה',
+    'מבואות ים','מבטחים','מגאר','מגדים','מגדל','מגדל העמק','מגדל עוז','מגדל שמס','מגידו','מגן',
+    'מגשימים','מדרשת בן גוריון','מודיעין','מודיעין עילית','מולדת','מוצא עילית','מזור','מזכרת בתיה','מזרע','מזרעה',
+    'מחולה','מחניים','מחסיה','מטולה','מטע','מיטב','מיכמנת','מירב','מירון','מישר',
+    'מיתר','מכמורת','מכמש','מלאה','מנוחה','מנות','מנחמיה','מנרה','מסד','מסילות',
+    'מסילת ציון','מסעדה','מעגן','מעגן מיכאל','מעון','מעונה','מעיליא','מעין ברוך','מעין צבי','מעלה אדומים',
+    'מעלה אפרים','מעלה גלבוע','מעלה גמלא','מעלה החמישה','מעלה לבונה','מעלה מכמש','מעלה עירון','מעלה שומרון','מעלות תרשיחא',
+    'מצובה','מצליח','מצפה','מצפה אילן','מצפה נטופה','מצפה רמון','מצפה שלם','מצפן','מקווה ישראל','מרגליות',
+    'מרום גולן','מרחביה','מרכז שפירא','משאבי שדה','משגב','משהד','משואה','משואות יצחק','משכיות','משמר איילון',
+    'משמר דוד','משמר הירדן','משמר הנגב','משמר העמק','משמר השרון','משמרות','משמרת','מתן','מתת','מתתיהו',
+    'נאות גולן','נאות הכיכר','נאות מרדכי','נאות סמדר','נבטים','נגבה','נהורה','נהלל','נהריה','נוגה',
+    'נווה','נווה אור','נווה דניאל','נווה זוהר','נווה זיו','נווה חריף','נווה ים','נווה ירק','נווה מבטח',
+    'נווה מיכאל','נווה מנחם','נווה שלום','נועם','נופים','נופית','נוקדים','נורדיה','נורית','נחושה',
+    'נחל עוז','נחלה','נחליאל','נחם','נחף','נחשון','נחשונים','ניצן','ניצנה','ניר אליהו',
+    'ניר בנים','ניר דוד','ניר יפה','ניר יצחק','ניר ישראל','ניר עם','ניר עקיבא','ניר צבי','נירים',
+    'נס הרים','נס ציונה','נסיה','נעורים','נען','נצר חזני','נצר סרני','נצרת','נצרת עילית','נריה',
+    'סאסא','סביון','סגולה','סואעד','סולם','סמר','סנסנה','סעד','סער','ספיר','ספסופה','סתריה',
+    'עבדון','עברון','עגור','עד הלום','עדי','עדן','עדשים','עוזה','עולש','עומר','עופר','עופרה',
+    'עוצם','עזוז','עזר','עזריאל','עזריה','עזריקם','עטרות','עיינות','עילבון','עכו','עלומות',
+    'עלי','עלי זהב','עליות','עלמה','עלמון','עמוקה','עמינדב','עמיעד','עמיעוז','עמיקם',
+    'עמנואל','עמקה','עמר','עמרם','ענב','עספיא','עפולה','עפרה','עצמון שגב','עראבה',
+    'עראמשה','ערד','ערוגות','ערערה','ערערה בנגב','עשרת','עתלית','עתניאל','פארן','פוריה',
+    'פוריה עילית','פלך','פלמחים','פני חבר','פסגות','פסגת זאב','פצאל','פקיעין',
+    'פרדס חנה','פרדסיה','פרוד','פרי גן','פתח תקווה','צאלים','צביה','צבעון',
+    'צובה','צוחר','צוקי ים','צוקים','צופים','צופית','צור הדסה','צור יגאל','צור יצחק',
+    'צור משה','צור נתן','צוריאל','צורית','ציפורי','צלפון','צפריר','צפרירים','צפת','צרופה',
+    'צרעה','קבוצת יבנה','קדומים','קדים','קדימה צורן','קדמה','קדרון','קדרים','קיסריה',
+    'קלחים','קליה','קלנסווה','קציר','קצרין','קרית אונו','קרית ארבע','קרית אתא','קרית ביאליק',
+    'קרית גת','קרית ים','קרית יערים','קרית מוצקין','קרית מלאכי','קרית ענבים','קרית שמונה',
+    'קרני שומרון','קשת','ראמה','ראש העין','ראש פינה','ראש צורים','ראשון לציון','רבדים','רביבים','רגבה',
+    'רהט','רוויה','רוחמה','רומאנה','רועי','רותם','רחוב','רחובות','רחלים',
+    'ריחאניה','ריינה','רינתיה','רכסים','רמות','רמות השבים','רמות מנשה','רמות נפתלי','רמלה','רמת גן',
+    'רמת דוד','רמת הכובש','רמת השרון','רמת ישי','רמת רחל','רמת רזיאל','רמת שלמה',
+    'רנן','רעים','רעננה','רקפת','שאר ישוב','שבי ציון','שבי שומרון','שגב שלום','שדה אילן','שדה אליהו',
+    'שדה אליעזר','שדה בוקר','שדה דוד','שדה יואב','שדה יעקב','שדה יצחק','שדה משה','שדה נחום','שדה ניצן',
+    'שדה עוזיהו','שדות ים','שדי חמד','שדי תרומות','שדמות דבורה','שדמות מחולה','שומריה','שורש','שורשים','שזור',
+    'שחר','שחרות','שיבולים','שיזף','שיטים','שיקמה','שילה','שילת','שכניה','שלווה',
+    'שלומי','שלומית','שמיר','שמרת','שמשית','שני','שעב','שעלבים',
+    'שער אפרים','שער מנשה','שעריים','שפיר','שפרעם','שקד','שקף','שרונה','שריד','שרשרת',
+    'תדהר','תובל','תומר','תימורים','תירוש','תל אביב','תל מונד','תל עדשים','תל קציר','תל שבע',
+    'תלם','תלמי אליהו','תלמי יוסף','תלמי יחיאל','תלמי יפה','תמרת','תנובות','תעוז',
+    'תפרח','תקומה','תקוע','תרום','תרשיחא'
+  ];
 
   function validate(id, fn) {
     var el = document.getElementById(id);
@@ -695,175 +501,46 @@
         validate('grade', function(v) { return v !== ''; }),
       ].every(Boolean);
       if (!ok) return;
-
       form.style.display = 'none';
       if (successBox) successBox.classList.add('visible');
-
       var payload = {
-        name:      document.getElementById('name').value.trim(),
-        city:      document.getElementById('city').value.trim(),
-        phone:     document.getElementById('phone').value.trim(),
-        grade:     document.getElementById('grade').value,
+        name: document.getElementById('name').value.trim(),
+        city: document.getElementById('city').value.trim(),
+        phone: document.getElementById('phone').value.trim(),
+        grade: document.getElementById('grade').value,
         timestamp: new Date().toLocaleString('he-IL', { timeZone: 'Asia/Jerusalem' }),
       };
-
-      fetch(APPS_SCRIPT_URL, {
-        method: 'POST', mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      }).catch(function() {
-        setTimeout(function() {
-          fetch(APPS_SCRIPT_URL, {
-            method: 'POST', mode: 'no-cors',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload),
-          });
-        }, 3000);
-      });
+      fetch(APPS_SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
+        .catch(function() { setTimeout(function() { fetch(APPS_SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) }); }, 3000); });
     });
   }
 
-  // ── Israeli Cities Autocomplete ──
-  var IL_CITIES = [
-    'אבו גוש','אבו סנאן','אבטליון','אבן יהודה','אבן ספיר','אביחיל','אביעזר','אביקם','אבירים','אבן מנחם',
-    'אגמון','אגר','אד הלום','אדורה','אדמית','אודים','אוחוד','אום אל פחם','אום אל קוטוף','אופקים',
-    'אור יהודה','אור עקיבא','אורה','אורות','אורנים','אורנית','אושה','אזור','אחיהוד','אחיטוב',
-    'אחיסמך','אחיעזר','אחישמר','איבים','אייל','אילון','אילות','אילת','אכסאל','אל עזי',
-    'אל רום','אלוני אבא','אלוני הבשן','אלוני יצחק','אלונים','אלי עד','אליכין','אליפז','אליפלט',
-    'אלישיב','אלישמע','אלמגור','אלמוג','אלעד','אלעזר','אמונים','אמירים','אמנון','אמציה',
-    'אניעם','אספה','אפיק','אפיקים','אפק','אפרת','ארבל','ארגמן','אריאל','ארסוף',
-    'אשבול','אשדוד','אשדות יעקב','אשחר','אשכולות','אשל הנשיא','אשלים','אשקלון','אשרת','אתגר',
-    'באקה אל גרביה','בארות יצחק','באר אורה','באר גנים','באר טוביה','באר יעקב','באר מילכה','באר שבע','בארותיים','באר שבע',
-    'בגין','בדולח','בועיינה נוג׳ידאת','בוסתן הגליל','בועיינה','בחן','בטחה','בית אורן','בית אל','בית אלפא',
-    'בית אריה','בית גמליאל','בית גן','בית גוברין','בית דגן','בית הגדי','בית הלוי','בית העמק','בית הערבה','בית השיטה',
-    'בית זית','בית זרע','בית חגי','בית חורון','בית חלקיה','בית חנן','בית חנניה','בית יהושע','בית יוסף','בית ינאי',
-    'בית יצחק','בית לחם הגלילית','בית מאיר','בית נחמיה','בית ניר','בית עובד','בית עוזיאל','בית עזרא','בית עריף','בית צבי',
-    'בית קמה','בית קשת','בית רבן','בית שאן','בית שמש','בית שערים','בני איש חי','בני ברק','בני דרום','בני דרור',
-    'בני דרום','בני יהודה','בני נצרים','בני עם','בנימינה','בסמה','בסמת טבעון','בענה','בפועה','בצרה',
-    'בקוע','בקעות','בר גיורא','ברוש','ברכה','ברכיה','ברעם','ברקאי','ברקן','בת הדר',
-    'בת חן','בת חפר','בת ים','בת שלמה','גאולי תימן','גאולים','גבולות','גבים','גבעון החדשה','גבעות בר',
-    'גבעת אבני','גבעת אלה','גבעת ברנר','גבעת השלושה','גבעת זאב','גבעת חביבה','גבעת חיים','גבעת כח','גבעת נילי','גבעת עדה',
-    'גבעת שפירא','גבעתי','גבעתיים','גדות','גדיש','גדעונה','גוש עציון','גונן','גורן','גזר',
-    'גיאה','גיבתון','גיזו','גיניגר','גינתון','גיתה','גיתית','גלאון','גלגל','גלעד',
-    'גמזו','גן הדרום','גן השומרון','גן יבנה','גן יושב','גן נר','גן שורק','גן שמואל','גנות','גנות הדר',
-    'גני טל','גני מודיעין','גני עם','גני תקווה','גרופית','דאלית אל כרמל','דבוריה','דברת','דגניה א','דגניה ב',
-    'דוב כהן','דולב','דור','דורות','דחי','דימונה','דינה','דישון','דליה','דלתון',
-    'דמיידה','דן','דפנה','דקל','האון','הבונים','הגושרים','הוד השרון','הושעיה','הזורעים',
-    'החותרים','הטורן','היוגב','הכפר הירוק','הר אדר','הר גילה','הר עמשא','הראל','הרדוף','זבדיאל',
-    'זוהר','זיקים','זיתן','זכריה','זמר','זנוח','זרועה','זרחיה','חבצלת השרון','חברון',
-    'חגור','חגי','חגלה','חד נס','חדיד','חדרה','חוות גלים','חוות יאיר','חוות עדן','חוות שדה',
-    'חולדה','חולון','חולית','חולתה','חופית','חוקוק','חורה','חורפיש','חורשים','חזון',
-    'חיבת ציון','חיפה','חלוץ','חלץ','חמד','חמדיה','חמדת','חמרה','חניאל','חניתה',
-    'חפץ חיים','חצב','חצבה','חצור הגלילית','חצור העגלונית','חצרים','חרב לאת','חרוצים','חרות','חרשים',
-    'חשמונאים','טבריה','טובא זנגריה','טורעאן','טייבה','טירה','טירת יהודה','טירת כרמל','טירת צבי','טל אל',
-    'טל שחר','טלמון','טמרה','טפחות','יאנוח ג׳ת','יבול','יבנאל','יבנה','יגור','יגל',
-    'יד בנימין','יד הנה','יד חנה','יד מרדכי','יד רמב"ם','יהל','יהוד','יהוד מונוסון','יובלים','יודפת',
-    'יוטבתה','יונתן','יושיביה','יזרעאל','יחיעם','ייטב','יכיני','ינוב','יסוד המעלה','יסודות',
-    'יסעור','יעד','יעל','יעף','יפיע','יפית','יפתח','יקום','יקיר','יקנעם',
-    'ירדן','ירוחם','ירושלים','ירחיב','ירכא','ישע','ישעי','כאבול','כאוכב אבו אל היג׳א','כברי',
-    'כדיתה','כוכב השחר','כוכב יאיר','כוכב יעקב','כוכב מיכאל','כורזים','כחל','כישור','כליל','כלנית',
-    'כמהין','כמון','כנות','כנף','כנרת','כסיפה','כסלון','כסרא סמיע','כפר ביאליק','כפר בלום',
-    'כפר ברא','כפר גדעון','כפר גלים','כפר גלעדי','כפר דניאל','כפר האורנים','כפר הוז','כפר הנגיד','כפר הנשיא','כפר הס',
-    'כפר הרא"ה','כפר ויתקין','כפר זיתים','כפר חב"ד','כפר חיים','כפר חנניה','כפר חסידים','כפר חרוב','כפר טבאש','כפר יאסיף',
-    'כפר יהושע','כפר יונה','כפר יחזקאל','כפר כמא','כפר כנא','כפר מונש','כפר מימון','כפר מל"ל','כפר מנחם','כפר מסריק',
-    'כפר מצר','כפר נטר','כפר סאלד','כפר סבא','כפר סילבר','כפר סירקין','כפר עבודה','כפר עזה','כפר עציון','כפר פינס',
-    'כפר קאסם','כפר קיש','כפר קרע','כפר ראש הנקרה','כפר רוזנר','כפר רות','כפר שמאי','כפר שמריהו','כפר תבור','כפר תפוח',
-    'כרכום','כרם בן זמרה','כרם בן שמן','כרם יבנה','כרם מהר"ל','כרם שלום','כרמי יוסף','כרמי צור','כרמיאל','כרמים',
-    'כרמל','לביא','לבון','להב','להבות חביבה','להבות הבשן','לוד','לוזית','לוחמי הגטאות','לוטם',
-    'לוטן','ליבנים','לימן','לכיש','לפיד','לפידות','לקיה','מאור','מאיר שפיה','מבוא ביתר',
-    'מבוא דותן','מבוא חורון','מבוא חמה','מבוא מודיעים','מבואות ים','מבטחים','מבקיעים','מגאר','מגדים','מגדל',
-    'מגדל העמק','מגדל עוז','מגדל שמס','מגידו','מגן','מגן שאול','מגשימים','מדרך עוז','מדרשת בן גוריון','מודיעין',
-    'מודיעין עילית','מולדת','מוצא עילית','מורן','מושב','מזור','מזכרת בתיה','מזרע','מזרעה','מחולה',
-    'מחנה הילה','מחנה יהודית','מחנה יוכבד','מחנה יפה','מחנה יתיר','מחניים','מחסיה','מטולה','מטע','מיטב',
-    'מיכמנת','מייסר','מירב','מירון','מישר','מיתר','מכמורת','מכמש','מלאה','מנוחה',
-    'מנות','מנחמיה','מנרה','מסד','מסילות','מסילת ציון','מסעדה','מעגן','מעגן מיכאל','מעון',
-    'מעונה','מעיליא','מעין ברוך','מעין צבי','מעלה אדומים','מעלה אפרים','מעלה גלבוע','מעלה גמלא','מעלה החמישה','מעלה לבונה',
-    'מעלה מכמש','מעלה עירון','מעלה שומרון','מעלות תרשיחא','מעלה עמוס','מצדות יהודה','מצובה','מצליח','מצפה','מצפה אבי"ב',
-    'מצפה אילן','מצפה נטופה','מצפה רמון','מצפה שלם','מצפן','מקווה ישראל','מרגליות','מרום גולן','מרחביה','מרכז שפירא',
-    'משאבי שדה','משגב','משגב דב','משגב עם','משהד','משואה','משואות יצחק','משכיות','משמר איילון','משמר דוד',
-    'משמר הירדן','משמר הנגב','משמר העמק','משמר השרון','משמרות','משמרת','מתן','מתת','מתתיהו','נאות גולן',
-    'נאות הכיכר','נאות מרדכי','נאות סמדר','נבטים','נגבה','נהורה','נהלל','נהריה','נוב','נוגה',
-    'נווה','נווה אור','נווה אטיב','נווה דניאל','נווה זוהר','נווה זיו','נווה חריף','נווה ים','נווה ירק','נווה מבטח',
-    'נווה מיכאל','נווה מנחם','נווה שלום','נועם','נופים','נופית','נוקדים','נורדיה','נורית','נחושה',
-    'נחל עוז','נחלה','נחליאל','נחם','נחף','נחשון','נחשונים','ניל"י','ניצן','ניצן ב',
-    'ניצנה','ניצני עוז','ניצני שלום','ניר אליהו','ניר בנים','ניר דוד','ניר יפה','ניר יצחק','ניר ישראל','ניר עם',
-    'ניר עקיבא','ניר צבי','נירים','נס הרים','נס ציונה','נסיה','נעורים','נען','נצר חזני','נצר סרני',
-    'נצרת','נצרת עילית','נריה','סאסא','סביון','סגולה','סואעד','סולם','סמר','סנסנה',
-    'סעד','סער','ספיר','ספסופה','סתריה','עבדון','עברון','עגור','עד הלום','עדי',
-    'עדן','עדשים','עוזה','עוזייר','עולש','עומר','עופר','עופרה','עוצם','עזוז',
-    'עזר','עזריאל','עזריה','עזריקם','עטרות','עיינות','עילבון','עיר גנים','עכו','עלומות',
-    'עלי','עלי זהב','עליות','עלמה','עלמון','עמוקה','עמינדב','עמיעד','עמיעוז','עמיקם',
-    'עמנואל','עמקה','עמר','עמרם','ענב','עספיא','עפולה','עפרה','עצמון שגב','עראבה',
-    'עראמשה','ערד','ערוגות','ערערה','ערערה בנגב','עשרת','עתלית','עתניאל','פארן','פוריה',
-    'פוריה עילית','פוריה כפר עבודה','פלך','פלמחים','פני חבר','פסגות','פסגת זאב','פעמי תשז','פצאל','פקיעין',
-    'פרדס חנה','פרדסיה','פרוד','פרזון','פרי גן','פתח תקווה','צאלים','צביה','צבעון','צהלה',
-    'צובה','צוחר','צוקי ים','צוקים','צופיה','צופים','צופית','צור הדסה','צור יגאל','צור יצחק',
-    'צור משה','צור נתן','צוריאל','צורית','ציפורי','צלפון','צפריר','צפרירים','צפת','צרופה',
-    'צרעה','קבוצת יבנה','קדומים','קדים','קדימה צורן','קדמה','קדרון','קדרים','קומי אל','קיסריה',
-    'קלחים','קליה','קלנסווה','קציר','קצרין','קרב"ט','קרית אונו','קרית ארבע','קרית אתא','קרית ביאליק',
-    'קרית גת','קרית יובל','קרית ים','קרית יערים','קרית מוצקין','קרית מלאכי','קרית נטפים','קרית ענבים','קרית שמונה','קרית שמונה',
-    'קרני שומרון','קשת','ראמה','ראש העין','ראש פינה','ראש צורים','ראשון לציון','רבדים','רביבים','רגבה',
-    'רהט','רוויה','רוחמה','רומאנה','רומת הייב','רועי','רותם','רחוב','רחובות','רחלים',
-    'ריחאניה','ריינה','רינתיה','רכסים','רמות','רמות השבים','רמות מנשה','רמות נפתלי','רמלה','רמת גן',
-    'רמת דוד','רמת הכובש','רמת השרון','רמת ישי','רמת מגשימים','רמת צבי','רמת רחל','רמת רזיאל','רמת רמים','רמת שלמה',
-    'רנן','רעים','רעננה','רקפת','שאר ישוב','שבי ציון','שבי שומרון','שגב שלום','שדה אילן','שדה אליהו',
-    'שדה אליעזר','שדה בוקר','שדה דוד','שדה ורבורג','שדה יואב','שדה יעקב','שדה יצחק','שדה משה','שדה נחום','שדה ניצן',
-    'שדה עוזיהו','שדות ים','שדי חמד','שדי תרומות','שדמות דבורה','שדמות מחולה','שומריה','שורש','שורשים','שזור',
-    'שחר','שחרות','שיבולים','שיזף','שיטים','שיקמה','שילה','שילת','שיפר','שיתים',
-    'שכניה','שלווה','שלומי','שלומית','שמיר','שמרת','שמשית','שני','שעב','שעלבים',
-    'שער אפרים','שער מנשה','שעריים','שפיר','שפרעם','שקד','שקף','שרונה','שריד','שרשרת',
-    'תדהר','תובל','תומר','תימורים','תירוש','תל אביב','תל מונד','תל עדשים','תל קציר','תל שבע',
-    'תלם','תלמי אל עזר','תלמי אליהו','תלמי ביל"ו','תלמי יוסף','תלמי יחיאל','תלמי יפה','תמרת','תנובות','תעוז',
-    'תפרח','תקומה','תקוע','תרום','תרשיחא'
-  ];
-
   var cityInput = document.getElementById('city');
   var citySuggestions = document.getElementById('city-suggestions');
-
   if (cityInput && citySuggestions) {
     cityInput.addEventListener('input', function() {
       var val = this.value.trim();
-      citySuggestions.innerHTML = '';
-      citySuggestions.style.display = 'none';
+      citySuggestions.innerHTML = ''; citySuggestions.style.display = 'none';
       if (val.length < 2) return;
-
       var matches = IL_CITIES.filter(function(c) { return c.indexOf(val) === 0 || c.indexOf(val) > -1; });
-      // מיין: מתחיל בערך קודם
-      matches.sort(function(a, b) {
-        var aStart = a.indexOf(val) === 0 ? 0 : 1;
-        var bStart = b.indexOf(val) === 0 ? 0 : 1;
-        return aStart - bStart || a.localeCompare(b, 'he');
-      });
+      matches.sort(function(a, b) { var aS = a.indexOf(val) === 0 ? 0 : 1, bS = b.indexOf(val) === 0 ? 0 : 1; return aS - bS || a.localeCompare(b, 'he'); });
       matches = matches.slice(0, 8);
       if (!matches.length) return;
-
       matches.forEach(function(city) {
         var div = document.createElement('div');
         div.textContent = city;
         div.style.cssText = 'padding:10px 14px;cursor:pointer;font-size:15px;font-family:Assistant,sans-serif;border-bottom:1px solid #eef2fa;color:#0f1a30;';
         div.addEventListener('mouseenter', function() { this.style.background = '#eef5ff'; });
         div.addEventListener('mouseleave', function() { this.style.background = ''; });
-        div.addEventListener('mousedown', function(e) {
-          e.preventDefault();
-          cityInput.value = city.trim();
-          citySuggestions.style.display = 'none';
-          document.getElementById('group-city').classList.remove('has-error');
-        });
+        div.addEventListener('mousedown', function(e) { e.preventDefault(); cityInput.value = city.trim(); citySuggestions.style.display = 'none'; document.getElementById('group-city').classList.remove('has-error'); });
         citySuggestions.appendChild(div);
       });
       citySuggestions.style.display = 'block';
     });
-
-    cityInput.addEventListener('blur', function() {
-      setTimeout(function() { citySuggestions.style.display = 'none'; }, 150);
-    });
-
-    document.addEventListener('click', function(e) {
-      if (e.target !== cityInput) citySuggestions.style.display = 'none';
-    });
+    cityInput.addEventListener('blur', function() { setTimeout(function() { citySuggestions.style.display = 'none'; }, 150); });
+    document.addEventListener('click', function(e) { if (e.target !== cityInput) citySuggestions.style.display = 'none'; });
   }
 
-  // ── Prevent copy & right-click ──
   document.addEventListener('copy', function(e) { e.preventDefault(); });
   document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
   document.addEventListener('selectstart', function(e) { e.preventDefault(); });
