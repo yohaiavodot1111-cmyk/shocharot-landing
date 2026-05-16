@@ -690,7 +690,7 @@
       e.preventDefault();
       var ok = [
         validate('name',  function(v) { return v.length >= 2; }),
-        validate('city',  function(v) { return IL_CITIES.indexOf(v) !== -1; }),
+        validate('city',  function(v) { return IL_CITIES.some(function(c) { return c === v || c.trim() === v.trim(); }); }),
         validate('phone', function(v) { return /^0\d[\d\-\s]{7,9}$/.test(v.replace(/\s/g,'')); }),
         validate('grade', function(v) { return v !== ''; }),
       ].every(Boolean);
@@ -845,7 +845,7 @@
         div.addEventListener('mouseleave', function() { this.style.background = ''; });
         div.addEventListener('mousedown', function(e) {
           e.preventDefault();
-          cityInput.value = city;
+          cityInput.value = city.trim();
           citySuggestions.style.display = 'none';
           document.getElementById('group-city').classList.remove('has-error');
         });
