@@ -184,22 +184,15 @@
     }
     .cert-circle {
       width: 72px; height: 72px; border-radius: 50%;
-      border: 1.5px solid rgba(240,180,41,0.35);
+      border: 1.5px solid rgba(240,180,41,0.5);
       display: flex; align-items: center; justify-content: center;
       color: var(--gold);
       background: var(--white);
-      animation: certBreathe 3s ease-in-out infinite;
-    }
-    .cert-item:nth-child(2) .cert-circle { animation-duration: 4s; animation-delay: 0.8s; }
-    .cert-item:nth-child(3) .cert-circle { animation-duration: 3.5s; animation-delay: 1.6s; }
-    .cert-item:nth-child(4) .cert-circle { animation-duration: 4.5s; animation-delay: 0.4s; }
-    @keyframes certBreathe {
-      0%,100% { box-shadow: 0 0 4px 1px rgba(240,180,41,0.12); border-color: rgba(240,180,41,0.25); }
-      50%      { box-shadow: 0 0 12px 4px rgba(240,180,41,0.3); border-color: rgba(240,180,41,0.7); }
+      box-shadow: 0 0 10px 2px rgba(240,180,41,0.2), 0 0 20px 4px rgba(240,180,41,0.08);
     }
     .cert-item:hover .cert-circle {
       border-color: var(--gold);
-      box-shadow: 0 4px 18px rgba(240,180,41,0.4);
+      box-shadow: 0 0 16px 4px rgba(240,180,41,0.35), 0 0 32px 8px rgba(240,180,41,0.15);
     }
     .cert-circle svg { width: 38px; height: 38px; }
     .cert-label {
@@ -352,11 +345,22 @@
       <!-- חשיפה לעולם הטיס -->
       <div class="benefit-card">
         <div class="benefit-icon"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M8 38L28 20L36 28L52 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M44 12H52V20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M12 52L6 46L18 34L26 42L38 30L50 42" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <circle cx="52" cy="12" r="3" fill="currentColor" opacity="0.5"/>
-          <line x1="6" y1="54" x2="58" y2="54" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+          <!-- F-35 top-down silhouette -->
+          <!-- fuselage -->
+          <path d="M32 8L35 20L36 36L34 48L32 54L30 48L28 36L29 20L32 8Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" fill="currentColor" fill-opacity="0.15"/>
+          <!-- main delta wings -->
+          <path d="M29 20L8 42L14 42L28 30L29 20Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" fill="currentColor" fill-opacity="0.2"/>
+          <path d="M35 20L56 42L50 42L36 30L35 20Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" fill="currentColor" fill-opacity="0.2"/>
+          <!-- tail fins -->
+          <path d="M30 44L22 54L28 50L30 44Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" fill="currentColor" fill-opacity="0.25"/>
+          <path d="M34 44L42 54L36 50L34 44Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" fill="currentColor" fill-opacity="0.25"/>
+          <!-- cockpit -->
+          <ellipse cx="32" cy="16" rx="2.5" ry="4" stroke="currentColor" stroke-width="1.2" opacity="0.8"/>
+          <!-- engine exhausts -->
+          <ellipse cx="29" cy="51" rx="2" ry="1.2" stroke="currentColor" stroke-width="1" opacity="0.6"/>
+          <ellipse cx="35" cy="51" rx="2" ry="1.2" stroke="currentColor" stroke-width="1" opacity="0.6"/>
+          <!-- center line detail -->
+          <line x1="32" y1="22" x2="32" y2="44" stroke="currentColor" stroke-width="0.8" opacity="0.3" stroke-dasharray="2 2"/>
         </svg></div>
         <div class="benefit-title">סיורים</div>
         <div class="benefit-desc">לבסיסים, אתרים צבאיים וטיולים ייחודיים</div>
@@ -420,11 +424,22 @@
       <!-- ליווי מגיל צעיר -->
       <div class="benefit-card">
         <div class="benefit-icon"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 52V18C12 16 13 15 15 15H49C51 15 52 16 52 18V52" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          <line x1="8" y1="52" x2="56" y2="52" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          <rect x="20" y="30" width="8" height="22" rx="1" stroke="currentColor" stroke-width="1.5"/>
-          <rect x="36" y="22" width="8" height="30" rx="1" stroke="currentColor" stroke-width="1.5"/>
-          <path d="M22 22L32 15L42 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+          <!-- vertical timeline line -->
+          <line x1="32" y1="8" x2="32" y2="56" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
+          <!-- nodes -->
+          <circle cx="32" cy="14" r="4" stroke="currentColor" stroke-width="2"/>
+          <circle cx="32" cy="32" r="4" stroke="currentColor" stroke-width="2"/>
+          <circle cx="32" cy="50" r="4" stroke="currentColor" stroke-width="2"/>
+          <!-- inner fill top node (smallest = young) -->
+          <circle cx="32" cy="14" r="1.5" fill="currentColor" opacity="0.5"/>
+          <!-- inner fill mid node -->
+          <circle cx="32" cy="32" r="2" fill="currentColor" opacity="0.65"/>
+          <!-- inner fill bottom node (largest = army) -->
+          <circle cx="32" cy="50" r="2.5" fill="currentColor" opacity="0.85"/>
+          <!-- horizontal labels right -->
+          <line x1="36" y1="14" x2="50" y2="14" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity="0.4"/>
+          <line x1="36" y1="32" x2="52" y2="32" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity="0.4"/>
+          <line x1="36" y1="50" x2="54" y2="50" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" opacity="0.7"/>
         </svg></div>
         <div class="benefit-title">ליווי מגיל צעיר</div>
         <div class="benefit-desc">מכיתה ט׳ ועד השירות הצבאי ומעבר</div>
