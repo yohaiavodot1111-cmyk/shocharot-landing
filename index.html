@@ -99,7 +99,7 @@
     .event-block { display: flex; flex-direction: column; justify-content: center; padding: 0 36px; border-left: 1px solid var(--border); text-align: center; }
     .event-block:first-child { padding-right: 0; }
     .ev-label { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; color: var(--light); text-transform: uppercase; margin-bottom: 8px; }
-    .ev-value { font-family: 'Secular One', sans-serif; font-size: clamp(38px, 5vw, 64px); font-weight: 400; color: var(--navy); line-height: 1; }
+    .ev-value { font-family: 'Secular One', sans-serif; font-size: clamp(28px, 3.5vw, 44px); font-weight: 400; color: var(--navy); line-height: 1; }
     .ev-value.tbd { font-size: clamp(18px, 2.2vw, 26px); color: var(--sky); border: 2px dashed rgba(46,156,219,0.4); padding: 8px 20px; font-family: 'Assistant', sans-serif; font-weight: 700; background: rgba(46,156,219,0.05); }
     .ev-text { font-size: 15px; font-weight: 500; color: var(--mid); }
     .event-cta-wrap { margin-right: auto; display: flex; align-items: center; flex-shrink: 0; padding-right: 0; }
@@ -118,15 +118,97 @@
     .article-title { font-family: 'Secular One', sans-serif; font-size: clamp(26px, 2.8vw, 36px); font-weight: 400; color: var(--navy); line-height: 1.15; margin-bottom: 20px; padding-right: 0; letter-spacing: 0.01em; }
     .article-body p { font-size: 16px; line-height: 1.95; color: var(--mid); margin-bottom: 0; font-family: 'Assistant', sans-serif; }
 
-    .benefits-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 28px; }
-    .benefit-card { background: var(--card-bg); border: 1px solid var(--border); border-top: 3px solid var(--sky); padding: 20px 18px; transition: transform 0.2s, box-shadow 0.2s, border-top-color 0.2s; position: relative; overflow: hidden; opacity: 0; transform: translateY(24px); }
+    /* benefit cards - icon style */
+    .benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
+    .benefit-card {
+      background: linear-gradient(145deg, #0d2a5e 0%, #1a3f7a 100%);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 6px;
+      padding: 28px 20px 22px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative; overflow: hidden;
+      opacity: 0; transform: translateY(24px);
+      text-align: center;
+      cursor: default;
+    }
+    .benefit-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(46,156,219,0.06) 0%, transparent 60%);
+      transition: opacity 0.3s;
+      opacity: 0;
+    }
+    .benefit-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(13,34,87,0.35); }
+    .benefit-card:hover::before { opacity: 1; }
     .benefit-card.card-visible { animation: cardReveal 0.3s ease forwards; }
     @keyframes cardReveal { to { opacity: 1; transform: translateY(0); } }
-    .benefit-card::before { content: ''; position: absolute; top: 0; right: 0; width: 0; height: 100%; background: linear-gradient(135deg, rgba(46,156,219,0.05) 0%, transparent 60%); transition: width 0.3s ease; }
-    .benefit-card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(46,156,219,0.15); border-top-color: var(--blue); }
-    .benefit-card:hover::before { width: 100%; }
-    .benefit-title { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 6px; font-family: 'Assistant', sans-serif; letter-spacing: 0.02em; }
-    .benefit-desc { font-size: 13px; line-height: 1.65; color: var(--light); font-family: 'Assistant', sans-serif; }
+
+    .benefit-icon {
+      width: 64px; height: 64px;
+      margin: 0 auto 16px;
+      color: var(--sky);
+      opacity: 0.9;
+    }
+    .benefit-icon svg { width: 100%; height: 100%; }
+
+    .benefit-title {
+      font-family: 'Secular One', sans-serif;
+      font-size: 18px; font-weight: 400;
+      color: var(--white); margin-bottom: 8px;
+      line-height: 1.25; letter-spacing: 0.01em;
+    }
+    .benefit-desc {
+      font-size: 12px; line-height: 1.6;
+      color: var(--gold);
+      font-family: 'Assistant', sans-serif;
+      font-weight: 600;
+    }
+
+    /* ══ CERTIFICATES STRIP ══ */
+    .certs-strip {
+      margin-top: 40px;
+      padding: 32px 0 8px;
+      border-top: 1px solid var(--border);
+    }
+    .certs-title {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.16em;
+      color: var(--teal); text-transform: uppercase;
+      margin-bottom: 24px; font-family: 'Assistant', sans-serif;
+    }
+    .certs-grid {
+      display: flex; justify-content: space-between;
+      gap: 12px; flex-wrap: wrap;
+    }
+    .cert-item {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 12px; flex: 1; min-width: 80px; text-align: center;
+    }
+    .cert-circle {
+      width: 72px; height: 72px; border-radius: 50%;
+      border: 1.5px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      background: var(--white);
+    }
+    .cert-item:hover .cert-circle {
+      border-color: var(--gold);
+      box-shadow: 0 4px 16px rgba(240,180,41,0.2);
+    }
+    .cert-circle svg { width: 38px; height: 38px; }
+    .cert-label {
+      font-size: 12px; font-weight: 600; color: var(--mid);
+      font-family: 'Assistant', sans-serif; line-height: 1.4;
+    }
+    @media (max-width: 600px) {
+      .certs-grid { gap: 8px; }
+      .cert-circle { width: 58px; height: 58px; }
+      .cert-circle svg { width: 30px; height: 30px; }
+      .cert-label { font-size: 11px; }
+    }
+    @media (max-width: 480px) {
+      .benefits-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .benefit-title { font-size: 15px; }
+    }
 
     .sidebar-form { background: var(--white); box-shadow: 0 4px 32px rgba(13,34,87,0.13); position: sticky; top: 24px; border-radius: 2px; overflow: hidden; }
     .sf-header { background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%); padding: 28px 28px; border-bottom: 3px solid var(--teal); text-align: center; }
@@ -176,7 +258,7 @@
       .stat-block { flex: 1; min-width: 100px; padding: 12px 16px; border-left: 1px solid rgba(255,255,255,0.12); }
       .stat-block:first-child { border-left: none; }
       .content-wrap { grid-template-columns: 1fr; padding: 40px 20px; gap: 36px; }
-      .benefits-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .content-wrap aside { order: -1; }      .benefits-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
       .sidebar-form { position: static; }
       .sf-header { text-align: center; padding: 24px 20px; }
       .sf-eyebrow { text-align: center; }
@@ -260,29 +342,115 @@
       <p>מסלול השוחרות של חיל האוויר הינו מסלול מצוינות לימודי וערכי, המשלב לימודי ליבה עם מגמות טכנולוגיות ותכנים של חיל האוויר. מנהריה שבצפון ועד אילת שבדרום — בכל הארץ פרוסים עשרות בתי ספר ייחודיים.</p>
     </div>
     <div class="benefits-grid">
+      <!-- חשיפה לעולם הטיס -->
       <div class="benefit-card">
+        <div class="benefit-icon"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8 38L28 20L36 28L52 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M44 12H52V20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M12 52L6 46L18 34L26 42L38 30L50 42" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="52" cy="12" r="3" fill="currentColor" opacity="0.5"/>
+          <line x1="6" y1="54" x2="58" y2="54" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+        </svg></div>
         <div class="benefit-title">חשיפה לעולם הטיס</div>
-        <div class="benefit-desc">סיורים בבסיסי חיל האוויר ומפגשים עם אנשי מקצוע לאורך כל הדרך.</div>
+        <div class="benefit-desc">סיורים בבסיסי חיל האוויר ומפגשים עם אנשי מקצוע</div>
       </div>
+
+      <!-- מגמות טכנולוגיות -->
       <div class="benefit-card">
+        <div class="benefit-icon"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="10" width="48" height="34" rx="3" stroke="currentColor" stroke-width="2"/>
+          <path d="M20 54H44M32 44V54" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M18 22L24 28L18 34" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M28 34H38" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="44" cy="22" r="4" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M44 18V22L47 25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg></div>
         <div class="benefit-title">מגמות טכנולוגיות</div>
-        <div class="benefit-desc">תעודת בגרות ותעודת הסמכה טכנולוגית במקצועות המבוקשים בשוק: אלקטרוניקה, מחשבים, מכונות, חשמל ועוד!</div>
+        <div class="benefit-desc">אלקטרוניקה, מחשבים, מכונות, חשמל ועוד</div>
       </div>
+
+      <!-- פיתוח מנהיגות -->
       <div class="benefit-card">
+        <div class="benefit-icon"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="32" cy="18" r="8" stroke="currentColor" stroke-width="2"/>
+          <path d="M14 50C14 41 22 36 32 36C42 36 50 41 50 50" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M40 14L46 8M46 8L52 14M46 8V22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="46" cy="8" r="2" fill="currentColor" opacity="0.6"/>
+        </svg></div>
         <div class="benefit-title">פיתוח מנהיגות</div>
-        <div class="benefit-desc">מיומנויות מנהיגות, עבודת צוות וחשיבה מערכתית — לכל החיים.</div>
+        <div class="benefit-desc">מנהיגות, עבודת צוות וחשיבה מערכתית</div>
       </div>
+
+      <!-- המשך אקדמי -->
       <div class="benefit-card">
+        <div class="benefit-icon"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M32 10L54 20L32 30L10 20L32 10Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M10 20V34" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M18 24V38C18 38 24 44 32 44C40 44 46 38 46 38V24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M10 34C10 34 10 38 14 38" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <rect x="26" y="50" width="12" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="32" y1="44" x2="32" y2="50" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg></div>
         <div class="benefit-title">המשך אקדמי</div>
-        <div class="benefit-desc">בגרות מלאה + אפשרות ללימודי הנדסאי בסבסוד חיל האוויר.</div>
+        <div class="benefit-desc">בגרות מלאה + הנדסאי בסבסוד חיל האוויר</div>
       </div>
+
+      <!-- בכל רחבי הארץ -->
       <div class="benefit-card">
+        <div class="benefit-icon"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="32" cy="32" r="22" stroke="currentColor" stroke-width="2"/>
+          <ellipse cx="32" cy="32" rx="10" ry="22" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="10" y1="32" x2="54" y2="32" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="12" y1="22" x2="52" y2="22" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.6"/>
+          <line x1="12" y1="42" x2="52" y2="42" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.6"/>
+          <circle cx="32" cy="20" r="3" fill="currentColor" opacity="0.7"/>
+          <path d="M32 17V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg></div>
         <div class="benefit-title">בכל רחבי הארץ</div>
-        <div class="benefit-desc">עשרות בתי ספר מנהריה עד אילת בשיתוף עם חיל האוויר.</div>
+        <div class="benefit-desc">מנהריה עד אילת — עשרות בתי ספר</div>
       </div>
+
+      <!-- ליווי מגיל צעיר -->
       <div class="benefit-card">
-        <div class="benefit-title">ליווי מגיל צעיר ועד השירות הצבאי</div>
-        <div class="benefit-desc">המסלול מתחיל בכיתה ט׳ ומלווה עד סיום י״ב ומעבר לכך.</div>
+        <div class="benefit-icon"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 52V18C12 16 13 15 15 15H49C51 15 52 16 52 18V52" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <line x1="8" y1="52" x2="56" y2="52" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <rect x="20" y="30" width="8" height="22" rx="1" stroke="currentColor" stroke-width="1.5"/>
+          <rect x="36" y="22" width="8" height="30" rx="1" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M22 22L32 15L42 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+        </svg></div>
+        <div class="benefit-title">ליווי מגיל צעיר</div>
+        <div class="benefit-desc">מכיתה ט׳ ועד השירות הצבאי ומעבר</div>
+      </div>
+    </div>
+
+    <!-- CERTIFICATES STRIP -->
+    <div class="certs-strip">
+      <div class="certs-grid">
+        <div class="cert-item">
+          <div class="cert-circle">
+            <svg viewBox="0 0 38 38" fill="none"><rect x="5" y="4" width="22" height="28" rx="2" stroke="currentColor" stroke-width="2"/><path d="M9 10H23M9 15H23M9 20H17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="26" cy="28" r="6" fill="white" stroke="currentColor" stroke-width="2"/><path d="M23 28L25 30L29 26" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="cert-label">תעודת בגרות מלאה</div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-circle">
+            <svg viewBox="0 0 38 38" fill="none"><path d="M19 6L34 13L19 20L4 13L19 6Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M4 13V24" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M9 16V26C9 26 13 30 19 30C25 30 29 26 29 26V16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="cert-label">תעודת בגרות טכנולוגית</div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-circle">
+            <svg viewBox="0 0 38 38" fill="none"><rect x="4" y="8" width="24" height="18" rx="2" stroke="currentColor" stroke-width="2"/><path d="M10 26L8 32M22 26L24 32M8 32H24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 13H21M9 18H17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="28" cy="10" r="6" fill="white" stroke="currentColor" stroke-width="2"/><path d="M28 7V13M25 10H31" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </div>
+          <div class="cert-label">תעודת מקצוע אזרחית</div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-circle">
+            <svg viewBox="0 0 38 38" fill="none"><path d="M19 6L28 10V20C28 25 24 29 19 31C14 29 10 25 10 20V10L19 6Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M14 19L17 22L24 15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="cert-label">הכנה לצבא</div>
+        </div>
       </div>
     </div>
   </main>
