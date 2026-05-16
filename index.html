@@ -114,7 +114,7 @@
     .stat-label { font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.6); margin-top: 8px; letter-spacing: 0.02em; }
 
     .content-wrap { max-width: 1200px; margin: 0 auto; padding: 64px 56px; display: grid; grid-template-columns: 1fr 370px; gap: 64px; align-items: start; }
-    .article-tag { font-size: 11px; font-weight: 700; letter-spacing: 0.18em; color: var(--teal); text-transform: uppercase; margin-bottom: 10px; font-family: 'Assistant', sans-serif; }
+    .article-tag { font-size: 13px; font-weight: 800; letter-spacing: 0.12em; color: var(--teal); text-transform: uppercase; margin-bottom: 10px; font-family: 'Assistant', sans-serif; }
     .article-title { font-family: 'Secular One', sans-serif; font-size: clamp(26px, 2.8vw, 36px); font-weight: 400; color: var(--navy); line-height: 1.15; margin-bottom: 20px; padding-right: 0; letter-spacing: 0.01em; }
     .article-body p { font-size: 16px; line-height: 1.95; color: var(--mid); margin-bottom: 0; font-family: 'Assistant', sans-serif; }
 
@@ -184,15 +184,22 @@
     }
     .cert-circle {
       width: 72px; height: 72px; border-radius: 50%;
-      border: 1.5px solid var(--border);
+      border: 1.5px solid rgba(240,180,41,0.35);
       display: flex; align-items: center; justify-content: center;
       color: var(--gold);
-      transition: border-color 0.2s, box-shadow 0.2s;
       background: var(--white);
+      animation: certBreathe 3s ease-in-out infinite;
+    }
+    .cert-item:nth-child(2) .cert-circle { animation-duration: 4s; animation-delay: 0.8s; }
+    .cert-item:nth-child(3) .cert-circle { animation-duration: 3.5s; animation-delay: 1.6s; }
+    .cert-item:nth-child(4) .cert-circle { animation-duration: 4.5s; animation-delay: 0.4s; }
+    @keyframes certBreathe {
+      0%,100% { box-shadow: 0 0 4px 1px rgba(240,180,41,0.12); border-color: rgba(240,180,41,0.25); }
+      50%      { box-shadow: 0 0 12px 4px rgba(240,180,41,0.3); border-color: rgba(240,180,41,0.7); }
     }
     .cert-item:hover .cert-circle {
       border-color: var(--gold);
-      box-shadow: 0 4px 16px rgba(240,180,41,0.2);
+      box-shadow: 0 4px 18px rgba(240,180,41,0.4);
     }
     .cert-circle svg { width: 38px; height: 38px; }
     .cert-label {
@@ -351,8 +358,8 @@
           <circle cx="52" cy="12" r="3" fill="currentColor" opacity="0.5"/>
           <line x1="6" y1="54" x2="58" y2="54" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
         </svg></div>
-        <div class="benefit-title">חשיפה לעולם הטיס</div>
-        <div class="benefit-desc">סיורים בבסיסי חיל האוויר ומפגשים עם אנשי מקצוע</div>
+        <div class="benefit-title">סיורים</div>
+        <div class="benefit-desc">לבסיסים, אתרים צבאיים וטיולים ייחודיים</div>
       </div>
 
       <!-- מגמות טכנולוגיות -->
