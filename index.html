@@ -577,7 +577,7 @@
           <div class="form-group" id="group-city">
             <label for="city">עיר מגורים</label>
             <input type="text" id="city" placeholder="הקלד עיר ובחר מהרשימה" autocomplete="off" />
-            <div class="field-error">נא להזין עיר</div>
+            <div class="field-error">נא לבחור עיר מהרשימה</div>
             <div id="city-suggestions" style="
               position:absolute; z-index:999; background:#fff;
               border:1.5px solid var(--sky); border-top:none;
@@ -690,7 +690,7 @@
       e.preventDefault();
       var ok = [
         validate('name',  function(v) { return v.length >= 2; }),
-        validate('city',  function(v) { return v.length >= 2; }),
+        validate('city',  function(v) { return IL_CITIES.indexOf(v) !== -1; }),
         validate('phone', function(v) { return /^0\d[\d\-\s]{7,9}$/.test(v.replace(/\s/g,'')); }),
         validate('grade', function(v) { return v !== ''; }),
       ].every(Boolean);
