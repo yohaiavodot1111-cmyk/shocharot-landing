@@ -205,13 +205,7 @@
       to   { opacity: 1; transform: none; }
     }
     .hero-title-line2 { display: block; color: #5dd8f8; }
-    .hero-rule {
-      width: 0; height: 3px;
-      background: linear-gradient(90deg, var(--teal), var(--sky));
-      margin: 26px auto;
-      animation: ruleExpand 0.7s 0.4s ease forwards;
-    }
-    @keyframes ruleExpand { to { width: 64px; } }
+    .hero-rule { display: none; }
     @keyframes glowPulse {
       0%, 100% { box-shadow: 0 4px 22px rgba(240,180,41,0.35); }
       50%       { box-shadow: 0 4px 40px rgba(244,124,48,0.65), 0 0 52px rgba(240,180,41,0.22); }
