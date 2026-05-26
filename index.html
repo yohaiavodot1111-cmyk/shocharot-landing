@@ -553,8 +553,8 @@
           </div>
           <div class="form-group" id="group-phone">
             <label for="phone">מספר טלפון</label>
-            <input type="tel" id="phone" placeholder="05X-XXXXXXX" inputmode="numeric" autocomplete="tel" />
-            <div class="field-error">נא להזין מספר טלפון תקין</div>
+            <input type="tel" id="phone" placeholder="05X-XXXXXXX" inputmode="numeric" autocomplete="tel" maxlength="12"/>
+            <div class="field-error">נא להזין מספר טלפון תקין (עד 10 ספרות)</div>
           </div>
           <div class="form-group" id="group-grade">
             <label for="grade">כיתה נוכחית</label>
@@ -683,7 +683,13 @@
       var ok = [
         validate('name',  function(v) { return v.length >= 2; }),
         validate('city',  function(v) { return v.length >= 2; }),
-        validate('phone', function(v) { return /^0\d[\d\-\s]{7,9}$/.test(v.replace(/\s/g,'')); }),
+        validate('phone', function(v) {
+          var digits = v.replace(/[\s\-]/g, '');
+          // טלפון נייד: 05X-XXXXXXX = 10 ספרות, מתחיל ב-05
+          // טלפון משרדי: 0X-XXXXXXX = 9-10 ספרות, מתחיל ב-0
+          // טווח: 9-10 ספרות בסה"כ, מתחיל ב-0
+          return /^0\d{8,9}$/.test(digits);
+        }),
         validate('grade', function(v) { return v !== ''; }),
       ].every(Boolean);
       if (!ok) return;
@@ -702,6 +708,29 @@
     });
   }
 
+  // ── ולידציה חיה של טלפון ──
+  var phoneInput = document.getElementById('phone');
+  phoneInput.addEventListener('input', function() {
+    // אפשר רק ספרות ומקף
+    var val = this.value.replace(/[^\d\-]/g, '');
+    // הגבל ל-10 ספרות (לא כולל מקפים)
+    var digits = val.replace(/-/g, '');
+    if (digits.length > 10) {
+      // חתוך לפי מיקום הספרה העשירית
+      var count = 0;
+      val = val.split('').filter(function(ch) {
+        if (ch === '-') return true;
+        count++;
+        return count <= 10;
+      }).join('');
+    }
+    if (this.value !== val) this.value = val;
+  });
+  phoneInput.addEventListener('keypress', function(e) {
+    if (!/[\d\-]/.test(e.key) && !['Backspace','Delete','ArrowLeft','ArrowRight','Tab'].includes(e.key)) {
+      e.preventDefault();
+    }
+  });
   var cityInput = document.getElementById('city');
   var citySuggestions = document.getElementById('city-suggestions');
   if (cityInput && citySuggestions) {
