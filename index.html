@@ -96,7 +96,7 @@
     .hero-btn.ready:hover { filter: brightness(1.1); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(244,124,48,0.5); animation-play-state: paused; }
 
     .event-card-wrap { background: var(--white); border-bottom: 3px solid var(--border); box-shadow: 0 4px 24px rgba(13,34,87,0.07); }
-    .event-card-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: stretch; min-height: 120px; padding: 0 56px; }
+    .event-card-inner { width: 100%; margin: 0 auto; display: flex; align-items: stretch; min-height: 120px; padding: 0 56px; }
     .event-badge { background: linear-gradient(135deg, var(--gold) 0%, var(--orange) 100%); color: var(--white); font-weight: 900; font-size: 16px; letter-spacing: 0.08em; display: flex; align-items: center; justify-content: center; padding: 0 36px; flex-shrink: 0; text-transform: uppercase; }
     .event-blocks { display: flex; align-items: center; flex: 1; padding: 0 20px; gap: 0; }
     .event-block { display: flex; flex-direction: column; justify-content: center; padding: 0 36px; border-left: 1px solid var(--border); text-align: center; }
@@ -116,10 +116,10 @@
     .stat-num .suffix { color: var(--gold); }
     .stat-label { font-size: 15px; font-weight: 500; color: rgba(255,255,255,0.6); margin-top: 8px; letter-spacing: 0.02em; }
 
-    .content-wrap { max-width: 1200px; margin: 0 auto; padding: 64px 56px; display: grid; grid-template-columns: 1fr 370px; gap: 64px; align-items: start; }
+    .content-wrap { width: 100%; padding: 64px 6vw; display: grid; grid-template-columns: 1fr 440px; gap: 72px; align-items: start; }
     .article-tag { font-size: 15px; font-weight: 800; letter-spacing: 0.08em; color: var(--teal); text-transform: uppercase; margin-bottom: 10px; font-family: 'Assistant', sans-serif; }
     .article-title { font-family: 'Secular One', sans-serif; font-size: clamp(26px, 2.8vw, 36px); font-weight: 400; color: var(--navy); line-height: 1.15; margin-bottom: 20px; padding-right: 0; letter-spacing: 0.01em; }
-    .article-body p { font-size: 17px; line-height: 1.95; color: var(--mid); margin-bottom: 0; font-family: 'Assistant', sans-serif; }
+    .article-body p { font-size: 18px; line-height: 1.9; color: var(--mid); margin-bottom: 0; font-family: 'Assistant', sans-serif; }
 
     /* benefit cards - icon style */
     .benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
@@ -217,7 +217,7 @@
     .sidebar-form { background: var(--white); box-shadow: 0 8px 40px rgba(13,34,87,0.14); position: sticky; top: 24px; overflow: hidden; border: 1px solid #e8eef8; }
     .sf-header { background: linear-gradient(135deg, #071a3d 0%, #0d2257 100%); padding: 30px 28px 26px; border-bottom: 3px solid var(--teal); text-align: center; }
     .sf-eyebrow { font-size: 15px; font-weight: 800; letter-spacing: 0.03em; color: var(--teal); text-transform: none; margin-bottom: 12px; }
-    .sf-title { font-family: 'Secular One', sans-serif; font-size: 30px; color: var(--white); line-height: 1.25; letter-spacing: 0.01em; }
+    .sf-title { font-family: 'Secular One', sans-serif; font-size: 34px; color: var(--white); line-height: 1.2; letter-spacing: 0.01em; }
     .sf-body { padding: 26px 24px 24px; background: #fff; }
 
     .form-group { margin-bottom: 14px; position: relative; }
@@ -321,7 +321,7 @@
       .event-cta-mobile { display: block !important; background: var(--navy); color: var(--white); text-align: center; font-size: 16px; font-weight: 800; padding: 16px; text-decoration: none; border-top: 1px solid var(--border); }
       .stats-bar { padding: 28px 20px; gap: 0; flex-wrap: wrap; }
       .stat-block { flex: 1; min-width: 100px; padding: 12px 16px; border-right: 1px solid rgba(255,255,255,0.2); border-left: none; }
-      .stat-block:first-child { border-right: none; }      .content-wrap { grid-template-columns: 1fr; padding: 40px 20px; gap: 36px; }
+      .stat-block:first-child { border-right: none; }      .content-wrap { grid-template-columns: 1fr; padding: 40px 5vw; gap: 36px; }
       .content-wrap aside { order: 1; }
       .content-wrap main { order: 0; }      .benefits-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
       .sidebar-form { position: static; }
@@ -365,7 +365,7 @@
 </section>
 
 <div class="event-card-wrap" style="background:linear-gradient(135deg,var(--navy) 0%,var(--blue) 100%); border-bottom:none; box-shadow:0 4px 24px rgba(13,34,87,0.15);">
-  <div style="max-width:1200px; margin:0 auto; padding:28px 56px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap;">
+  <div style="width:100%; padding:28px 6vw; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap;">
     <div style="font-family:'Secular One',sans-serif; font-size:clamp(22px,3vw,38px); color:var(--white); font-weight:400; letter-spacing:0.01em;">
       ההרשמה לשנת הלימודים תשפ"ז בעיצומה!
     </div>
