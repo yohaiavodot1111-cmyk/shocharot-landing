@@ -45,6 +45,20 @@
       overflow: hidden; text-align: center;
       background: #060e28;
     }
+    .hero-plane {
+      position: absolute;
+      inset: 0; z-index: 3;
+      background: url('F35i.png') no-repeat;
+      background-position: left 5% center;
+      background-size: auto 82%;
+      opacity: 0.18;
+      pointer-events: none;
+      transform: scaleX(-1); /* הפוך כיוון — מטוס מסתכל ימינה */
+      filter: saturate(0.5) brightness(1.4);
+    }
+    @media (max-width: 900px) {
+      .hero-plane { background-position: center bottom; background-size: auto 55%; opacity: 0.12; }
+    }
     .hero-sky {
       position: absolute; inset: 0;
       background: linear-gradient(135deg, #0a1535 0%, #0e2060 50%, #0a1840 100%);
@@ -340,6 +354,7 @@
 
 <section class="hero">
   <div class="hero-sky"></div>
+  <div class="hero-plane"></div>
   <div class="hero-border"></div>
   <div class="hero-lines">
     <div class="shape main"></div>
