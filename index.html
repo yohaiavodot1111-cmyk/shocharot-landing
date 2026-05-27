@@ -49,15 +49,19 @@
       position: absolute;
       inset: 0; z-index: 3;
       background: url('F35i.png') no-repeat;
-      background-position: left 8% center;
-      background-size: auto 75%;
-      opacity: 0.35;
+      background-position: right 5% center;
+      background-size: auto 88%;
       pointer-events: none;
-      transform: scaleX(-1);
-      filter: saturate(0.3) brightness(1.8) contrast(0.9);
+      mix-blend-mode: screen;
+      opacity: 0.5;
+      filter: brightness(0.85) saturate(0.5);
     }
     @media (max-width: 900px) {
-      .hero-plane { background-position: center bottom; background-size: auto 45%; opacity: 0.2; }
+      .hero-plane {
+        background-position: center center;
+        background-size: 90% auto;
+        opacity: 0.25;
+      }
     }
     .hero-sky {
       position: absolute; inset: 0;
