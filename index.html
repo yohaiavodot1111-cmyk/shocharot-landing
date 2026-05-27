@@ -47,20 +47,25 @@
     }
     .hero-plane {
       position: absolute;
-      inset: 0; z-index: 3;
+      top: -10%;
+      left: 0;
+      right: 0;
+      bottom: -40%;
+      z-index: 3;
       background: url('F35i.png') no-repeat;
-      background-position: right 5% center;
-      background-size: auto 88%;
+      background-position: left 3% top 15%;
+      background-size: auto 130%;
       pointer-events: none;
       mix-blend-mode: screen;
-      opacity: 0.5;
-      filter: brightness(0.85) saturate(0.5);
+      opacity: 0.45;
+      filter: brightness(0.85) saturate(0.4);
     }
     @media (max-width: 900px) {
       .hero-plane {
-        background-position: center center;
-        background-size: 90% auto;
-        opacity: 0.25;
+        top: 0; bottom: 0;
+        background-position: center top 10%;
+        background-size: 85% auto;
+        opacity: 0.2;
       }
     }
     .hero-sky {
