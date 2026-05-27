@@ -45,29 +45,7 @@
       overflow: hidden; text-align: center;
       background: #060e28;
     }
-    .hero-plane {
-      position: absolute;
-      top: -10%;
-      left: 0;
-      right: 0;
-      bottom: -40%;
-      z-index: 3;
-      background: url('F35i.png') no-repeat;
-      background-position: left 3% top 15%;
-      background-size: auto 130%;
-      pointer-events: none;
-      mix-blend-mode: screen;
-      opacity: 0.45;
-      filter: brightness(0.85) saturate(0.4);
-    }
-    @media (max-width: 900px) {
-      .hero-plane {
-        top: 0; bottom: 0;
-        background-position: center top 10%;
-        background-size: 85% auto;
-        opacity: 0.2;
-      }
-    }
+    
     .hero-sky {
       position: absolute; inset: 0;
       background: linear-gradient(135deg, #0a1535 0%, #0e2060 50%, #0a1840 100%);
@@ -363,7 +341,6 @@
 
 <section class="hero">
   <div class="hero-sky"></div>
-  <div class="hero-plane"></div>
   <div class="hero-border"></div>
   <div class="hero-lines">
     <div class="shape main"></div>
