@@ -122,7 +122,6 @@
     .article-title { font-family: 'Secular One', sans-serif; font-size: clamp(26px, 2.8vw, 36px); font-weight: 400; color: var(--navy); line-height: 1.15; margin-bottom: 20px; padding-right: 0; letter-spacing: 0.01em; }
     .article-body p { font-size: 18px; line-height: 1.9; color: var(--mid); margin-bottom: 0; font-family: 'Assistant', sans-serif; }
 
-    /* benefit cards - icon style */
     .benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
     .benefit-card {
       background: linear-gradient(145deg, #0d2a5e 0%, #1a3f7a 100%);
@@ -146,74 +145,19 @@
     .benefit-card.card-visible { animation: cardReveal 0.3s ease forwards; }
     @keyframes cardReveal { to { opacity: 1; transform: translateY(0); } }
 
-    .benefit-icon {
-      width: 64px; height: 64px;
-      margin: 0 auto 16px;
-      color: var(--sky);
-      opacity: 0.9;
-    }
+    .benefit-icon { width: 64px; height: 64px; margin: 0 auto 16px; color: var(--sky); opacity: 0.9; }
     .benefit-icon svg { width: 100%; height: 100%; }
 
-    .benefit-title {
-      font-family: 'Secular One', sans-serif;
-      font-size: 22px; font-weight: 400;
-      color: var(--white); margin-bottom: 10px;
-      line-height: 1.25; letter-spacing: 0.01em;
-    }
-    .benefit-desc {
-      font-size: 15px; line-height: 1.65;
-      color: var(--gold);
-      font-family: 'Assistant', sans-serif;
-      font-weight: 600;
-    }
+    .benefit-title { font-family: 'Secular One', sans-serif; font-size: 22px; font-weight: 400; color: var(--white); margin-bottom: 10px; line-height: 1.25; letter-spacing: 0.01em; }
+    .benefit-desc { font-size: 15px; line-height: 1.65; color: var(--gold); font-family: 'Assistant', sans-serif; font-weight: 600; }
 
-    /* ══ CERTIFICATES STRIP ══ */
-    .certs-strip {
-      margin-top: 40px;
-      padding: 32px 0 8px;
-      border-top: 1px solid var(--border);
-    }
-    .certs-title {
-      font-size: 14px; font-weight: 700; letter-spacing: 0.08em;
-      color: var(--teal); text-transform: uppercase;
-      margin-bottom: 24px; font-family: 'Assistant', sans-serif;
-    }
-    .certs-grid {
-      display: flex; justify-content: space-between;
-      gap: 12px; flex-wrap: wrap;
-    }
-    .cert-item {
-      display: flex; flex-direction: column; align-items: center;
-      gap: 12px; flex: 1; min-width: 80px; text-align: center;
-    }
-    .cert-circle {
-      width: 72px; height: 72px; border-radius: 50%;
-      border: 1.5px solid rgba(240,180,41,0.5);
-      display: flex; align-items: center; justify-content: center;
-      color: var(--gold);
-      background: var(--white);
-      box-shadow: 0 0 10px 2px rgba(240,180,41,0.2), 0 0 20px 4px rgba(240,180,41,0.08);
-    }
-    .cert-item:hover .cert-circle {
-      border-color: var(--gold);
-      box-shadow: 0 0 16px 4px rgba(240,180,41,0.35), 0 0 32px 8px rgba(240,180,41,0.15);
-    }
+    .certs-strip { margin-top: 40px; padding: 32px 0 8px; border-top: 1px solid var(--border); }
+    .certs-grid { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+    .cert-item { display: flex; flex-direction: column; align-items: center; gap: 12px; flex: 1; min-width: 80px; text-align: center; }
+    .cert-circle { width: 72px; height: 72px; border-radius: 50%; border: 1.5px solid rgba(240,180,41,0.5); display: flex; align-items: center; justify-content: center; color: var(--gold); background: var(--white); box-shadow: 0 0 10px 2px rgba(240,180,41,0.2), 0 0 20px 4px rgba(240,180,41,0.08); }
+    .cert-item:hover .cert-circle { border-color: var(--gold); box-shadow: 0 0 16px 4px rgba(240,180,41,0.35), 0 0 32px 8px rgba(240,180,41,0.15); }
     .cert-circle svg { width: 38px; height: 38px; }
-    .cert-label {
-      font-size: 15px; font-weight: 600; color: var(--mid);
-      font-family: 'Assistant', sans-serif; line-height: 1.4;
-    }
-    @media (max-width: 600px) {
-      .certs-grid { gap: 8px; }
-      .cert-circle { width: 58px; height: 58px; }
-      .cert-circle svg { width: 30px; height: 30px; }
-      .cert-label { font-size: 14px; }
-    }
-    @media (max-width: 480px) {
-      .benefits-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
-      .benefit-title { font-size: 18px; }
-      .benefit-desc { font-size: 14px; }
-    }
+    .cert-label { font-size: 15px; font-weight: 600; color: var(--mid); font-family: 'Assistant', sans-serif; line-height: 1.4; }
 
     .sidebar-form { background: var(--white); box-shadow: 0 8px 40px rgba(13,34,87,0.14); position: sticky; top: 24px; overflow: hidden; border: 1px solid #e8eef8; }
     .sf-header { background: linear-gradient(135deg, #071a3d 0%, #0d2257 100%); padding: 30px 28px 26px; border-bottom: 3px solid var(--teal); text-align: center; }
@@ -222,70 +166,18 @@
     .sf-body { padding: 26px 24px 24px; background: #fff; }
 
     .form-group { margin-bottom: 14px; position: relative; }
-    .form-group label {
-      display: block; font-size: 12px; font-weight: 700; color: #344054;
-      margin-bottom: 5px; letter-spacing: 0;
-    }
-
-    /* unified input + select style */
-    .form-group input,
-    .form-group select {
-      width: 100%;
-      height: 46px;
-      background: #fff;
-      border: 1.5px solid #d0d7e4;
-      padding: 0 14px;
-      font-family: 'Assistant', sans-serif;
-      font-size: 15px;
-      font-weight: 500;
-      color: var(--text);
-      outline: none;
-      transition: border-color 0.18s, box-shadow 0.18s;
-      direction: rtl;
-      border-radius: 8px;
-      appearance: none;
-      -webkit-appearance: none;
-      box-shadow: 0 1px 2px rgba(16,24,40,.04);
-    }
-
-    /* custom arrow for select */
-    .form-group select {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M6 9l6 6 6-6' stroke='%23667085' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: left 12px center;
-      background-size: 18px;
-      padding-left: 38px;
-      cursor: pointer;
-      color: var(--text);
-    }
-    /* grey placeholder for empty select */
-    .form-group select:invalid,
-    .form-group select option[value=""] { color: #98a2b3; }
+    .form-group label { display: block; font-size: 12px; font-weight: 700; color: #344054; margin-bottom: 5px; letter-spacing: 0; }
+    .form-group input, .form-group select { width: 100%; height: 46px; background: #fff; border: 1.5px solid #d0d7e4; padding: 0 14px; font-family: 'Assistant', sans-serif; font-size: 15px; font-weight: 500; color: var(--text); outline: none; transition: border-color 0.18s, box-shadow 0.18s; direction: rtl; border-radius: 8px; appearance: none; -webkit-appearance: none; box-shadow: 0 1px 2px rgba(16,24,40,.04); }
+    .form-group select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M6 9l6 6 6-6' stroke='%23667085' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: left 12px center; background-size: 18px; padding-left: 38px; cursor: pointer; color: var(--text); }
+    .form-group select:invalid, .form-group select option[value=""] { color: #98a2b3; }
     .form-group select option { color: var(--text); }
-
     .form-group input::placeholder { color: #98a2b3; font-weight: 400; }
-    .form-group input:focus, .form-group select:focus {
-      border-color: #1a4a9f;
-      box-shadow: 0 0 0 3px rgba(26,74,159,.10);
-    }
-    .form-group.has-error input, .form-group.has-error select {
-      border-color: #f04438;
-      box-shadow: 0 0 0 3px rgba(240,68,56,.08);
-    }
+    .form-group input:focus, .form-group select:focus { border-color: #1a4a9f; box-shadow: 0 0 0 3px rgba(26,74,159,.10); }
+    .form-group.has-error input, .form-group.has-error select { border-color: #f04438; box-shadow: 0 0 0 3px rgba(240,68,56,.08); }
     .field-error { font-size: 12px; color: #f04438; margin-top: 4px; display: none; font-weight: 600; }
     .form-group.has-error .field-error { display: block; }
 
-    .form-submit {
-      width: 100%;
-      height: 48px;
-      background: linear-gradient(135deg, #0d2257 0%, #1a4a9f 100%);
-      color: var(--white); border: none;
-      font-family: 'Assistant', sans-serif; font-size: 16px; font-weight: 800;
-      cursor: pointer; transition: filter 0.2s, transform 0.15s; margin-top: 8px;
-      border-radius: 8px;
-      box-shadow: 0 4px 16px rgba(13,34,87,0.22);
-      letter-spacing: 0.02em;
-    }
+    .form-submit { width: 100%; height: 48px; background: linear-gradient(135deg, #0d2257 0%, #1a4a9f 100%); color: var(--white); border: none; font-family: 'Assistant', sans-serif; font-size: 16px; font-weight: 800; cursor: pointer; transition: filter 0.2s, transform 0.15s; margin-top: 8px; border-radius: 8px; box-shadow: 0 4px 16px rgba(13,34,87,0.22); letter-spacing: 0.02em; }
     .form-submit:hover { filter: brightness(1.1); transform: translateY(-1px); }
     .form-note { font-size: 11px; color: var(--light); text-align: center; margin-top: 12px; line-height: 1.6; }
     .success-box { display: none; padding: 40px 28px; text-align: center; }
@@ -297,7 +189,6 @@
     .footer-brand { display: flex; align-items: center; gap: 14px; }
     .footer-logo { height: 32px; }
     .footer-name { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.45); }
-    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.25); }
 
     .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.65s ease, transform 0.65s ease; }
     .fade-in.visible { opacity: 1; transform: none; }
@@ -312,24 +203,29 @@
       .event-card-wrap > div > div { text-align: center; }
       .hero { height: auto; min-height: 520px; padding: 100px 24px 60px; }
       .hero-title { font-size: clamp(40px, 11vw, 64px); }
-      .event-card-inner { flex-direction: column; padding: 0; min-height: auto; }
-      .event-badge { padding: 16px 24px; font-size: 14px; }
-      .event-blocks { display: flex; flex-direction: row; justify-content: center; padding: 20px; gap: 0; }
-      .event-block { flex: 1; max-width: 180px; padding: 0 20px; border-left: none; border-right: none; text-align: center; }
-      .event-block:first-child { border-left: 1px solid var(--border); }
-      .event-block:last-child { border-left: none; }
-      .event-cta-wrap { display: none; }
-      .event-cta-mobile { display: block !important; background: var(--navy); color: var(--white); text-align: center; font-size: 16px; font-weight: 800; padding: 16px; text-decoration: none; border-top: 1px solid var(--border); }
       .stats-bar { padding: 28px 20px; gap: 0; flex-wrap: wrap; }
       .stat-block { flex: 1; min-width: 100px; padding: 12px 16px; border-right: 1px solid rgba(255,255,255,0.2); border-left: none; }
-      .stat-block:first-child { border-right: none; }      .content-wrap { grid-template-columns: 1fr; padding: 40px 5vw; gap: 36px; }
+      .stat-block:first-child { border-right: none; }
+      .content-wrap { grid-template-columns: 1fr; padding: 40px 5vw; gap: 36px; }
       .content-wrap aside { order: 1; }
-      .content-wrap main { order: 0; }      .benefits-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .content-wrap main { order: 0; }
+      .benefits-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
       .sidebar-form { position: static; }
       .sf-header { text-align: center; padding: 24px 20px; }
       .sf-eyebrow { text-align: center; }
       .sf-title { text-align: center; font-size: 26px; }
       .site-footer { padding: 24px 20px; flex-direction: column; text-align: center; }
+    }
+    @media (max-width: 600px) {
+      .certs-grid { gap: 8px; }
+      .cert-circle { width: 58px; height: 58px; }
+      .cert-circle svg { width: 30px; height: 30px; }
+      .cert-label { font-size: 14px; }
+    }
+    @media (max-width: 480px) {
+      .benefits-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .benefit-title { font-size: 18px; }
+      .benefit-desc { font-size: 14px; }
     }
   </style>
 </head>
@@ -398,135 +294,54 @@
       <p>מסלול השוחרות של חיל האוויר הינו מסלול מצוינות לימודי וערכי, המשלב לימודי ליבה עם מגמות טכנולוגיות ותכנים של חיל האוויר. מנהריה שבצפון ועד אילת שבדרום - בכל הארץ פרוסים עשרות בתי ספר ייחודיים.</p>
     </div>
     <div class="benefits-grid">
-      <!-- חשיפה לעולם הטיס -->
       <div class="benefit-card">
-        <div class="benefit-icon"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- F-35 top-down silhouette -->
-          <!-- fuselage -->
-          <path d="M32 8L35 20L36 36L34 48L32 54L30 48L28 36L29 20L32 8Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" fill="currentColor" fill-opacity="0.15"/>
-          <!-- main delta wings -->
-          <path d="M29 20L8 42L14 42L28 30L29 20Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" fill="currentColor" fill-opacity="0.2"/>
-          <path d="M35 20L56 42L50 42L36 30L35 20Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" fill="currentColor" fill-opacity="0.2"/>
-          <!-- tail fins -->
-          <path d="M30 44L22 54L28 50L30 44Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" fill="currentColor" fill-opacity="0.25"/>
-          <path d="M34 44L42 54L36 50L34 44Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" fill="currentColor" fill-opacity="0.25"/>
-          <!-- cockpit -->
-          <ellipse cx="32" cy="16" rx="2.5" ry="4" stroke="currentColor" stroke-width="1.2" opacity="0.8"/>
-          <!-- engine exhausts -->
-          <ellipse cx="29" cy="51" rx="2" ry="1.2" stroke="currentColor" stroke-width="1" opacity="0.6"/>
-          <ellipse cx="35" cy="51" rx="2" ry="1.2" stroke="currentColor" stroke-width="1" opacity="0.6"/>
-          <!-- center line detail -->
-          <line x1="32" y1="22" x2="32" y2="44" stroke="currentColor" stroke-width="0.8" opacity="0.3" stroke-dasharray="2 2"/>
-        </svg></div>
+        <div class="benefit-icon"><svg viewBox="0 0 64 64" fill="none"><path d="M32 8L35 20L36 36L34 48L32 54L30 48L28 36L29 20L32 8Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" fill="currentColor" fill-opacity="0.15"/><path d="M29 20L8 42L14 42L28 30L29 20Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" fill="currentColor" fill-opacity="0.2"/><path d="M35 20L56 42L50 42L36 30L35 20Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" fill="currentColor" fill-opacity="0.2"/><path d="M30 44L22 54L28 50L30 44Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" fill="currentColor" fill-opacity="0.25"/><path d="M34 44L42 54L36 50L34 44Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" fill="currentColor" fill-opacity="0.25"/><ellipse cx="32" cy="16" rx="2.5" ry="4" stroke="currentColor" stroke-width="1.2" opacity="0.8"/><ellipse cx="29" cy="51" rx="2" ry="1.2" stroke="currentColor" stroke-width="1" opacity="0.6"/><ellipse cx="35" cy="51" rx="2" ry="1.2" stroke="currentColor" stroke-width="1" opacity="0.6"/><line x1="32" y1="22" x2="32" y2="44" stroke="currentColor" stroke-width="0.8" opacity="0.3" stroke-dasharray="2 2"/></svg></div>
         <div class="benefit-title">סיורים</div>
         <div class="benefit-desc">לבסיסים, אתרים צבאיים וטיולים ייחודיים</div>
       </div>
-
-      <!-- מגמות טכנולוגיות -->
       <div class="benefit-card">
-        <div class="benefit-icon"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="8" y="10" width="48" height="34" rx="3" stroke="currentColor" stroke-width="2"/>
-          <path d="M20 54H44M32 44V54" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          <path d="M18 22L24 28L18 34" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M28 34H38" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          <circle cx="44" cy="22" r="4" stroke="currentColor" stroke-width="1.5"/>
-          <path d="M44 18V22L47 25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-        </svg></div>
+        <div class="benefit-icon"><svg viewBox="0 0 64 64" fill="none"><rect x="8" y="10" width="48" height="34" rx="3" stroke="currentColor" stroke-width="2"/><path d="M20 54H44M32 44V54" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M18 22L24 28L18 34" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M28 34H38" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="44" cy="22" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M44 18V22L47 25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
         <div class="benefit-title">מגמות טכנולוגיות</div>
         <div class="benefit-desc">אלקטרוניקה, מחשבים, מכונות, חשמל ועוד</div>
       </div>
-
-      <!-- פיתוח מנהיגות -->
       <div class="benefit-card">
-        <div class="benefit-icon"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="32" cy="18" r="8" stroke="currentColor" stroke-width="2"/>
-          <path d="M14 50C14 41 22 36 32 36C42 36 50 41 50 50" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          <path d="M40 14L46 8M46 8L52 14M46 8V22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <circle cx="46" cy="8" r="2" fill="currentColor" opacity="0.6"/>
-        </svg></div>
+        <div class="benefit-icon"><svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="18" r="8" stroke="currentColor" stroke-width="2"/><path d="M14 50C14 41 22 36 32 36C42 36 50 41 50 50" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M40 14L46 8M46 8L52 14M46 8V22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="46" cy="8" r="2" fill="currentColor" opacity="0.6"/></svg></div>
         <div class="benefit-title">פיתוח מנהיגות</div>
         <div class="benefit-desc">מנהיגות, עבודת צוות וחשיבה מערכתית</div>
       </div>
-
-      <!-- המשך אקדמי -->
       <div class="benefit-card">
-        <div class="benefit-icon"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M32 10L54 20L32 30L10 20L32 10Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-          <path d="M10 20V34" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          <path d="M18 24V38C18 38 24 44 32 44C40 44 46 38 46 38V24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M10 34C10 34 10 38 14 38" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          <rect x="26" y="50" width="12" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/>
-          <line x1="32" y1="44" x2="32" y2="50" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-        </svg></div>
+        <div class="benefit-icon"><svg viewBox="0 0 64 64" fill="none"><path d="M32 10L54 20L32 30L10 20L32 10Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M10 20V34" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M18 24V38C18 38 24 44 32 44C40 44 46 38 46 38V24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 34C10 34 10 38 14 38" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="26" y="50" width="12" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/><line x1="32" y1="44" x2="32" y2="50" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
         <div class="benefit-title">המשך אקדמי</div>
         <div class="benefit-desc">בגרות מלאה + הנדסאי בסבסוד חיל האוויר</div>
       </div>
-
-      <!-- בכל רחבי הארץ -->
       <div class="benefit-card">
-        <div class="benefit-icon"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="32" cy="32" r="22" stroke="currentColor" stroke-width="2"/>
-          <ellipse cx="32" cy="32" rx="10" ry="22" stroke="currentColor" stroke-width="1.5"/>
-          <line x1="10" y1="32" x2="54" y2="32" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="12" y1="22" x2="52" y2="22" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.6"/>
-          <line x1="12" y1="42" x2="52" y2="42" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.6"/>
-          <circle cx="32" cy="20" r="3" fill="currentColor" opacity="0.7"/>
-          <path d="M32 17V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-        </svg></div>
+        <div class="benefit-icon"><svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="22" stroke="currentColor" stroke-width="2"/><ellipse cx="32" cy="32" rx="10" ry="22" stroke="currentColor" stroke-width="1.5"/><line x1="10" y1="32" x2="54" y2="32" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="12" y1="22" x2="52" y2="22" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.6"/><line x1="12" y1="42" x2="52" y2="42" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.6"/><circle cx="32" cy="20" r="3" fill="currentColor" opacity="0.7"/><path d="M32 17V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
         <div class="benefit-title">בכל רחבי הארץ</div>
         <div class="benefit-desc">מנהריה עד אילת - עשרות בתי ספר</div>
       </div>
-
-      <!-- ליווי מגיל צעיר -->
       <div class="benefit-card">
-        <div class="benefit-icon"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- vertical timeline line -->
-          <line x1="32" y1="8" x2="32" y2="56" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
-          <!-- nodes -->
-          <circle cx="32" cy="14" r="4" stroke="currentColor" stroke-width="2"/>
-          <circle cx="32" cy="32" r="4" stroke="currentColor" stroke-width="2"/>
-          <circle cx="32" cy="50" r="4" stroke="currentColor" stroke-width="2"/>
-          <!-- inner fill top node (smallest = young) -->
-          <circle cx="32" cy="14" r="1.5" fill="currentColor" opacity="0.5"/>
-          <!-- inner fill mid node -->
-          <circle cx="32" cy="32" r="2" fill="currentColor" opacity="0.65"/>
-          <!-- inner fill bottom node (largest = army) -->
-          <circle cx="32" cy="50" r="2.5" fill="currentColor" opacity="0.85"/>
-          <!-- horizontal labels right -->
-          <line x1="36" y1="14" x2="50" y2="14" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity="0.4"/>
-          <line x1="36" y1="32" x2="52" y2="32" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity="0.4"/>
-          <line x1="36" y1="50" x2="54" y2="50" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" opacity="0.7"/>
-        </svg></div>
+        <div class="benefit-icon"><svg viewBox="0 0 64 64" fill="none"><line x1="32" y1="8" x2="32" y2="56" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/><circle cx="32" cy="14" r="4" stroke="currentColor" stroke-width="2"/><circle cx="32" cy="32" r="4" stroke="currentColor" stroke-width="2"/><circle cx="32" cy="50" r="4" stroke="currentColor" stroke-width="2"/><circle cx="32" cy="14" r="1.5" fill="currentColor" opacity="0.5"/><circle cx="32" cy="32" r="2" fill="currentColor" opacity="0.65"/><circle cx="32" cy="50" r="2.5" fill="currentColor" opacity="0.85"/><line x1="36" y1="14" x2="50" y2="14" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity="0.4"/><line x1="36" y1="32" x2="52" y2="32" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity="0.4"/><line x1="36" y1="50" x2="54" y2="50" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" opacity="0.7"/></svg></div>
         <div class="benefit-title">ליווי מגיל צעיר</div>
         <div class="benefit-desc">מכיתה ט׳ ועד השירות הצבאי ומעבר</div>
       </div>
     </div>
 
-    <!-- CERTIFICATES STRIP -->
     <div class="certs-strip">
       <div class="certs-grid">
         <div class="cert-item">
-          <div class="cert-circle">
-            <svg viewBox="0 0 38 38" fill="none"><rect x="5" y="4" width="22" height="28" rx="2" stroke="currentColor" stroke-width="2"/><path d="M9 10H23M9 15H23M9 20H17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="26" cy="28" r="6" fill="white" stroke="currentColor" stroke-width="2"/><path d="M23 28L25 30L29 26" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
+          <div class="cert-circle"><svg viewBox="0 0 38 38" fill="none"><rect x="5" y="4" width="22" height="28" rx="2" stroke="currentColor" stroke-width="2"/><path d="M9 10H23M9 15H23M9 20H17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="26" cy="28" r="6" fill="white" stroke="currentColor" stroke-width="2"/><path d="M23 28L25 30L29 26" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
           <div class="cert-label">תעודת בגרות מלאה</div>
         </div>
         <div class="cert-item">
-          <div class="cert-circle">
-            <svg viewBox="0 0 38 38" fill="none"><path d="M19 6L34 13L19 20L4 13L19 6Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M4 13V24" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M9 16V26C9 26 13 30 19 30C25 30 29 26 29 26V16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
+          <div class="cert-circle"><svg viewBox="0 0 38 38" fill="none"><path d="M19 6L34 13L19 20L4 13L19 6Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M4 13V24" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M9 16V26C9 26 13 30 19 30C25 30 29 26 29 26V16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
           <div class="cert-label">תעודת בגרות טכנולוגית</div>
         </div>
         <div class="cert-item">
-          <div class="cert-circle">
-            <svg viewBox="0 0 38 38" fill="none"><rect x="4" y="8" width="24" height="18" rx="2" stroke="currentColor" stroke-width="2"/><path d="M10 26L8 32M22 26L24 32M8 32H24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 13H21M9 18H17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="28" cy="10" r="6" fill="white" stroke="currentColor" stroke-width="2"/><path d="M28 7V13M25 10H31" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-          </div>
+          <div class="cert-circle"><svg viewBox="0 0 38 38" fill="none"><rect x="4" y="8" width="24" height="18" rx="2" stroke="currentColor" stroke-width="2"/><path d="M10 26L8 32M22 26L24 32M8 32H24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 13H21M9 18H17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="28" cy="10" r="6" fill="white" stroke="currentColor" stroke-width="2"/><path d="M28 7V13M25 10H31" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
           <div class="cert-label">תעודת מקצוע אזרחית</div>
         </div>
         <div class="cert-item">
-          <div class="cert-circle">
-            <svg viewBox="0 0 38 38" fill="none"><path d="M19 6L28 10V20C28 25 24 29 19 31C14 29 10 25 10 20V10L19 6Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M14 19L17 22L24 15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
+          <div class="cert-circle"><svg viewBox="0 0 38 38" fill="none"><path d="M19 6L28 10V20C28 25 24 29 19 31C14 29 10 25 10 20V10L19 6Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M14 19L17 22L24 15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
           <div class="cert-label">הכנה לצבא</div>
         </div>
       </div>
@@ -563,6 +378,7 @@
               <option value="">בחרו כיתה...</option>
               <option value="ח׳">ח׳</option>
               <option value="ט׳">ט׳</option>
+              <option value="עתודה טכנולוגית">עתודה טכנולוגית</option>
             </select>
             <div class="field-error">נא לבחור כיתה</div>
           </div>
@@ -598,9 +414,7 @@
     <img class="footer-logo" src="logo.jpg" alt="חיל האוויר" />
     <span class="footer-name">חיל האוויר - מסלול שוחרות</span>
   </div>
-  <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
-    <div style="font-size:12px;color:rgba(255,255,255,0.18)">פותח על ידי שמעון בר יוחאי אליהו</div>
-  </div>
+  <div style="font-size:12px;color:rgba(255,255,255,0.18)">פותח על ידי שמעון בר יוחאי אליהו</div>
 </footer>
 
 <script>
@@ -684,54 +498,28 @@
       var ok = [
         validate('name',  function(v) { return v.length >= 2; }),
         validate('city',  function(v) { return v.length >= 2; }),
-        validate('phone', function(v) {
-          var digits = v.replace(/[\s\-]/g, '');
-          // טלפון נייד: 05X-XXXXXXX = 10 ספרות, מתחיל ב-05
-          // טלפון משרדי: 0X-XXXXXXX = 9-10 ספרות, מתחיל ב-0
-          // טווח: 9-10 ספרות בסה"כ, מתחיל ב-0
-          return /^0\d{8,9}$/.test(digits);
-        }),
+        validate('phone', function(v) { var digits = v.replace(/[\s\-]/g, ''); return /^0\d{8,9}$/.test(digits); }),
         validate('grade', function(v) { return v !== ''; }),
       ].every(Boolean);
       if (!ok) return;
       form.style.display = 'none';
       if (successBox) successBox.classList.add('visible');
-      var payload = {
-        name: document.getElementById('name').value.trim(),
-        city: document.getElementById('city').value.trim(),
-        phone: document.getElementById('phone').value.trim(),
-        grade: document.getElementById('grade').value,
-        source: document.getElementById('source') ? document.getElementById('source').value : '',
-        timestamp: new Date().toLocaleString('he-IL', { timeZone: 'Asia/Jerusalem' }),
-      };
-      fetch(APPS_SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
-        .catch(function() { setTimeout(function() { fetch(APPS_SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) }); }, 3000); });
+      var payload = { name: document.getElementById('name').value.trim(), city: document.getElementById('city').value.trim(), phone: document.getElementById('phone').value.trim(), grade: document.getElementById('grade').value, source: document.getElementById('source') ? document.getElementById('source').value : '', timestamp: new Date().toLocaleString('he-IL', { timeZone: 'Asia/Jerusalem' }) };
+      fetch(APPS_SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) }).catch(function() { setTimeout(function() { fetch(APPS_SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) }); }, 3000); });
     });
   }
 
-  // ── ולידציה חיה של טלפון ──
   var phoneInput = document.getElementById('phone');
   phoneInput.addEventListener('input', function() {
-    // אפשר רק ספרות ומקף
     var val = this.value.replace(/[^\d\-]/g, '');
-    // הגבל ל-10 ספרות (לא כולל מקפים)
     var digits = val.replace(/-/g, '');
-    if (digits.length > 10) {
-      // חתוך לפי מיקום הספרה העשירית
-      var count = 0;
-      val = val.split('').filter(function(ch) {
-        if (ch === '-') return true;
-        count++;
-        return count <= 10;
-      }).join('');
-    }
+    if (digits.length > 10) { var count = 0; val = val.split('').filter(function(ch) { if (ch === '-') return true; count++; return count <= 10; }).join(''); }
     if (this.value !== val) this.value = val;
   });
   phoneInput.addEventListener('keypress', function(e) {
-    if (!/[\d\-]/.test(e.key) && !['Backspace','Delete','ArrowLeft','ArrowRight','Tab'].includes(e.key)) {
-      e.preventDefault();
-    }
+    if (!/[\d\-]/.test(e.key) && !['Backspace','Delete','ArrowLeft','ArrowRight','Tab'].includes(e.key)) e.preventDefault();
   });
+
   var cityInput = document.getElementById('city');
   var citySuggestions = document.getElementById('city-suggestions');
   if (cityInput && citySuggestions) {
