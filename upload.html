@@ -359,6 +359,7 @@ function uploadFile(docId, file) {
     var doc = DOCS.find(function(d){ return d.id === docId; });
     fetch(APPS_SCRIPT_URL, {
       method:'POST',
+      mode:'no-cors',
       headers:{'Content-Type':'application/json'},
       body: JSON.stringify({
         action:    'uploadDoc',
@@ -373,16 +374,12 @@ function uploadFile(docId, file) {
         data:      base64,
       })
     })
-    .then(function(r){ return r.json(); })
-    .then(function(d){
+    .then(function(){
       if (loadEl) loadEl.style.display = 'none';
-      if (d.success) {
-        uploads[docId] = { docId:docId, fileName:file.name, url:d.url };
-        renderApp();
-      } else {
-        alert('שגיאה בהעלאה: ' + (d.error||'נסה שוב'));
-      }
-    }).catch(function(){
+      // טעון מחדש את העלאות כדי לקבל את ה-URL שנשמר
+      loadUploads();
+    })
+    .catch(function(){
       if (loadEl) loadEl.style.display = 'none';
       alert('שגיאה בחיבור. נסה שוב.');
     });
