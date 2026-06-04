@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>העלאת מסמכים - שוחרות חיל האוויר</title>
+<link rel="icon" href="IAF_New_Logo_2018.png" type="image/png"/>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --navy:#0b1f3a;--navy2:#102a4c;--teal:#1ab8d4;--gold:#b68a2c;
+  --green:#067647;--red:#b42318;--border:#d0d7e4;--bg:#f0f5fb;
+  --white:#fff;--light:#667085;--mid:#344054;--text:#101828;
+}
+html,body{min-height:100%;font-family:'Heebo',sans-serif;background:var(--bg);color:var(--text);direction:rtl;}
+body{padding:0;}
+
+/* HEADER */
+.header{
+  background:linear-gradient(135deg,#071a3d 0%,var(--navy) 100%);
+  padding:0 32px;min-height:64px;display:flex;align-items:center;
+  justify-content:space-between;border-bottom:3px solid var(--teal);
+  box-shadow:0 4px 14px rgba(0,0,0,.2);
+}
+.header-logo{height:40px;}
+.header-title{font-size:18px;font-weight:700;color:#fff;}
+.header-sub{font-size:11px;color:#b9c4d3;margin-top:2px;}
+.btn-logout{background:none;border:1px solid #415877;color:#d6deea;padding:6px 12px;
+  font-size:12px;font-weight:500;cursor:pointer;border-radius:6px;font-family:Heebo,sans-serif;}
+.btn-logout:hover{background:#102a4c;color:#fff;}
+
+/* LOGIN */
+#loginScreen{
+  position:fixed;inset:0;
+  background:linear-gradient(145deg,#071529 0%,#0b1f3a 58%,#102a4c 100%);
+  display:flex;align-items:center;justify-content:center;z-index:999;padding:20px;
+}
+.login-box{
+  background:#fff;border-radius:10px;box-shadow:0 22px 54px rgba(0,0,0,.26);
+  padding:32px;width:100%;max-width:380px;text-align:center;
+  border:1px solid #d0d7e2;position:relative;overflow:hidden;
+}
+.login-box::before{content:"";position:absolute;inset:0 0 auto 0;height:4px;background:var(--teal);}
+.login-logo{height:52px;margin-bottom:16px;}
+.login-title{font-size:20px;font-weight:700;color:var(--navy);margin-bottom:6px;}
+.login-sub{font-size:13px;color:var(--light);margin-bottom:22px;line-height:1.6;}
+.login-input{
+  width:100%;height:44px;padding:0 14px;border:1.5px solid var(--border);
+  border-radius:8px;font-family:Heebo,sans-serif;font-size:14px;color:var(--text);
+  margin-bottom:12px;outline:none;direction:rtl;
+}
+.login-input:focus{border-color:var(--navy);box-shadow:0 0 0 3px rgba(11,31,58,.08);}
+.login-btn{
+  width:100%;height:46px;background:linear-gradient(135deg,var(--navy),#1a4a9f);
+  color:#fff;border:none;border-radius:8px;font-family:Heebo,sans-serif;
+  font-size:15px;font-weight:700;cursor:pointer;margin-top:4px;
+}
+.login-btn:disabled{opacity:.6;}
+.login-err{color:var(--red);font-size:12px;margin-top:10px;display:none;font-weight:500;}
+
+/* APP */
+#app{display:none;min-height:100vh;}
+.content{max-width:900px;margin:24px auto;padding:0 20px 60px;}
+
+/* STUDENT INFO CARD */
+.student-card{
+  background:#fff;border:1px solid var(--border);border-radius:10px;
+  padding:20px 24px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,.06);
+  display:flex;align-items:center;gap:20px;
+}
+.student-avatar{
+  width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--navy),#1a4a9f);
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;font-weight:700;color:#fff;flex-shrink:0;
+}
+.student-info-name{font-size:18px;font-weight:700;color:var(--navy);}
+.student-info-meta{font-size:13px;color:var(--light);margin-top:4px;}
+.student-badge{display:inline-flex;align-items:center;gap:4px;background:#f0f5ff;color:#1a4a9f;
+  border:1px solid #c7d7ea;border-radius:999px;padding:3px 10px;font-size:12px;font-weight:600;margin-left:8px;}
+
+/* PROGRESS */
+.progress-wrap{
+  background:#fff;border:1px solid var(--border);border-radius:10px;
+  padding:16px 24px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,.06);
+}
+.progress-title{font-size:13px;font-weight:600;color:var(--light);margin-bottom:10px;}
+.progress-bar-bg{height:8px;background:#e4e7ec;border-radius:99px;overflow:hidden;}
+.progress-bar-fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--navy));border-radius:99px;transition:width .4s;}
+.progress-text{font-size:12px;color:var(--light);margin-top:6px;}
+
+/* DOC CARDS */
+.docs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;}
+.doc-card{
+  background:#fff;border:1.5px solid var(--border);border-radius:10px;
+  padding:16px;position:relative;transition:box-shadow .15s,border-color .15s;
+  box-shadow:0 2px 6px rgba(0,0,0,.05);
+}
+.doc-card:hover{box-shadow:0 6px 18px rgba(0,0,0,.1);}
+.doc-card.uploaded{border-color:#abefc6;background:#f6fef9;}
+.doc-card.missing{border-color:#fecdca;background:#fff8f7;}
+.doc-icon{font-size:28px;margin-bottom:10px;}
+.doc-name{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:4px;}
+.doc-desc{font-size:11.5px;color:var(--light);margin-bottom:14px;line-height:1.5;}
+.doc-status{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px;
+  margin-bottom:12px;
+}
+.doc-status.ok{background:#ecfdf3;color:var(--green);border:1px solid #abefc6;}
+.doc-status.missing{background:#fef3f2;color:var(--red);border:1px solid #fecdca;}
+.doc-status.optional{background:#fffaeb;color:#b54708;border:1px solid #fedf89;}
+
+.upload-btn{
+  width:100%;height:40px;border:1.5px dashed var(--border);background:#f8faff;
+  border-radius:8px;font-family:Heebo,sans-serif;font-size:13px;font-weight:600;
+  color:#1a4a9f;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;
+  transition:all .15s;
+}
+.upload-btn:hover{border-color:#1a4a9f;background:#eef4ff;}
+.upload-btn input[type=file]{display:none;}
+.uploaded-file{
+  display:flex;align-items:center;gap:8px;padding:8px 10px;
+  background:#f0fdf4;border:1px solid #abefc6;border-radius:6px;
+  font-size:12px;color:var(--green);font-weight:500;margin-top:6px;
+}
+.uploaded-file a{color:var(--green);text-decoration:none;font-weight:600;}
+.uploaded-file a:hover{text-decoration:underline;}
+.replace-btn{background:none;border:none;color:var(--light);cursor:pointer;font-size:11px;
+  font-family:Heebo,sans-serif;margin-right:auto;padding:0;}
+.replace-btn:hover{color:var(--red);}
+.uploading{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--light);margin-top:8px;}
+.spinner-sm{width:16px;height:16px;border:2px solid #d0d5dd;border-top-color:#1a4a9f;
+  border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0;}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* SECTION TITLE */
+.section-title{
+  font-size:15px;font-weight:700;color:var(--navy);margin:20px 0 12px;
+  padding-bottom:8px;border-bottom:2px solid var(--teal);display:flex;align-items:center;gap:8px;
+}
+
+/* MANAGER VIEW */
+.manager-table{width:100%;border-collapse:collapse;background:#fff;border-radius:10px;
+  overflow:hidden;border:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.06);}
+.manager-table th{background:#f2f4f7;padding:10px 14px;text-align:right;font-size:12px;
+  font-weight:600;color:#475467;border-bottom:1px solid var(--border);}
+.manager-table td{padding:10px 14px;border-bottom:1px solid #eef1f5;font-size:13px;color:var(--mid);}
+.manager-table tr:last-child td{border-bottom:none;}
+.manager-table tr:hover td{background:#f8faff;}
+.doc-dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-left:3px;}
+.dot-green{background:#22c55e;}.dot-red{background:#ef4444;}.dot-gray{background:#d1d5db;}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+  .header{padding:0 16px;}.content{padding:0 12px 40px;}
+  .student-card{flex-direction:column;text-align:center;}
+  .docs-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="loginScreen">
+  <div class="login-box">
+    <img class="login-logo" src="IAF_New_Logo_2018.png" alt=""/>
+    <div class="login-title">העלאת מסמכים</div>
+    <div class="login-sub">שוחרות חיל האוויר<br/>הזן שם מלא וטלפון כפי שנרשמו</div>
+    <input class="login-input" id="loginName" type="text" placeholder="שם מלא"/>
+    <input class="login-input" id="loginPhone" type="tel" placeholder="מספר טלפון" dir="ltr" style="text-align:right"/>
+    <button class="login-btn" id="loginBtn" onclick="doLogin()">כניסה</button>
+    <div class="login-err" id="loginErr">הפרטים לא נמצאו במערכת. בדוק שוב.</div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <div class="header">
+    <div style="display:flex;align-items:center;gap:14px">
+      <img class="header-logo" src="IAF_New_Logo_2018.png" alt=""/>
+      <div>
+        <div class="header-title">העלאת מסמכים</div>
+        <div class="header-sub" id="headerSub">שוחרות חיל האוויר</div>
+      </div>
+    </div>
+    <button class="btn-logout" onclick="doLogout()">יציאה</button>
+  </div>
+
+  <div class="content" id="mainContent">
+    <div class="loading-wrap" style="text-align:center;padding:60px;color:#667085">
+      <div class="spinner-sm" style="width:28px;height:28px;margin:0 auto 14px;border-width:3px"></div>
+      <div>טוען...</div>
+    </div>
+  </div>
+</div>
+
+<script>
+var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby7189tlPKWZKXNEAipGZd7Hy2oe6L9k1LRJGRHU7z1d9RDaXS0GHt6rnp7-8wWINVc/exec';
+
+var DOCS = [
+  {id:'tz',       name:'צילום ת"ז + ספח', icon:'🪪', desc:'שני צדדי תעודת הזהות + ספח', required:true},
+  {id:'machazit', name:'תעודת מחצית',      icon:'📄', desc:'תעודת מחצית אחרונה',          required:true},
+  {id:'reva',     name:'תעודת רבעון',      icon:'📋', desc:'תעודת רבעון (אם קיימת)',      required:false},
+  {id:'passport', name:'תמונת פספורט',     icon:'📸', desc:'תמונה על רקע לבן, פנים בלבד',required:true},
+];
+
+var currentLead = null;
+var isManager   = false;
+var uploads     = {}; // { docId: { name, url, driveId } }
+
+function getSchoolYear() {
+  var now = new Date();
+  var y = now.getFullYear();
+  var m = now.getMonth() + 1;
+  return m >= 9 ? 'תשפ"' + String.fromCharCode(1488 + (y - 2024)) : 'תשפ"' + String.fromCharCode(1488 + (y - 2025));
+}
+
+// ── LOGIN ──
+function doLogin() {
+  var name  = document.getElementById('loginName').value.trim();
+  var phone = document.getElementById('loginPhone').value.replace(/[^\d]/g,'');
+  var errEl = document.getElementById('loginErr');
+  errEl.style.display = 'none';
+  if (!name || !phone) { errEl.style.display=''; errEl.textContent='נא למלא שם וטלפון'; return; }
+  var btn = document.getElementById('loginBtn');
+  btn.disabled = true; btn.textContent = 'מתחבר...';
+
+  fetch(APPS_SCRIPT_URL + '?action=findLead&name=' + encodeURIComponent(name) + '&phone=' + encodeURIComponent(phone))
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      btn.disabled = false; btn.textContent = 'כניסה';
+      if (!d.success || !d.lead) { errEl.style.display=''; return; }
+      currentLead = d.lead;
+      isManager   = false;
+      sessionStorage.setItem('uploadLead', JSON.stringify(currentLead));
+      showApp();
+    }).catch(function(){
+      btn.disabled = false; btn.textContent = 'כניסה';
+      errEl.textContent = 'שגיאה בחיבור. נסה שוב.'; errEl.style.display='';
+    });
+}
+
+function doLogout() {
+  sessionStorage.removeItem('uploadLead');
+  currentLead = null; uploads = {};
+  document.getElementById('loginScreen').style.display = 'flex';
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('loginName').value = '';
+  document.getElementById('loginPhone').value = '';
+  document.getElementById('loginErr').style.display = 'none';
+  document.getElementById('loginBtn').textContent = 'כניסה';
+}
+
+// ── SHOW APP ──
+function showApp() {
+  document.getElementById('loginScreen').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+  var r = currentLead;
+  document.getElementById('headerSub').textContent = 'שוחרות חיל האוויר - ' + (r.branch||'');
+  loadUploads();
+}
+
+function loadUploads() {
+  fetch(APPS_SCRIPT_URL + '?action=getUploads&uuid=' + encodeURIComponent(currentLead.uuid))
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      uploads = {};
+      if (d.uploads) d.uploads.forEach(function(u){ uploads[u.docId] = u; });
+      renderApp();
+    }).catch(function(){ renderApp(); });
+}
+
+function renderApp() {
+  var r = currentLead;
+  var grade = r.grade || '';
+  var year  = getSchoolYear();
+
+  var uploaded = Object.keys(uploads).length;
+  var required = DOCS.filter(function(d){ return d.required; }).length;
+  var pct = required > 0 ? Math.round(Math.min(uploaded, required) / required * 100) : 0;
+
+  var html =
+    // כרטיס תלמיד
+    '<div class="student-card">' +
+      '<div class="student-avatar">' + (r.name||'?')[0] + '</div>' +
+      '<div>' +
+        '<div class="student-info-name">' + (r.name||'-') + '</div>' +
+        '<div class="student-info-meta">' +
+          '<span class="student-badge">✈️ ' + (r.branch||'-') + '</span>' +
+          '<span class="student-badge">📚 ' + (grade||'-') + '</span>' +
+          '<span class="student-badge">📅 ' + year + '</span>' +
+        '</div>' +
+      '</div>' +
+    '</div>' +
+
+    // progress
+    '<div class="progress-wrap">' +
+      '<div class="progress-title">סטטוס העלאת מסמכים</div>' +
+      '<div class="progress-bar-bg"><div class="progress-bar-fill" style="width:' + pct + '%"></div></div>' +
+      '<div class="progress-text">' + uploaded + ' מתוך ' + required + ' מסמכים חובה הועלו (' + pct + '%)</div>' +
+    '</div>' +
+
+    '<div class="section-title">📁 מסמכים להעלאה</div>' +
+    '<div class="docs-grid">';
+
+  DOCS.forEach(function(doc) {
+    var up = uploads[doc.id];
+    var isUploaded = !!up;
+    html += '<div class="doc-card ' + (isUploaded ? 'uploaded' : (doc.required ? 'missing' : '')) + '">' +
+      '<div class="doc-icon">' + doc.icon + '</div>' +
+      '<div class="doc-name">' + doc.name + '</div>' +
+      '<div class="doc-desc">' + doc.desc + '</div>' +
+      '<div class="doc-status ' + (isUploaded ? 'ok' : (doc.required ? 'missing' : 'optional')) + '">' +
+        (isUploaded ? '✅ הועלה' : (doc.required ? '❌ חסר' : '⚠️ אופציונלי')) +
+      '</div>';
+
+    if (isUploaded) {
+      html += '<div class="uploaded-file">' +
+        '<span>✓</span>' +
+        '<a href="' + up.url + '" target="_blank">' + up.fileName + '</a>' +
+        '<button class="replace-btn" onclick="triggerUpload(\'' + doc.id + '\')">החלף</button>' +
+      '</div>';
+    }
+
+    html += '<label class="upload-btn" onclick="triggerUpload(\'' + doc.id + '\')">' +
+        '<span>📎</span><span>' + (isUploaded ? 'החלף קובץ' : 'בחר קובץ להעלאה') + '</span>' +
+      '</label>' +
+      '<div id="uploading_' + doc.id + '" style="display:none" class="uploading">' +
+        '<div class="spinner-sm"></div><span>מעלה...</span>' +
+      '</div>' +
+    '</div>';
+  });
+
+  html += '</div>';
+  document.getElementById('mainContent').innerHTML = html;
+}
+
+function triggerUpload(docId) {
+  var input = document.createElement('input');
+  input.type = 'file';
+  input.accept = 'image/*,application/pdf';
+  input.capture = 'environment';
+  input.onchange = function() {
+    if (!input.files || !input.files[0]) return;
+    uploadFile(docId, input.files[0]);
+  };
+  input.click();
+}
+
+function uploadFile(docId, file) {
+  if (file.size > 10 * 1024 * 1024) { alert('הקובץ גדול מדי (מקסימום 10MB)'); return; }
+  var loadEl = document.getElementById('uploading_' + docId);
+  if (loadEl) loadEl.style.display = 'flex';
+
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    var base64 = e.target.result.split(',')[1];
+    var doc = DOCS.find(function(d){ return d.id === docId; });
+    fetch(APPS_SCRIPT_URL, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        action:    'uploadDoc',
+        uuid:      currentLead.uuid,
+        name:      currentLead.name,
+        branch:    currentLead.branch,
+        grade:     currentLead.grade,
+        docId:     docId,
+        docName:   doc ? doc.name : docId,
+        fileName:  file.name,
+        mimeType:  file.type,
+        data:      base64,
+      })
+    })
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      if (loadEl) loadEl.style.display = 'none';
+      if (d.success) {
+        uploads[docId] = { docId:docId, fileName:file.name, url:d.url };
+        renderApp();
+      } else {
+        alert('שגיאה בהעלאה: ' + (d.error||'נסה שוב'));
+      }
+    }).catch(function(){
+      if (loadEl) loadEl.style.display = 'none';
+      alert('שגיאה בחיבור. נסה שוב.');
+    });
+  };
+  reader.readAsDataURL(file);
+}
+
+// ── INIT ──
+document.addEventListener('DOMContentLoaded', function() {
+  var saved = sessionStorage.getItem('uploadLead');
+  if (saved) {
+    try {
+      currentLead = JSON.parse(saved);
+      showApp();
+    } catch(e) { sessionStorage.removeItem('uploadLead'); }
+  }
+  document.getElementById('loginPhone').addEventListener('keydown', function(e){ if(e.key==='Enter') doLogin(); });
+  document.getElementById('loginName').addEventListener('keydown', function(e){ if(e.key==='Enter') doLogin(); });
+});
+</script>
+</body>
+</html>
