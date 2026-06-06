@@ -229,7 +229,7 @@
       .benefit-desc { font-size: 14px; }
     }
 
-    .facts-wrap { margin-top: 40px; max-width: 720px; }
+    .facts-wrap { margin-top: 40px; }
     .facts-tag { font-family: 'Secular One','Heebo',sans-serif; font-size: 19px; color: #0d2257; margin-bottom: 20px; letter-spacing: .04em; }
     .facts-list { list-style: none; display: flex; flex-direction: column; padding: 0; margin: 0; }
     .fact-item { display: flex; align-items: flex-start; gap: 16px; padding: 16px 0; border-bottom: 1px solid #cfdaee; font-size: 16px; line-height: 1.7; color: #2e3f60; opacity: 0; transform: translateX(16px); transition: opacity .5s ease, transform .5s ease; }
@@ -335,16 +335,6 @@
       </div>
     </div>
 
-
-    <div class="facts-wrap" id="factsWrap">
-      <div class="facts-tag">4 סיבות לבחור במסלול</div>
-      <ul class="facts-list">
-        <li class="fact-item"><span class="fact-num">1</span><span>תכנית הלימודים משלבת לימודים תיכוניים עם מסלול לבגרות מלאה ולימודי מקצוע טכני.</span></li>
-        <li class="fact-item"><span class="fact-num">2</span><span>זכאות להמשיך ללימודי תעודה במכללה להנדסאים - פיתוח קריירה מבוקשת בתחום ההנדסה.</span></li>
-        <li class="fact-item"><span class="fact-num">3</span><span>ימי כיף, טיולים מגבשים ופרויקטים למנהיגות והעצמה אישית לאורך השנה.</span></li>
-        <li class="fact-item"><span class="fact-num">4</span><span>בוגרי המסלול זוכים לשרת במערך הטכני של חיל האוויר בשירות הצבאי.</span></li>
-      </ul>
-    </div>
     <div class="certs-strip">
       <div class="certs-grid">
         <div class="cert-item">
@@ -426,6 +416,20 @@
       </div>
     </div>
   </aside>
+
+<!-- FACTS SECTION — רוחב מלא מחוץ ל-content-wrap -->
+<div style="background:#f7f9fc;border-top:1px solid #dde4f0;border-bottom:1px solid #dde4f0;padding:56px 6vw">
+  <div style="max-width:900px;margin:0 auto">
+    <div class="facts-tag" style="text-align:center;margin-bottom:32px">4 סיבות לבחור במסלול</div>
+    <div id="factsWrap" style="display:grid;grid-template-columns:1fr 1fr;gap:0 48px">
+      <div class="fact-item" style="opacity:0;transform:translateX(16px);transition:opacity .5s ease,transform .5s ease"><span class="fact-num">1</span><span>תכנית הלימודים משלבת לימודים תיכוניים עם מסלול לבגרות מלאה ולימודי מקצוע טכני.</span></div>
+      <div class="fact-item" style="opacity:0;transform:translateX(16px);transition:opacity .5s ease,transform .5s ease;transition-delay:.12s"><span class="fact-num">2</span><span>זכאות להמשיך ללימודי תעודה במכללה להנדסאים - פיתוח קריירה מבוקשת בתחום ההנדסה.</span></div>
+      <div class="fact-item" style="border-bottom:none;opacity:0;transform:translateX(16px);transition:opacity .5s ease,transform .5s ease;transition-delay:.24s"><span class="fact-num">3</span><span>ימי כיף, טיולים מגבשים ופרויקטים למנהיגות והעצמה אישית לאורך השנה.</span></div>
+      <div class="fact-item" style="border-bottom:none;opacity:0;transform:translateX(16px);transition:opacity .5s ease,transform .5s ease;transition-delay:.36s"><span class="fact-num">4</span><span>בוגרי המסלול זוכים לשרת במערך הטכני של חיל האוויר בשירות הצבאי.</span></div>
+    </div>
+  </div>
+</div>
+
 </div>
 
 <footer class="site-footer">
@@ -585,13 +589,15 @@
   });
 
   // Facts animation
-  var facts = document.querySelectorAll('.fact-item'), factsDone = false;
   var factsWrap = document.getElementById('factsWrap');
   if (factsWrap) {
+    var factsDone = false;
     new IntersectionObserver(function(entries) {
       if (entries[0].isIntersecting && !factsDone) {
         factsDone = true;
-        facts.forEach(function(f, i) { setTimeout(function() { f.classList.add('vis'); }, i * 120); });
+        factsWrap.querySelectorAll('.fact-item').forEach(function(f) {
+          f.style.opacity='1'; f.style.transform='none';
+        });
       }
     }, { threshold: .2 }).observe(factsWrap);
   }
