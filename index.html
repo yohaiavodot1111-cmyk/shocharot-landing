@@ -236,6 +236,21 @@
     .fact-item:last-child { border-bottom: none; }
     .fact-item.vis { opacity: 1; transform: none; }
     .fact-num { font-family: 'Secular One',sans-serif; font-size: 28px; font-weight: 400; color: #1ab8d4; line-height: 1; flex-shrink: 0; min-width: 32px; text-align: center; opacity: .7; }
+    /* ── ENHANCED ANIMATIONS ── */
+    @keyframes pulseGlow {
+      0%,100% { box-shadow: 0 0 10px 2px rgba(240,180,41,0.2), 0 0 20px 4px rgba(240,180,41,0.08); }
+      50%      { box-shadow: 0 0 18px 4px rgba(240,180,41,0.4), 0 0 32px 8px rgba(240,180,41,0.18); }
+    }
+    .cert-item:hover .cert-circle { animation: pulseGlow 1.4s ease-in-out infinite; }
+
+    @keyframes floatUp {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(-6px); }
+    }
+    .hero-logo { animation: floatUp 4s ease-in-out infinite; }
+
+    .benefit-card { transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease; }
+
   </style>
 </head>
 <body>
@@ -335,6 +350,7 @@
       </div>
     </div>
 
+
     <div class="certs-strip">
       <div class="certs-grid">
         <div class="cert-item">
@@ -414,6 +430,7 @@
           <div class="success-text">תודה על ההרשמה.<br />נחזור אליכם עם פרטים על הערב הפתוח.</div>
         </div>
       </div>
+
     </div>
   </aside>
 
@@ -601,6 +618,111 @@
       }
     }, { threshold: .2 }).observe(factsWrap);
   }
+
+  // ── ENHANCED ANIMATIONS ──
+
+  // 1. Hero title — reveal מילה אחר מילה
+  (function(){
+    var h1 = document.querySelector('.hero-title');
+    if (!h1) return;
+    var lines = h1.innerHTML.split('\n').map(function(l){ return l.trim(); }).filter(Boolean);
+    // פשוט הוסף glow pulse לאחר 1 שנייה
+    setTimeout(function(){
+      h1.style.transition = 'text-shadow .6s ease';
+      h1.style.textShadow = '0 0 80px rgba(26,184,212,0.35), 0 0 30px rgba(26,184,212,0.2), 0 4px 20px rgba(0,0,0,0.5)';
+    }, 800);
+  })();
+
+  // 2. קו teal מתחת לכותרת Hero שמצייר את עצמו
+  (function(){
+    var heroText = document.querySelector('.hero-text');
+    if (!heroText) return;
+    var line = document.createElement('div');
+    line.style.cssText = 'height:2px;background:linear-gradient(90deg,transparent,#1ab8d4,transparent);width:0;margin:16px auto 0;transition:width 1.2s cubic-bezier(.4,0,.2,1);max-width:320px;border-radius:1px;';
+    heroText.appendChild(line);
+    setTimeout(function(){ line.style.width = '100%'; }, 600);
+  })();
+
+  // 3. כרטיסי תעודות — scale reveal עם stagger
+  (function(){
+    var certs = document.querySelectorAll('.cert-item');
+    if (!certs.length) return;
+    certs.forEach(function(c){
+      c.style.opacity = '0';
+      c.style.transform = 'scale(0.8) translateY(12px)';
+      c.style.transition = 'opacity .5s ease, transform .5s ease';
+    });
+    var certsDone = false;
+    var firstCert = certs[0].closest('.certs-grid') || certs[0];
+    new IntersectionObserver(function(entries){
+      if (entries[0].isIntersecting && !certsDone){
+        certsDone = true;
+        certs.forEach(function(c, i){
+          setTimeout(function(){
+            c.style.opacity = '1';
+            c.style.transform = 'scale(1) translateY(0)';
+          }, i * 100);
+        });
+      }
+    }, { threshold: 0.2 }).observe(firstCert);
+  })();
+
+  // 4. כותרות sections — underline שמצייר את עצמו ב-hover
+  (function(){
+    document.querySelectorAll('.article-title, .facts-tag').forEach(function(el){
+      el.style.cssText += 'position:relative;display:inline-block;cursor:default;';
+      var u = document.createElement('span');
+      u.style.cssText = 'position:absolute;bottom:-3px;right:0;height:2px;background:linear-gradient(90deg,transparent,#1ab8d4);width:0;transition:width .5s ease;border-radius:1px;';
+      el.appendChild(u);
+      new IntersectionObserver(function(entries, obs){
+        if(entries[0].isIntersecting){ u.style.width='100%'; obs.unobserve(el); }
+      },{ threshold:0.5 }).observe(el);
+    });
+  })();
+
+  // 5. Stats bar — glow pulse על המספרים אחרי הספירה
+  (function(){
+    var statsBar = document.getElementById('statsBar');
+    if (!statsBar) return;
+    var done = false;
+    new IntersectionObserver(function(entries){
+      if(entries[0].isIntersecting && !done){
+        done = true;
+        setTimeout(function(){
+          document.querySelectorAll('.stat-num').forEach(function(el){
+            el.style.transition = 'text-shadow .4s ease';
+            el.style.textShadow = '0 0 20px rgba(26,184,212,0.6)';
+            setTimeout(function(){ el.style.textShadow = ''; }, 800);
+          });
+        }, 1600);
+      }
+    }, { threshold: 0.4 }).observe(statsBar);
+  })();
+
+  // 6. benefit-card icon — pulse עדין ב-hover
+  (function(){
+    document.querySelectorAll('.benefit-icon').forEach(function(icon){
+      icon.style.transition = 'transform .3s ease, filter .3s ease';
+      icon.parentElement.addEventListener('mouseenter', function(){
+        icon.style.transform = 'scale(1.15) translateY(-2px)';
+        icon.style.filter = 'drop-shadow(0 0 8px rgba(26,184,212,0.5))';
+      });
+      icon.parentElement.addEventListener('mouseleave', function(){
+        icon.style.transform = '';
+        icon.style.filter = '';
+      });
+    });
+  })();
+
+  // 7. Facts items — stagger עם transition-delay
+  (function(){
+    if (factsWrap) {
+      factsWrap.querySelectorAll('.fact-item').forEach(function(f, i){
+        f.style.transitionDelay = (i * 0.1) + 's';
+      });
+    }
+  })();
+
 </script>
 </body>
 </html>
