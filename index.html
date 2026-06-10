@@ -251,6 +251,54 @@
 
     .benefit-card { transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease; }
 
+  
+    /* ═══════════ BRANCHES MAP SECTION ═══════════ */
+    .bm-section { padding: 72px 6vw 84px; }
+    .bm-head { text-align: center; max-width: 680px; margin: 0 auto 36px; }
+    .bm-stage { position: relative; max-width: 460px; margin: 0 auto; }
+    .bm-stage svg { display: block; width: 100%; height: auto; overflow: visible; }
+    .bm-fill { fill: rgba(46,156,219,.05); }
+    .bm-stroke { fill: none; stroke: rgba(26,74,159,.4); stroke-width: 1.3; stroke-linejoin: round; }
+    .bm-glow { fill: none; stroke: rgba(46,156,219,.1); stroke-width: 5; stroke-linejoin: round; }
+    .bm-pin-group { cursor: pointer; }
+    .bm-pin-shadow { fill: rgba(13,34,87,.22); }
+    .bm-tip { pointer-events: none; opacity: 0; transition: opacity .18s ease, transform .22s cubic-bezier(.3,1.3,.5,1); transform: translateY(4px); }
+    .bm-tip.show { opacity: 1; transform: translateY(0); }
+    .bm-tip-bg { fill: var(--navy); }
+    .bm-tip-arrow { fill: var(--navy); }
+    .bm-tip-text { font-family: 'Assistant', sans-serif; font-size: 11.5px; font-weight: 800; fill: #fff; }
+    .bm-overlay { position: fixed; inset: 0; z-index: 200; display: flex; align-items: center; justify-content: center; padding: 20px; background: rgba(8,18,42,.5); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); opacity: 0; pointer-events: none; transition: opacity .25s ease; }
+    .bm-overlay.show { opacity: 1; pointer-events: auto; }
+    .bm-card { position: relative; width: min(430px,100%); background: var(--white); box-shadow: 0 24px 70px rgba(13,34,87,.4); overflow: hidden; transform: translateY(18px) scale(.975); opacity: 0; transition: transform .34s cubic-bezier(.34,1.25,.5,1), opacity .28s ease; }
+    .bm-overlay.show .bm-card { transform: none; opacity: 1; }
+    .bm-card-accent { height: 3px; }
+    .bm-card-banner { background: linear-gradient(135deg,#071a3d 0%,#0d2257 100%); padding: 28px 30px 24px; position: relative; overflow: hidden; }
+    .bm-card-banner::after { content: ''; position: absolute; inset: 0; background: linear-gradient(115deg,transparent 42%,rgba(46,156,219,.1) 50%,transparent 58%); }
+    .bm-card-eyebrow { font-size: 12px; font-weight: 800; letter-spacing: .1em; margin-bottom: 8px; position: relative; }
+    .bm-card-title { font-family: 'Secular One', sans-serif; font-weight: 400; font-size: 30px; color: #fff; line-height: 1.1; position: relative; }
+    .bm-card-close { position: absolute; top: 22px; left: 22px; width: 30px; height: 30px; border-radius: 50%; border: 1px solid rgba(255,255,255,.22); background: rgba(255,255,255,.06); color: rgba(255,255,255,.7); font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all .15s; font-family: inherit; z-index: 2; }
+    .bm-card-close:hover { background: rgba(255,255,255,.15); color: #fff; transform: rotate(90deg); }
+    .bm-card-body { padding: 10px 30px 6px; }
+    .bm-info-row { display: flex; gap: 15px; padding: 16px 0; border-bottom: 1px solid #eef2fa; opacity: 0; transform: translateX(12px); }
+    .bm-info-row:last-child { border-bottom: none; }
+    .bm-overlay.show .bm-info-row { animation: bmRowIn .42s ease forwards; }
+    .bm-overlay.show .bm-info-row:nth-child(1){animation-delay:.1s;}
+    .bm-overlay.show .bm-info-row:nth-child(2){animation-delay:.2s;}
+    .bm-overlay.show .bm-info-row:nth-child(3){animation-delay:.3s;}
+    .bm-overlay.show .bm-info-row:nth-child(4){animation-delay:.4s;}
+    @keyframes bmRowIn { to { opacity: 1; transform: none; } }
+    .bm-info-icon { width: 40px; height: 40px; flex-shrink: 0; border-radius: 8px; background: rgba(46,156,219,.09); border: 1px solid rgba(46,156,219,.22); display: flex; align-items: center; justify-content: center; color: var(--sky); }
+    .bm-info-icon svg { width: 20px; height: 20px; }
+    .bm-info-label { font-size: 11px; font-weight: 800; letter-spacing: .06em; color: var(--light); text-transform: uppercase; margin-bottom: 4px; }
+    .bm-info-val { font-size: 15.5px; font-weight: 600; color: var(--text); line-height: 1.55; }
+    .bm-info-val.bm-phone { font-family: 'Secular One', sans-serif; font-weight: 400; font-size: 21px; color: var(--blue); direction: ltr; text-align: right; letter-spacing: .03em; }
+    .bm-info-val a { color: inherit; text-decoration: none; }
+    .bm-badge-college { display: inline-block; margin-top: 2px; background: linear-gradient(135deg,rgba(240,180,41,.13),rgba(244,124,48,.09)); border: 1px solid rgba(240,180,41,.5); color: #9a6c06; font-size: 13.5px; font-weight: 800; padding: 7px 14px; }
+    .bm-card-cta { display: block; margin: 16px 30px 28px; text-align: center; background: linear-gradient(135deg,#0d2257,#1a4a9f); color: #fff; text-decoration: none; font-size: 16px; font-weight: 800; padding: 14px; letter-spacing: .02em; border-radius: 8px; box-shadow: 0 4px 16px rgba(13,34,87,.25); transition: filter .2s, transform .15s; opacity: 0; }
+    .bm-overlay.show .bm-card-cta { animation: bmRowIn .42s .5s ease forwards; }
+    .bm-card-cta:hover { filter: brightness(1.12); transform: translateY(-2px); }
+    @media (max-width: 760px) { .bm-section { padding: 52px 5vw 64px; } }
+
   </style>
 </head>
 <body>
@@ -447,6 +495,35 @@
   </div>
 </div>
 
+</div>
+
+
+<!-- ═══════════ BRANCHES MAP — פריסת שלוחות ארצית ═══════════ -->
+<section class="bm-section">
+  <div class="bm-head fade-in">
+    <h2 class="article-title">פריסת שלוחות ארצית</h2>
+  </div>
+  <div class="bm-stage fade-in" id="bmStage">
+    <svg id="bmSvg" viewBox="-20 -20 400 830" aria-label="מפת השלוחות">
+      <g id="bmBase"></g>
+      <g id="bmShadows"></g>
+      <g id="bmPins"></g>
+      <g id="bmTipLayer"></g>
+    </svg>
+  </div>
+</section>
+
+<div class="bm-overlay" id="bmOverlay">
+  <div class="bm-card" role="dialog" aria-modal="true">
+    <div class="bm-card-accent" id="bmCardAccent"></div>
+    <div class="bm-card-banner">
+      <button class="bm-card-close" id="bmCardClose" aria-label="סגירה">✕</button>
+      <div class="bm-card-eyebrow" id="bmCardDist"></div>
+      <div class="bm-card-title" id="bmCardTitle"></div>
+    </div>
+    <div class="bm-card-body" id="bmCardBody"></div>
+    <a class="bm-card-cta" id="bmCardCta" href="#">חייגו לפרטים והרשמה</a>
+  </div>
 </div>
 
 <footer class="site-footer">
@@ -723,6 +800,188 @@
     }
   })();
 
+</script>
+
+<script>
+/* ═══════════ BRANCHES MAP — מבודד, ללא תלות בלוגיקת האתר ═══════════ */
+(function(){
+  var LON0=34.18, LON1=35.95, LAT0=29.45, LAT1=33.40, W=360, H=800;
+  function PX(lon){ return (lon-LON0)/(LON1-LON0)*W; }
+  function PY(lat){ return (LAT1-lat)/(LAT1-LAT0)*H; }
+
+  var BORDER=[[33.09,35.103],[32.92,35.066],[32.83,35.000],[32.825,34.955],[32.70,34.935],[32.55,34.905],[32.37,34.860],[32.18,34.800],[32.05,34.740],[31.93,34.690],[31.80,34.630],[31.665,34.555],[31.595,34.490],[31.52,34.555],[31.32,34.395],[31.215,34.265],[30.85,34.420],[30.40,34.555],[29.99,34.705],[29.49,34.905],[29.545,34.975],[30.00,35.060],[30.42,35.180],[30.90,35.310],[31.15,35.395],[31.46,35.420],[31.762,35.505],[32.00,35.530],[32.40,35.555],[32.685,35.570],[32.705,35.640],[32.79,35.760],[33.00,35.840],[33.25,35.800],[33.28,35.620],[33.095,35.310],[33.09,35.103]];
+
+  var COLORS={ 'דרום':'#f0b429', 'מרכז':'#2e9cdb', 'צפון':'#1ab8d4' };
+
+  /* ── נתוני שלוחות — לעריכה כאן בלבד ── */
+  var BRANCHES=[
+    { n:'נהריה',        d:'צפון', lat:33.006, lon:35.094, addr:'רחוב לדוגמה 1, נהריה',       tracks:'אלקטרוניקה ומחשבים',         college:false, phone:'00-0000000' },
+    { n:'מעלות תרשיחא', d:'צפון', lat:33.016, lon:35.270, addr:'רחוב לדוגמה 1, מעלות',       tracks:'אלקטרוניקה ומחשבים',         college:false, phone:'00-0000000' },
+    { n:'חצור הגלילית', d:'צפון', lat:32.981, lon:35.543, addr:'רחוב לדוגמה 1, חצור',        tracks:'אלקטרוניקה ומחשבים',         college:false, phone:'00-0000000' },
+    { n:'ביסהת (חיפה)', d:'צפון', lat:32.794, lon:35.040, addr:'רחוב לדוגמה 1, חיפה',        tracks:'אלקטרוניקה ומחשבים ומכונות', college:true,  phone:'00-0000000' },
+    { n:'חדרה',         d:'מרכז', lat:32.434, lon:34.920, addr:'רחוב לדוגמה 1, חדרה',        tracks:'אלקטרוניקה ומחשבים',         college:false, phone:'00-0000000' },
+    { n:'כפר סבא',      d:'מרכז', lat:32.175, lon:34.907, addr:'רחוב לדוגמה 1, כפר סבא',     tracks:'אלקטרוניקה ומחשבים',         college:false, phone:'00-0000000' },
+    { n:'ראש העין',     d:'מרכז', lat:32.095, lon:34.957, addr:'רחוב לדוגמה 1, ראש העין',    tracks:'אלקטרוניקה ומחשבים',         college:false, phone:'00-0000000' },
+    { n:'פתח תקווה',    d:'מרכז', lat:32.087, lon:34.887, addr:'רחוב לדוגמה 1, פתח תקווה',   tracks:'אלקטרוניקה ומחשבים',         college:false, phone:'00-0000000' },
+    { n:'הולץ (ת"א)',   d:'מרכז', lat:32.050, lon:34.790, addr:'רחוב לדוגמה 1, תל אביב',     tracks:'אלקטרוניקה ומחשבים ומכונות', college:true,  phone:'00-0000000' },
+    { n:'בת ים',        d:'מרכז', lat:32.013, lon:34.745, addr:'רחוב לדוגמה 1, בת ים',       tracks:'אלקטרוניקה ומחשבים',         college:false, phone:'00-0000000' },
+    { n:'ראשון לציון',  d:'מרכז', lat:31.960, lon:34.800, addr:'רחוב לדוגמה 1, ראשון לציון', tracks:'אלקטרוניקה ומחשבים',         college:false, phone:'00-0000000' },
+    { n:'בית שמש',      d:'מרכז', lat:31.747, lon:34.988, addr:'רחוב לדוגמה 1, בית שמש',     tracks:'אלקטרוניקה ומחשבים',         college:false, phone:'00-0000000' },
+    { n:'גבעת רם',      d:'מרכז', lat:31.776, lon:35.198, addr:'רחוב לדוגמה 1, ירושלים',     tracks:'אלקטרוניקה ומחשבים',         college:false, phone:'00-0000000' },
+    { n:'מעלה אדומים',  d:'מרכז', lat:31.777, lon:35.298, addr:'רחוב לדוגמה 1, מעלה אדומים', tracks:'אלקטרוניקה ומחשבים',         college:false, phone:'00-0000000' },
+    { n:'אשדוד',        d:'דרום', lat:31.790, lon:34.650, addr:'רחוב לדוגמה 1, אשדוד',       tracks:'אלקטרוניקה ומחשבים',         college:false, phone:'00-0000000' },
+    { n:'אשקלון',       d:'דרום', lat:31.665, lon:34.566, addr:'אורט 11, אשקלון',            tracks:'אלקטרוניקה ומחשבים ומכונות', college:true,  phone:'08-9572210' },
+    { n:'קריית גת',     d:'דרום', lat:31.610, lon:34.764, addr:'רחוב לדוגמה 1, קריית גת',    tracks:'אלקטרוניקה ומחשבים',         college:false, phone:'00-0000000' },
+    { n:'ביסט ב"ש',     d:'דרום', lat:31.252, lon:34.791, addr:'רחוב לדוגמה 1, באר שבע',     tracks:'אלקטרוניקה ומחשבים ומכונות', college:true,  phone:'00-0000000' },
+    { n:'דימונה',       d:'דרום', lat:31.070, lon:35.030, addr:'רחוב לדוגמה 1, דימונה',      tracks:'אלקטרוניקה ומחשבים',         college:false, phone:'00-0000000' },
+    { n:'אילת',         d:'דרום', lat:29.557, lon:34.952, addr:'רחוב לדוגמה 1, אילת',        tracks:'אלקטרוניקה ומחשבים',         college:false, phone:'00-0000000' }
+  ];
+
+  var ICONS={
+    pin:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>',
+    book:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>',
+    grad:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg>',
+    phone:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>'
+  };
+
+  var NS='http://www.w3.org/2000/svg';
+  var pts=BORDER.map(function(p){ return [PX(p[1]),PY(p[0])]; });
+  var borderD='M'+pts.map(function(p){ return p[0].toFixed(1)+','+p[1].toFixed(1); }).join(' L')+' Z';
+
+  document.getElementById('bmBase').innerHTML=
+    '<path class="bm-fill" d="'+borderD+'"/>'+
+    '<path class="bm-glow" d="'+borderD+'"/>'+
+    '<path class="bm-stroke" id="bmIlPath" d="'+borderD+'"/>';
+
+  var gPins=document.getElementById('bmPins');
+  var gShadows=document.getElementById('bmShadows');
+  var tipLayer=document.getElementById('bmTipLayer');
+
+  /* תווית צפה */
+  var tip=document.createElementNS(NS,'g'); tip.setAttribute('class','bm-tip');
+  var tipBg=document.createElementNS(NS,'rect'); tipBg.setAttribute('class','bm-tip-bg'); tipBg.setAttribute('rx',4); tipBg.setAttribute('height',22);
+  var tipArrow=document.createElementNS(NS,'path'); tipArrow.setAttribute('class','bm-tip-arrow');
+  var tipText=document.createElementNS(NS,'text'); tipText.setAttribute('class','bm-tip-text'); tipText.setAttribute('text-anchor','middle');
+  tip.appendChild(tipBg); tip.appendChild(tipArrow); tip.appendChild(tipText);
+  tipLayer.appendChild(tip);
+
+  function showTip(b){
+    var x=PX(b.lon), y=PY(b.lat);
+    tipText.textContent=b.n;
+    tipText.setAttribute('x',x); tipText.setAttribute('y',y-30.5);
+    var tw=tipText.getComputedTextLength()+20;
+    tipBg.setAttribute('width',tw);
+    tipBg.setAttribute('x',x-tw/2); tipBg.setAttribute('y',y-45.5);
+    tipArrow.setAttribute('d','M'+(x-4)+','+(y-23.5)+' L'+(x+4)+','+(y-23.5)+' L'+x+','+(y-18.5)+' Z');
+    tip.classList.add('show');
+  }
+  function hideTip(){ tip.classList.remove('show'); }
+
+  var pinObjs=BRANCHES.map(function(b,i){
+    var c=COLORS[b.d], x=PX(b.lon), y=PY(b.lat);
+
+    var sh=document.createElementNS(NS,'ellipse');
+    sh.setAttribute('class','bm-pin-shadow');
+    sh.setAttribute('cx',x); sh.setAttribute('cy',y);
+    sh.setAttribute('rx',4.6); sh.setAttribute('ry',1.7); sh.setAttribute('opacity','0');
+    gShadows.appendChild(sh);
+
+    var grp=document.createElementNS(NS,'g');
+    grp.setAttribute('class','bm-pin-group');
+
+    var pin=document.createElementNS(NS,'g');
+    pin.style.transformOrigin=x+'px '+y+'px';
+
+    var r=5.2, cy=y-15;
+    var body=document.createElementNS(NS,'path');
+    body.setAttribute('d','M'+x+','+y+
+      ' C'+(x-3.2)+','+(y-7)+' '+(x-r)+','+(cy+r*0.9)+' '+(x-r)+','+cy+
+      ' A'+r+','+r+' 0 1,1 '+(x+r)+','+cy+
+      ' C'+(x+r)+','+(cy+r*0.9)+' '+(x+3.2)+','+(y-7)+' '+x+','+y+' Z');
+    body.setAttribute('fill',c);
+    body.setAttribute('stroke','rgba(0,0,0,0.12)');
+    body.setAttribute('stroke-width','0.6');
+
+    var hole=document.createElementNS(NS,'circle');
+    hole.setAttribute('cx',x); hole.setAttribute('cy',cy);
+    hole.setAttribute('r',1.7); hole.setAttribute('fill','rgba(255,255,255,0.88)');
+    var gloss=document.createElementNS(NS,'circle');
+    gloss.setAttribute('cx',x-1.6); gloss.setAttribute('cy',cy-1.6);
+    gloss.setAttribute('r',1.5); gloss.setAttribute('fill','rgba(255,255,255,0.5)');
+
+    pin.appendChild(body); pin.appendChild(hole); pin.appendChild(gloss);
+    grp.appendChild(pin);
+    gPins.appendChild(grp);
+
+    grp.addEventListener('mouseenter',function(){ showTip(b); pin.style.transform='translateY(0) scale(1.15)'; });
+    grp.addEventListener('mouseleave',function(){ hideTip(); pin.style.transform='translateY(0) scale(1)'; });
+    grp.addEventListener('click',function(){ bmOpenCard(i); });
+
+    pin.style.opacity='0';
+    pin.style.transform='translateY(-46px) scale(.6)';
+    return { pin:pin, sh:sh };
+  });
+
+  /* כרטיס */
+  var overlay=document.getElementById('bmOverlay');
+  var cardAccent=document.getElementById('bmCardAccent');
+  var cardDist=document.getElementById('bmCardDist');
+  var cardTitle=document.getElementById('bmCardTitle');
+  var cardBody=document.getElementById('bmCardBody');
+  var cardCta=document.getElementById('bmCardCta');
+
+  function bmRow(icon,label,valHtml){
+    return '<div class="bm-info-row"><div class="bm-info-icon">'+ICONS[icon]+'</div>'+
+      '<div><div class="bm-info-label">'+label+'</div><div class="bm-info-val '+(icon==='phone'?'bm-phone':'')+'">'+valHtml+'</div></div></div>';
+  }
+  function bmOpenCard(i){
+    var b=BRANCHES[i], c=COLORS[b.d];
+    cardAccent.style.background='linear-gradient(90deg,'+c+','+c+'55)';
+    cardDist.textContent='מחוז '+b.d; cardDist.style.color=c;
+    cardTitle.textContent='שלוחת '+b.n.replace(/\s*\(.*\)/,'');
+    var body=bmRow('pin','כתובת',b.addr)+bmRow('book','מגמות לימוד',b.tracks);
+    if(b.college) body+=bmRow('grad','מכללה','<span class="bm-badge-college">מכללה ללימודי הנדסאי בתוך השלוחה</span>');
+    body+=bmRow('phone','לפרטים ויצירת קשר','<a href="tel:'+b.phone.replace(/-/g,'')+'">'+b.phone+'</a>');
+    cardBody.innerHTML=body;
+    cardCta.href='tel:'+b.phone.replace(/-/g,'');
+    overlay.classList.remove('show'); void overlay.offsetWidth; overlay.classList.add('show');
+  }
+  function bmCloseCard(){ overlay.classList.remove('show'); }
+  document.getElementById('bmCardClose').addEventListener('click',bmCloseCard);
+  overlay.addEventListener('click',function(e){ if(e.target===overlay) bmCloseCard(); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') bmCloseCard(); });
+
+  /* אנימציה: גבול נמתח → נעצים נופלים מצפון לדרום */
+  var ilPath=document.getElementById('bmIlPath');
+  var len=ilPath.getTotalLength();
+  ilPath.style.strokeDasharray=len; ilPath.style.strokeDashoffset=len;
+  ilPath.style.transition='stroke-dashoffset 2s ease';
+
+  var order=BRANCHES.map(function(b,i){ return i; }).sort(function(a,b){ return BRANCHES[b].lat-BRANCHES[a].lat; });
+
+  function dropPin(i){
+    var o=pinObjs[i];
+    o.pin.style.transition='transform .5s cubic-bezier(.34,1.56,.55,1), opacity .25s ease';
+    o.pin.style.opacity='1';
+    o.pin.style.transform='translateY(0) scale(1)';
+    setTimeout(function(){
+      o.sh.style.transition='opacity .3s ease';
+      o.sh.setAttribute('opacity','0.7');
+    },360);
+  }
+
+  var revealed=false;
+  new IntersectionObserver(function(entries,obs){
+    entries.forEach(function(e){
+      if(e.isIntersecting && !revealed){
+        revealed=true;
+        ilPath.style.strokeDashoffset='0';
+        order.forEach(function(idx,k){ setTimeout(function(){ dropPin(idx); }, 650+k*80); });
+        obs.unobserve(e.target);
+      }
+    });
+  },{threshold:.2}).observe(document.getElementById('bmStage'));
+})();
 </script>
 </body>
 </html>
