@@ -689,12 +689,19 @@
     });
   });
 
-  // Cert circles — rotate forward on each hover (never spins back)
+  // Cert circles — one clean single rotation per hover
   document.querySelectorAll('.cert-circle').forEach(function(circle){
-    var angle = 0;
+    var spinning = false;
     circle.addEventListener('mouseenter', function(){
-      angle += 360;
-      circle.style.transform = 'rotateY(' + angle + 'deg)';
+      if (spinning) return;
+      spinning = true;
+      circle.style.transition = 'none';
+      circle.style.transform = 'rotateY(0deg)';
+      // force reflow so the reset applies before animating
+      void circle.offsetWidth;
+      circle.style.transition = 'transform 0.85s cubic-bezier(.22,.61,.36,1), box-shadow 0.3s ease, border-color 0.3s ease';
+      circle.style.transform = 'rotateY(360deg)';
+      setTimeout(function(){ spinning = false; }, 850);
     });
   });
 
